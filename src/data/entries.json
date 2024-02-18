@@ -9,7 +9,7 @@
     "composer" : "ショパン",
     "work" : "バラード 第2番",
     "time" : 8,
-    "memo" : ""
+    "memo" : "ヒーッヒッヒ"
   },
   {
     "id" : 2,
@@ -18,9 +18,33 @@
     "first_name" : "一馬",
     "group" : "経営",
     "grade" : 2,
-    "composer" : "モーツァルト",
-    "work" : "ロンド",
+    "composer" : "ショパン",
+    "work" : "ノクターン",
     "time" : 5,
     "memo" : "よろしくな"
+  },
+  {
+    "id" : 3,
+    "index" : 3,
+    "last_name" : "錦山",
+    "first_name" : "彰",
+    "group" : "医",
+    "grade" : 2,
+    "composer" : "リスト",
+    "work" : "ラ・カンパネラ",
+    "time" : 9,
+    "memo" : "これくらい弾けて極道ってもんだ"
+  },
+  {
+    "id" : 4,
+    "index" : 4,
+    "last_name" : "立華",
+    "first_name" : "鉄",
+    "group" : "医",
+    "grade" : 5,
+    "composer" : "シューベルト",
+    "work" : "ソナタ",
+    "time" : 25,
+    "memo" : ""
   }
 ]
