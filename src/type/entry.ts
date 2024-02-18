@@ -3,4 +3,7 @@ export default interface Entry {
   first_name: string
   group: string
   grade: number
+  composer: string
+  work: string
+  time: number
 }

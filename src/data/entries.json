@@ -3,12 +3,18 @@
     "last_name" : "真島",
     "first_name" : "吾朗",
     "group" : "建築",
-    "grade" : 4
+    "grade" : 4,
+    "composer" : "ショパン",
+    "work" : "バラード 第2番",
+    "time" : 8
   },
   {
     "last_name" : "桐生",
     "first_name" : "一馬",
     "group" : "経営",
-    "grade" : 2
+    "grade" : 2,
+    "composer" : "モーツァルト",
+    "work" : "ロンド",
+    "time" : 5
   }
 ]
