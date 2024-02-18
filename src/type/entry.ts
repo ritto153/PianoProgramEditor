@@ -1,4 +1,5 @@
 export default interface Entry {
+  index : number
   last_name: string
   first_name: string
   group: string
