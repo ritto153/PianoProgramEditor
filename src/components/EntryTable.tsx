@@ -3,16 +3,23 @@ import Table from 'react-bootstrap/Table'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import EntryTableRow from './EntryTableRow';
 import { useEntries } from '../EntryProvider';
+import Entry from '../type/entry';
 
 export default function EntryTable(){
   const { entries, setEntries } = useEntries();
 
-  // DragDropContext の onDragEnd での並び替えに汎用的に使えるメソッド
   // https://github.com/atlassian/react-beautiful-dnd/blob/013bfceac04ff48548c33cdc468dd2927446fc1b/stories/src/reorder.js#L6
-  const reorder = (list: any[], startIndex: number, endIndex: number): any[] => {
-    const result = Array.from(list);
+  const reorderEntry = (list: Entry[], startIndex: number, endIndex: number): any[] => {
+    let result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
     result.splice(endIndex, 0, removed);
+
+    result = result.map((entry, i) => (
+      {
+        ...entry,
+        sort: i + 1
+      }
+    ))
   
     return result;
   };
@@ -25,7 +32,7 @@ export default function EntryTable(){
     // 同じ場所にドロップされた場合
     if (result.destination.index === result.source.index) { return; }
 
-    const reorderedEntries = reorder(entries, result.source.index, result.destination.index);
+    const reorderedEntries = reorderEntry(entries, result.source.index, result.destination.index);
     setEntries(reorderedEntries)
   };
 
