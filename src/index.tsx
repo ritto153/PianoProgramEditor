@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import EntryProvider from './EntryProvider';
 import reportWebVitals from './reportWebVitals';
+import initialEntries from './data/entries.json';
+
+export const EntryContext = createContext({initialEntries});
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <EntryProvider>
+      {[ <App /> ]}
+    </EntryProvider>
   </React.StrictMode>
 );
 

@@ -1,12 +1,13 @@
-import React from 'react';
-import Entry from '../type/entry';
+import { useEntries } from "../EntryProvider";
 
-export default function EntryTableTitle(props: {title: String; entries: Entry[];}){
+export default function EntryTableTitle(props: {title: String}){
+  const { entries } = useEntries();
+
   return (
     <div>
       <h3>{props.title}</h3>
       <p>
-        {`総演奏時間：${props.entries.reduce((total, entry) => total + entry.time, 0)}分`}
+        {`総演奏時間：${entries.reduce((total, entry) => total + entry.time, 0)}分`}
       </p>
     </div>
   )
