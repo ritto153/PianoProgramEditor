@@ -1,6 +1,6 @@
 export default interface Entry {
   id: number
-  index : number
+  sort: number
   last_name: string
   first_name: string
   group: string

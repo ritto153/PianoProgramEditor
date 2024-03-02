@@ -1,15 +1,21 @@
 import { useEntries } from '../EntryProvider';
 import Entry from '../type/entry';
 
-export default function EntryTableRow(props: { key: number, index: number }) {
-  const { index } = props;
+interface Props {
+  key: number
+  draggableProvided: any
+  entryId: number
+}
+
+export default function EntryTableRow(props: Props) {
+  const { entryId, draggableProvided } = props;
   const { entries, setEntries } = useEntries();
-  const entry = entries[index];
+  const entry = entries.find((entry) => entry.id === entryId );
 
   const buildNewEntries = (oldEntries: Entry[], changedEntry: Entry) => {
     return (
-      oldEntries.map((entry, i) => {
-        if(i === index){
+      oldEntries.map((entry) => {
+        if(entry.id === entryId){
           return changedEntry
         } else {
           return entry
@@ -18,9 +24,15 @@ export default function EntryTableRow(props: { key: number, index: number }) {
     )
   }
 
+  if (!entry) { return <th></th> }
+
   return (
-    <tr>
-      {Object.entries(entry).map(([key, value], i)=>{
+    <tr
+      ref={draggableProvided.innerRef}
+      {...draggableProvided.draggableProps}
+      {...draggableProvided.dragHandleProps}
+    >
+      {Object.entries(entry).map(([key, value], i) => {
         if (key === "id") {
           // 列に表示しない
         } else if (key === "memo"){
