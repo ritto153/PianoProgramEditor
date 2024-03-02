@@ -19,7 +19,7 @@ export default function EntryTable(){
       </thead>
       <tbody>
         {entries.map((entry, i)=>(
-          <EntryTableRow key = {i}/>
+          <EntryTableRow key = {i} index = {i}/>
         ))}
       </tbody>
     </Table>

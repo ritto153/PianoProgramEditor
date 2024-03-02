@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
-import InitialEntries from './data/entries.json';
+import initialEntries from './data/entries.json';
 import Entry from "./type/entry";
 
 interface EntryContextValue {
@@ -13,9 +13,9 @@ const EntryContext = createContext<EntryContextValue>({
 });
 export const useEntries = () => useContext(EntryContext);
 
-export default function EntryProvider(props: { children: JSX.Element[] }) {
+export default function EntryProvider(props: { children: JSX.Element }) {
   const { children } = props;
-  const [entries, setEntries] = useState(InitialEntries);
+  const [entries, setEntries] = useState(initialEntries);
 
   return (
     <EntryContext.Provider value={{ entries, setEntries }}>

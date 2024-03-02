@@ -14,7 +14,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <EntryProvider>
-      {[ <App /> ]}
+      <App />
     </EntryProvider>
   </React.StrictMode>
 );

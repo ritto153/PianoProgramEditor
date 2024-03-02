@@ -1,20 +1,22 @@
 import { useEntries } from '../EntryProvider';
 import Entry from '../type/entry';
 
-export default function EntryTableRow(props: { key: number }) {
-  const index = props.key;
+export default function EntryTableRow(props: { key: number, index: number }) {
+  const { index } = props;
   const { entries, setEntries } = useEntries();
   const entry = entries[index];
 
-  const buildNewEntries = (oldEntries: Entry[], changedEntry: Entry) => (
-    oldEntries.map((entry, i) => {
-      if(i === index){
-        return changedEntry
-      } else {
-        return entry
-      }
-    })
-  );
+  const buildNewEntries = (oldEntries: Entry[], changedEntry: Entry) => {
+    return (
+      oldEntries.map((entry, i) => {
+        if(i === index){
+          return changedEntry
+        } else {
+          return entry
+        }
+      })
+    )
+  }
 
   return (
     <tr>
