@@ -3,13 +3,14 @@ import Table from 'react-bootstrap/Table'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import EntryTableRow from './EntryTableRow';
 import { useEntries } from '../EntryProvider';
-import Entry from '../type/entry';
+import { Entry } from '../type/entry';
+import { DropResult } from "../type/dnd_types";
 
 export default function EntryTable(){
   const { entries, setEntries } = useEntries();
 
   // https://github.com/atlassian/react-beautiful-dnd/blob/013bfceac04ff48548c33cdc468dd2927446fc1b/stories/src/reorder.js#L6
-  const reorderEntry = (list: Entry[], startIndex: number, endIndex: number): any[] => {
+  const reorderEntry = (list: Entry[], startIndex: number, endIndex: number): Entry[] => {
     let result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
     result.splice(endIndex, 0, removed);
@@ -25,7 +26,7 @@ export default function EntryTable(){
   };
   
   // https://github.com/atlassian/react-beautiful-dnd/blob/013bfceac04ff48548c33cdc468dd2927446fc1b/stories/src/table/with-fixed-columns.jsx#L107
-  const onDragEnd = (result: any) => {
+  const onDragEnd = (result: DropResult) => {
     // 表の外にドロップされた場合
     if (!result.destination) { return; }
 

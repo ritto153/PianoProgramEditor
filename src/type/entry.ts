@@ -1,4 +1,4 @@
-export default interface Entry {
+export type Entry = {
   id: number
   sort: number
   last_name: string
