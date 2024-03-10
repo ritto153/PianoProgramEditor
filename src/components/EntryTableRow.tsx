@@ -1,5 +1,5 @@
 import { useEntries } from '../EntryProvider';
-import { Entry } from '../type/entry';
+import { Entry } from '../type/Entry';
 
 interface Props {
   key: number

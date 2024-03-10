@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import initialEntries from './data/entries.json';
-import { Entry } from "./type/entry";
+import { Entry } from "./type/Entry";
 
 interface EntryContextValue {
   entries: Entry[]
