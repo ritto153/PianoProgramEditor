@@ -53,6 +53,7 @@ export default function EntryTable() {
       <Table striped bordered hover>
         <thead>
           <tr>
+            <th></th>
             {Object.entries(displayColumns).map(([key, value]) => {
               if (value) {
                 return <th>{key}</th>;

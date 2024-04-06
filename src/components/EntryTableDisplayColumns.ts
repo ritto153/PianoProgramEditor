@@ -1,3 +1,5 @@
+import { Entry } from "../type/Entry";
+
 export const displayColumns = {
   id: false,
   sort: true,

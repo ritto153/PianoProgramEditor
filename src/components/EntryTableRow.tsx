@@ -1,4 +1,5 @@
 import { useEntries } from "../EntryProvider";
+import { displayColumns } from "./EntryTableDisplayColumns";
 import { Entry } from "../type/Entry";
 
 interface Props {
@@ -23,7 +24,8 @@ export default function EntryTableRow(props: Props) {
   };
 
   if (!entry) {
-    return <th></th>;
+    // entry が undefined になることが基本的にあり得ないが、型対策
+    return <tr></tr>;
   }
 
   return (
@@ -32,8 +34,9 @@ export default function EntryTableRow(props: Props) {
       {...draggableProvided.draggableProps}
       {...draggableProvided.dragHandleProps}
     >
+      <th></th>
       {Object.entries(entry).map(([key, value], i) => {
-        if (key === "id") {
+        if (!displayColumns[key as keyof Entry]) {
           // 列に表示しない
         } else if (key === "memo") {
           return (
