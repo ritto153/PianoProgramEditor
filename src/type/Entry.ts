@@ -1,5 +1,6 @@
 export type Entry = {
   id: number
+  group_num: number
   sort: number
   last_name: string
   first_name: string

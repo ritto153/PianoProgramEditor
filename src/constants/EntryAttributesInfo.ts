@@ -3,6 +3,10 @@ export const entryAttributesInfo = {
     displayInTable: false,
     displayName: "id"
   },
+  group_num: {
+    displayInTable: true,
+    displayName: "部"
+  },
   sort: {
     displayInTable: true,
     displayName: "番"

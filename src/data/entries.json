@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+    "group_num": 1,
     "sort": 1,
     "last_name": "真島",
     "first_name": "吾朗",
@@ -13,6 +14,7 @@
   },
   {
     "id": 2,
+    "group_num": 1,
     "sort": 2,
     "last_name": "桐生",
     "first_name": "一馬",
@@ -25,6 +27,7 @@
   },
   {
     "id": 3,
+    "group_num": 1,
     "sort": 3,
     "last_name": "錦山",
     "first_name": "彰",
@@ -37,6 +40,7 @@
   },
   {
     "id": 4,
+    "group_num": 1,
     "sort": 4,
     "last_name": "立華",
     "first_name": "鉄",
