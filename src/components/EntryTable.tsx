@@ -7,8 +7,9 @@ import { useEntries } from "../EntryProvider";
 import { Entry } from "../type/Entry";
 import { DropResult } from "../type/DropResult";
 
-export default function EntryTable() {
-  const { entries, setEntries } = useEntries();
+export default function EntryTable(props: { entries: Entry[] }) {
+  const { entries } = props;
+  const { setEntries } = useEntries();
 
   // https://github.com/atlassian/react-beautiful-dnd/blob/013bfceac04ff48548c33cdc468dd2927446fc1b/stories/src/reorder.js#L6
   const reorderEntry = (
@@ -56,7 +57,7 @@ export default function EntryTable() {
             <th></th>
             {Object.entries(entryAttributesInfo).map(([key, value]) => {
               if (value["displayInTable"]) {
-                return <th>{ value["displayName"] }</th>;
+                return <th>{value["displayName"]}</th>;
               }
             })}
           </tr>
