@@ -50,5 +50,44 @@
     "work": "ソナタ",
     "time": 25,
     "memo": ""
+  },
+  {
+    "id": 5,
+    "group_num": 2,
+    "sort": 5,
+    "last_name": "嶋野",
+    "first_name": "太",
+    "affiliation": "関西",
+    "grade": 6,
+    "composer": "リスト",
+    "work": "ピアノソナタ",
+    "time": 20,
+    "memo": ""
+  },
+  {
+    "id": 6,
+    "group_num": 3,
+    "sort": 6,
+    "last_name": "風間",
+    "first_name": "新太郎",
+    "affiliation": "理",
+    "grade": 6,
+    "composer": "バッハ",
+    "work": "ゴルドベルグ変奏曲",
+    "time": 50,
+    "memo": ""
+  },
+  {
+    "id": 7,
+    "group_num": 2,
+    "sort": 7,
+    "last_name": "柏木",
+    "first_name": "修",
+    "affiliation": "栄養",
+    "grade": 5,
+    "composer": "ドビュッシー",
+    "work": "水の反映",
+    "time": 10,
+    "memo": ""
   }
 ]
