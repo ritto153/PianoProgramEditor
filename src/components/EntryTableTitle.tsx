@@ -1,11 +1,16 @@
-import { useEntries } from "../EntryProvider";
+import { Entry } from "../type/Entry";
 
-export default function EntryTableTitle(props: { title: String }) {
-  const { entries } = useEntries();
+type Props = {
+  entries: Entry[];
+  title: string;
+};
+
+export default function EntryTableTitle(props: Props) {
+  const { entries, title } = props;
 
   return (
     <div>
-      <h3>{props.title}</h3>
+      <h3>{title}</h3>
       <p>
         {`総演奏時間：${entries.reduce(
           (total, entry) => total + entry.time,

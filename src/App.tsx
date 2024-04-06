@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div className="App">
-      <EntryTableTitle title="全エントリー" />
+      <EntryTableTitle entries={entries} title="全エントリー" />
       <EntryTable entries={entries} />
     </div>
   );
