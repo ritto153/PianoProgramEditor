@@ -2,7 +2,7 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import Table from "react-bootstrap/Table";
 import "bootstrap/dist/css/bootstrap.min.css";
 import EntryTableRow from "./EntryTableRow";
-import { displayColumns } from "./EntryTableDisplayColumns";
+import { entryAttributesInfo } from "../constants/EntryAttributesInfo";
 import { useEntries } from "../EntryProvider";
 import { Entry } from "../type/Entry";
 import { DropResult } from "../type/DropResult";
@@ -54,9 +54,9 @@ export default function EntryTable() {
         <thead>
           <tr>
             <th></th>
-            {Object.entries(displayColumns).map(([key, value]) => {
-              if (value) {
-                return <th>{key}</th>;
+            {Object.entries(entryAttributesInfo).map(([key, value]) => {
+              if (value["displayInTable"]) {
+                return <th>{ value["displayName"] }</th>;
               }
             })}
           </tr>

@@ -1,5 +1,5 @@
 import { useEntries } from "../EntryProvider";
-import { displayColumns } from "./EntryTableDisplayColumns";
+import { entryAttributesInfo } from "../constants/EntryAttributesInfo";
 import { Entry } from "../type/Entry";
 
 interface Props {
@@ -36,9 +36,9 @@ export default function EntryTableRow(props: Props) {
     >
       <th></th>
       {Object.entries(entry).map(([key, value], i) => {
-        if (!displayColumns[key as keyof Entry]) {
-          // 列に表示しない
-        } else if (key === "memo") {
+        if (!entryAttributesInfo[key as keyof Entry]["displayInTable"]) return;
+        else if (key !== "memo") return <th key={i}>{value}</th>;
+        else {
           return (
             <th key={i}>
               <input
@@ -54,8 +54,6 @@ export default function EntryTableRow(props: Props) {
               />
             </th>
           );
-        } else {
-          return <th key={i}>{value}</th>;
         }
       })}
     </tr>

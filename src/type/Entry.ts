@@ -3,7 +3,7 @@ export type Entry = {
   sort: number
   last_name: string
   first_name: string
-  group: string
+  affiliation: string
   grade: number
   composer: string
   work: string
