@@ -36,7 +36,7 @@ export default function EntryTableRow(props: Props) {
     >
       <th></th>
       {Object.entries(entry).map(([key, value], i) => {
-        if (!entryAttributesInfo[key as keyof Entry]["displayInTable"]) return;
+        if (!entryAttributesInfo[key as keyof Entry]["displayInTable"]) return null;
         else if (key !== "memo") return <th key={i}>{value}</th>;
         else {
           return (

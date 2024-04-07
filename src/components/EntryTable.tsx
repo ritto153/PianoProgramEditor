@@ -59,10 +59,9 @@ export default function EntryTable(props: Props) {
         <thead>
           <tr>
             <th></th>
-            {Object.entries(entryAttributesInfo).map(([key, value]) => {
-              if (value["displayInTable"]) {
-                return <th>{value["displayName"]}</th>;
-              }
+            {Object.entries(entryAttributesInfo).map(([_, value]) => {
+              if (value["displayInTable"]) return <th>{value["displayName"]}</th>;
+              else return null;
             })}
           </tr>
         </thead>
