@@ -42,7 +42,7 @@ export default function EntryTableRow(props: Props) {
           return (
             <th key={i}>
               <input
-                defaultValue={value}
+                defaultValue={value === null ? "" : value}
                 onChange={(e) => {
                   setEntries(
                     buildNewEntries(entries, {

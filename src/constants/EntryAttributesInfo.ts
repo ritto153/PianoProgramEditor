@@ -3,7 +3,7 @@ export const entryAttributesInfo = {
     displayInTable: false,
     displayName: "id"
   },
-  group_num: {
+  part_num: {
     displayInTable: true,
     displayName: "部"
   },

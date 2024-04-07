@@ -1,17 +1,13 @@
 import "./App.css";
-import { useEntries } from "./EntryProvider";
 import EntryTable from "./components/EntryTable";
 import EntryTableTitle from "./components/EntryTableTitle";
 
-function App() {
-  const { entries } = useEntries();
-
+export default function App() {
   return (
     <div className="App">
-      <EntryTableTitle entries={entries} title="全エントリー" />
-      <EntryTable entries={entries} />
+      <EntryTableTitle part_num={null} title="全エントリー" />
+      <EntryTable part_num={null}/>
     </div>
   );
 }
 
-export default App;

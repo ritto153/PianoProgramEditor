@@ -1,7 +1,7 @@
-[
+export const entries = [
   {
     "id": 1,
-    "group_num": 1,
+    "part_num": null,
     "sort": 1,
     "last_name": "真島",
     "first_name": "吾朗",
@@ -14,7 +14,7 @@
   },
   {
     "id": 2,
-    "group_num": 1,
+    "part_num": 1,
     "sort": 2,
     "last_name": "桐生",
     "first_name": "一馬",
@@ -27,7 +27,7 @@
   },
   {
     "id": 3,
-    "group_num": 1,
+    "part_num": 1,
     "sort": 3,
     "last_name": "錦山",
     "first_name": "彰",
@@ -40,7 +40,7 @@
   },
   {
     "id": 4,
-    "group_num": 1,
+    "part_num": 1,
     "sort": 4,
     "last_name": "立華",
     "first_name": "鉄",
@@ -53,7 +53,7 @@
   },
   {
     "id": 5,
-    "group_num": 2,
+    "part_num": 2,
     "sort": 5,
     "last_name": "嶋野",
     "first_name": "太",
@@ -66,7 +66,7 @@
   },
   {
     "id": 6,
-    "group_num": 3,
+    "part_num": 3,
     "sort": 6,
     "last_name": "風間",
     "first_name": "新太郎",
@@ -79,7 +79,7 @@
   },
   {
     "id": 7,
-    "group_num": 2,
+    "part_num": 2,
     "sort": 7,
     "last_name": "柏木",
     "first_name": "修",

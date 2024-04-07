@@ -7,9 +7,13 @@ import { useEntries } from "../EntryProvider";
 import { Entry } from "../type/Entry";
 import { DropResult } from "../type/DropResult";
 
-export default function EntryTable(props: { entries: Entry[] }) {
-  const { entries } = props;
-  const { setEntries } = useEntries();
+type Props = {
+  part_num: number | null;
+}
+export default function EntryTable(props: Props) {
+  const { part_num } = props;
+  const { entries, setEntries } = useEntries();
+  const selectedEntries = entries.filter((entry) => entry.part_num === part_num);
 
   // https://github.com/atlassian/react-beautiful-dnd/blob/013bfceac04ff48548c33cdc468dd2927446fc1b/stories/src/reorder.js#L6
   const reorderEntry = (
@@ -42,7 +46,7 @@ export default function EntryTable(props: { entries: Entry[] }) {
     }
 
     const reorderedEntries = reorderEntry(
-      entries,
+      selectedEntries,
       result.source.index,
       result.destination.index
     );
@@ -68,7 +72,7 @@ export default function EntryTable(props: { entries: Entry[] }) {
               ref={droppableProvided.innerRef}
               {...droppableProvided.droppableProps}
             >
-              {entries.map((entry, i) => (
+              {selectedEntries.map((entry, i) => (
                 <Draggable
                   key={entry.id}
                   draggableId={String(entry.id)}
