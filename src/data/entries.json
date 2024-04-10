@@ -1,4 +1,4 @@
-export const entries = [
+[
   {
     "id": 1,
     "part_num": null,
@@ -14,7 +14,7 @@ export const entries = [
   },
   {
     "id": 2,
-    "part_num": 1,
+    "part_num": null,
     "sort": 2,
     "last_name": "桐生",
     "first_name": "一馬",
@@ -27,7 +27,7 @@ export const entries = [
   },
   {
     "id": 3,
-    "part_num": 1,
+    "part_num": null,
     "sort": 3,
     "last_name": "錦山",
     "first_name": "彰",
@@ -40,7 +40,7 @@ export const entries = [
   },
   {
     "id": 4,
-    "part_num": 1,
+    "part_num": null,
     "sort": 4,
     "last_name": "立華",
     "first_name": "鉄",
@@ -53,7 +53,7 @@ export const entries = [
   },
   {
     "id": 5,
-    "part_num": 2,
+    "part_num": null,
     "sort": 5,
     "last_name": "嶋野",
     "first_name": "太",
@@ -66,7 +66,7 @@ export const entries = [
   },
   {
     "id": 6,
-    "part_num": 3,
+    "part_num": null,
     "sort": 6,
     "last_name": "風間",
     "first_name": "新太郎",
@@ -79,7 +79,7 @@ export const entries = [
   },
   {
     "id": 7,
-    "part_num": 2,
+    "part_num": null,
     "sort": 7,
     "last_name": "柏木",
     "first_name": "修",
