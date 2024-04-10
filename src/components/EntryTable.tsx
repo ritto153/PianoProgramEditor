@@ -36,14 +36,10 @@ export default function EntryTable(props: Props) {
   // https://github.com/atlassian/react-beautiful-dnd/blob/013bfceac04ff48548c33cdc468dd2927446fc1b/stories/src/table/with-fixed-columns.jsx#L107
   const onDragEnd = (result: DropResult) => {
     // 表の外にドロップされた場合
-    if (!result.destination) {
-      return;
-    }
+    if (!result.destination) return;
 
     // 同じ場所にドロップされた場合
-    if (result.destination.index === result.source.index) {
-      return;
-    }
+    if (result.destination.index === result.source.index) return;
 
     const reorderedEntries = reorderEntry(
       selectedEntries,
