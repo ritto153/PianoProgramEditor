@@ -8,7 +8,10 @@ export default function App() {
 
   return (
     <div className="App">
+      {/* まだ部に割り振られていないエントリーを表示するテーブル */}
       <Part part_num={null} />
+
+      {/* 各部のエントリーを表示するテーブル。全エントリーの最大部数まで描画する */}
       {[...Array(maxPartNum)].map((_, i) => (
         <Part key={i + 1} part_num={i + 1} />
       ))}
