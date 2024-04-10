@@ -7,11 +7,14 @@ import { useEntries } from "../EntryProvider";
 
 type Props = {
   part_num: number | null;
-}
+};
+
 export default function EntryTable(props: Props) {
   const { part_num } = props;
   const { entries } = useEntries();
-  const selectedEntries = entries.filter((entry) => entry.part_num === part_num);
+  const selectedEntries = entries.filter(
+    (entry) => entry.part_num === part_num
+  );
 
   return (
     <Table striped bordered hover>

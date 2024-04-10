@@ -7,7 +7,9 @@ import { DropResult } from "./type/DropResult";
 
 export default function App() {
   const { entries, setEntries } = useEntries();
-  const maxPartNum = Math.max(...entries.map((entry) => entry.part_num === null ? 0 : entry.part_num));
+  const maxPartNum = Math.max(
+    ...entries.map((entry) => (entry.part_num === null ? 0 : entry.part_num))
+  );
 
   // https://github.com/atlassian/react-beautiful-dnd/blob/013bfceac04ff48548c33cdc468dd2927446fc1b/stories/src/reorder.js#L6
   const reorderEntry = (
@@ -57,4 +59,3 @@ export default function App() {
     </div>
   );
 }
-
