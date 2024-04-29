@@ -8,7 +8,7 @@ import { DropResult, DraggableLocation } from "./type/DropResult";
 export default function App() {
   const { entries, setEntries } = useEntries();
   const maxPartNum = Math.max(
-    ...entries.map((entry) => (entry.part_num === null ? 0 : entry.part_num))
+    ...entries.map((entry) => (entry.part_num))
   );
 
   // memo: 複数選択してテーブル間移動する story。参考にする
@@ -23,6 +23,8 @@ export default function App() {
     // 同じテーブル内に Drop した場合
     if (source.droppableId === destination.droppableId) {
       let result = Array.from(list);
+
+      // TODO: 表の中のデータだけでreorderして、それをresultと合体させる
       const [removed] = result.splice(source.index, 1);
       result.splice(destination.index, 0, removed);
 
@@ -59,7 +61,7 @@ export default function App() {
     <div className="App">
       <DragDropContext onDragEnd={onDragEnd}>
         {/* まだ部に割り振られていないエントリーを表示するテーブル */}
-        <Part part_num={null} />
+        <Part part_num={0} />
 
         {/* 各部のエントリーを表示するテーブル。全エントリーの最大部数まで描画する */}
         {[...Array(1)].map((_, i) => (

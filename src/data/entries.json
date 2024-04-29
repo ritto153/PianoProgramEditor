@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "part_num": null,
+    "part_num": 0,
     "sort": 1,
     "last_name": "真島",
     "first_name": "吾朗",
@@ -14,7 +14,7 @@
   },
   {
     "id": 2,
-    "part_num": null,
+    "part_num": 0,
     "sort": 2,
     "last_name": "桐生",
     "first_name": "一馬",
@@ -27,7 +27,7 @@
   },
   {
     "id": 3,
-    "part_num": null,
+    "part_num": 0,
     "sort": 3,
     "last_name": "錦山",
     "first_name": "彰",
@@ -40,7 +40,7 @@
   },
   {
     "id": 4,
-    "part_num": null,
+    "part_num": 0,
     "sort": 4,
     "last_name": "立華",
     "first_name": "鉄",
@@ -53,7 +53,7 @@
   },
   {
     "id": 5,
-    "part_num": null,
+    "part_num": 0,
     "sort": 5,
     "last_name": "嶋野",
     "first_name": "太",
