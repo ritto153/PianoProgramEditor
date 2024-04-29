@@ -13,7 +13,7 @@ type DragStart = DraggableRubric & {
   mode: MovementMode;
 };
 
-type DraggableLocation = {
+export type DraggableLocation = {
   droppableId: DroppableId;
   index: number;
 };

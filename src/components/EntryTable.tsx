@@ -27,7 +27,7 @@ export default function EntryTable(props: Props) {
           })}
         </tr>
       </thead>
-      <Droppable droppableId="table">
+      <Droppable droppableId={String(part_num)}>
         {(droppableProvided) => (
           <tbody
             ref={droppableProvided.innerRef}

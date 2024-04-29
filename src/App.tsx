@@ -3,7 +3,7 @@ import { DragDropContext } from "react-beautiful-dnd";
 import Part from "./components/Part";
 import { useEntries } from "./EntryProvider";
 import { Entry } from "./type/Entry";
-import { DropResult } from "./type/DropResult";
+import { DropResult, DraggableLocation } from "./type/DropResult";
 
 export default function App() {
   const { entries, setEntries } = useEntries();
@@ -11,22 +11,32 @@ export default function App() {
     ...entries.map((entry) => (entry.part_num === null ? 0 : entry.part_num))
   );
 
+  // memo: 複数選択してテーブル間移動する story。参考にする
+  // https://github.com/atlassian/react-beautiful-dnd/tree/013bfceac04ff48548c33cdc468dd2927446fc1b/stories/src/multi-drag
+
   // https://github.com/atlassian/react-beautiful-dnd/blob/013bfceac04ff48548c33cdc468dd2927446fc1b/stories/src/reorder.js#L6
   const reorderEntry = (
     list: Entry[],
-    startIndex: number,
-    endIndex: number
+    source: DraggableLocation,
+    destination: DraggableLocation
   ): Entry[] => {
-    let result = Array.from(list);
-    const [removed] = result.splice(startIndex, 1);
-    result.splice(endIndex, 0, removed);
+    // 同じテーブル内に Drop した場合
+    if (source.droppableId === destination.droppableId) {
+      let result = Array.from(list);
+      const [removed] = result.splice(source.index, 1);
+      result.splice(destination.index, 0, removed);
 
-    result = result.map((entry, i) => ({
-      ...entry,
-      sort: i + 1,
-    }));
+      result = result.map((entry, i) => ({
+        ...entry,
+        sort: i + 1,
+      }));
 
-    return result;
+      return result;
+    } else {
+      // 異なるテーブルに Drop した場合
+      // TODO: 実装する
+      return list;
+    }
   };
 
   // https://github.com/atlassian/react-beautiful-dnd/blob/013bfceac04ff48548c33cdc468dd2927446fc1b/stories/src/table/with-fixed-columns.jsx#L107
@@ -39,8 +49,8 @@ export default function App() {
 
     const reorderedEntries = reorderEntry(
       entries,
-      result.source.index,
-      result.destination.index
+      result.source,
+      result.destination
     );
     setEntries(reorderedEntries);
   };
@@ -52,7 +62,7 @@ export default function App() {
         <Part part_num={null} />
 
         {/* 各部のエントリーを表示するテーブル。全エントリーの最大部数まで描画する */}
-        {[...Array(maxPartNum)].map((_, i) => (
+        {[...Array(1)].map((_, i) => (
           <Part key={i + 1} part_num={i + 1} />
         ))}
       </DragDropContext>
