@@ -66,7 +66,7 @@
   },
   {
     "id": 6,
-    "part_num": null,
+    "part_num": 1,
     "sort": 6,
     "last_name": "風間",
     "first_name": "新太郎",
@@ -79,7 +79,7 @@
   },
   {
     "id": 7,
-    "part_num": null,
+    "part_num": 1,
     "sort": 7,
     "last_name": "柏木",
     "first_name": "修",
