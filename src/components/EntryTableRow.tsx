@@ -1,17 +1,32 @@
 import { useEntries } from "../EntryProvider";
-import { entryAttributesInfo } from "../constants/EntryAttributesInfo";
 import { Entry } from "../type/Entry";
 
 interface Props {
   key: number;
   draggableProvided: any;
   entryId: number;
+  index: number;
 }
 
 export default function EntryTableRow(props: Props) {
-  const { entryId, draggableProvided } = props;
+  const { entryId, draggableProvided, index } = props;
   const { entries, setEntries } = useEntries();
   const entry = entries.find((entry) => entry.id === entryId);
+
+  if (!entry) return null;
+
+  const entryForDisplay = {
+    part_num: entry.part_num,
+    index: index,
+    last_name: entry.last_name,
+    first_name: entry.first_name,
+    affiliation: entry.affiliation,
+    grade: entry.grade,
+    composer: entry.composer,
+    work: entry.work,
+    time: entry.time,
+    memo: entry.memo,
+  };
 
   const buildNewEntries = (oldEntries: Entry[], changedEntry: Entry) => {
     return oldEntries.map((entry) => {
@@ -23,11 +38,6 @@ export default function EntryTableRow(props: Props) {
     });
   };
 
-  if (!entry) {
-    // entry が undefined になることが基本的にあり得ないが、型対策
-    return <tr></tr>;
-  }
-
   return (
     <tr
       ref={draggableProvided.innerRef}
@@ -35,9 +45,8 @@ export default function EntryTableRow(props: Props) {
       {...draggableProvided.dragHandleProps}
     >
       <th></th>
-      {Object.entries(entry).map(([key, value], i) => {
-        if (!entryAttributesInfo[key as keyof Entry]["displayInTable"]) return null;
-        else if (key !== "memo") return <th key={i}>{value}</th>;
+      {Object.entries(entryForDisplay).map(([key, value], i) => {
+        if (key !== "memo") return <th key={i}>{value}</th>;
         else {
           return (
             <th key={i}>

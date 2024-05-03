@@ -7,10 +7,6 @@ export const entryAttributesInfo = {
     displayInTable: true,
     displayName: "部"
   },
-  sort: {
-    displayInTable: true,
-    displayName: "番"
-  },
   last_name: {
     displayInTable: true,
     displayName: "姓"

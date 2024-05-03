@@ -44,6 +44,7 @@ export default function EntryTable(props: Props) {
                     key={entry.id}
                     draggableProvided={draggableProvided}
                     entryId={entry.id}
+                    index={i + 1}
                   />
                 )}
               </Draggable>
