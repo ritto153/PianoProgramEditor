@@ -1,8 +1,10 @@
 export type Part = {
-  part_num: number;
+  id: number;
+  partNum: number;
+  startingTime: string | null;
   entryIds: number[];
 }
 
 export type PartMap = {
-  [part_num: number]: Part;
+  [id: number]: Part;
 }

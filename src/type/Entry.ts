@@ -10,3 +10,16 @@ export type Entry = {
   time: number
   memo: string
 }
+
+export type NewEntry = {
+  id: number
+  partId: number
+  lastName: string
+  firstName: string
+  affiliation: string
+  grade: number
+  composer: string
+  work: string
+  time: number
+  memo: string
+}

@@ -22,7 +22,7 @@ export default function App() {
   ): Entry[] => {
     // 同じテーブル内に Drop した場合
     if (source.droppableId === destination.droppableId) {
-      let result = Array.from(list);
+      let result = list;
 
       // TODO: 表の中のデータだけでreorderして、それをresultと合体させる
       const [removed] = result.splice(source.index, 1);
