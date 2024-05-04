@@ -3,6 +3,7 @@ import { DragDropContext } from "react-beautiful-dnd";
 import Part from "./components/Part";
 import { useEntries } from "./EntryProvider";
 import { EntryMap } from "./type/Entry";
+import { PartMap } from "./type/Part";
 import { DropResult, DraggableLocation } from "./type/DropResult";
 
 export default function App() {
@@ -15,20 +16,19 @@ export default function App() {
     throw new Error("配置前のエントリーを格納する部が消えています");
   }
 
-  const nonAssinedPartId = nonAssinedPart.id;
-
   // memo: 複数選択してテーブル間移動する story。参考にする
   // https://github.com/atlassian/react-beautiful-dnd/tree/013bfceac04ff48548c33cdc468dd2927446fc1b/stories/src/multi-drag
 
   // https://github.com/atlassian/react-beautiful-dnd/blob/013bfceac04ff48548c33cdc468dd2927446fc1b/stories/src/reorder.js#L6
   const reorderEntry = (
-    entryMap: EntryMap,
+    partMap: PartMap,
     source: DraggableLocation,
     destination: DraggableLocation
-  ): EntryMap => {
+  ): PartMap => {
     // 同じテーブル内に Drop した場合
     if (source.droppableId === destination.droppableId) {
-      let result = entryMap;
+      // let part = partMap[destination.droppableId];
+      let result = partMap;
 
       // TODO: 表の中のデータだけでreorderして、それをresultと合体させる
       // const [removed] = result.splice(source.index, 1);
@@ -43,7 +43,7 @@ export default function App() {
     } else {
       // 異なるテーブルに Drop した場合
       // TODO: 実装する
-      return entryMap;
+      return partMap;
     }
   };
 
@@ -56,7 +56,7 @@ export default function App() {
     if (result.destination.index === result.source.index) return;
 
     const reorderedEntries = reorderEntry(
-      entryMap,
+      partMap,
       result.source,
       result.destination
     );
