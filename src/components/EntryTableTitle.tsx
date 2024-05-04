@@ -9,7 +9,7 @@ export default function EntryTableTitle(props: Props) {
   const { entryMap, partMap } = useEntries();
   const part = partMap[partId];
   const totalPlayTime = part.entryIds
-    .map((entry) => entryMap[entry].time)
+    .map((entryId) => entryMap[entryId].time)
     .reduce((a, b) => a + b, 0);
 
   return (
