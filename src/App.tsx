@@ -7,7 +7,6 @@ import { DropResult, DraggableLocation } from "./type/DropResult";
 
 export default function App() {
   const { entryMap, partMap, setPartMap } = useEntries();
-  const maxPartNum = Object.keys(partMap).length;
 
   // memo: 複数選択してテーブル間移動する story。参考にする
   // https://github.com/atlassian/react-beautiful-dnd/tree/013bfceac04ff48548c33cdc468dd2927446fc1b/stories/src/multi-drag
@@ -58,10 +57,9 @@ export default function App() {
     <div className="App">
       <DragDropContext onDragEnd={onDragEnd}>
         {/* まだ部に割り振られていないエントリーを表示するテーブル */}
-        <Part partNum={0} />
+        <Part key={0} partNum={0} />
 
-        {/* 各部のエントリーを表示するテーブル。全エントリーの最大部数まで描画する */}
-        {[...Array(maxPartNum)].map((_, i) => (
+        {Object.keys(partMap).map((_, i) => (
           <Part key={i + 1} partNum={i + 1} />
         ))}
       </DragDropContext>

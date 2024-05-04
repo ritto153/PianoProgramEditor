@@ -32,25 +32,23 @@ export default function EntryTable(props: Props) {
               ref={droppableProvided.innerRef}
               {...droppableProvided.droppableProps}
             >
-              {
-                selectedEntryIds.map((entryId, i) =>
-                  <Draggable
-                    key={entryId}
-                    draggableId={String(entryId)}
-                    index={i}
-                  >
-                    {(draggableProvided) => (
-                      <EntryTableRow
-                        key={entryId}
-                        draggableProvided={draggableProvided}
-                        partNum={partNum}
-                        entryId={entryId}
-                        index={i + 1}
-                      />
-                    )}
-                  </Draggable>
-                )
-              }
+              {selectedEntryIds.map((entryId, i) => (
+                <Draggable
+                  key={entryId}
+                  draggableId={String(entryId)}
+                  index={i}
+                >
+                  {(draggableProvided) => (
+                    <EntryTableRow
+                      key={entryId}
+                      draggableProvided={draggableProvided}
+                      partNum={partNum}
+                      entryId={entryId}
+                      index={i + 1}
+                    />
+                  )}
+                </Draggable>
+              ))}
             </tbody>
           )}
         </Droppable>
