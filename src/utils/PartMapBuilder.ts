@@ -28,8 +28,7 @@ export const PartMapBuilder = (response: {
   Object.entries(entriesByPartId).forEach(([partId, entries]) => {
     if (!entries) throw new Error();
 
-    const numPartId = Number(partId);
-    const part = partsByPartId[numPartId];
+    const part = partsByPartId[partId];
 
     if (!part) throw new Error('エントリーの持つ部が存在しません');
 

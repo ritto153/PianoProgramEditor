@@ -2,7 +2,6 @@ import "./App.css";
 import { DragDropContext } from "react-beautiful-dnd";
 import Part from "./components/Part";
 import { useEntries } from "./EntryProvider";
-import { EntryMap } from "./type/Entry";
 import { PartMap } from "./type/Part";
 import { DropResult, DraggableLocation } from "./type/DropResult";
 
@@ -66,8 +65,7 @@ export default function App() {
     <div className="App">
       <DragDropContext onDragEnd={onDragEnd}>
         {Object.keys(partMap).map((partId) => {
-          const numPartId = Number(partId);
-          return <Part key={numPartId} partId={numPartId} />;
+          return <Part key={partId} partId={partId} />;
         })}
       </DragDropContext>
     </div>
