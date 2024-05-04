@@ -1,5 +1,5 @@
 import { useEntries } from "../EntryProvider";
-import { Entry } from "../type/Entry";
+import { OldEntry } from "../type/Entry";
 
 interface Props {
   key: number;
@@ -28,7 +28,7 @@ export default function EntryTableRow(props: Props) {
     memo: entry.memo,
   };
 
-  const buildNewEntries = (oldEntries: Entry[], changedEntry: Entry) => {
+  const buildNewEntries = (oldEntries: OldEntry[], changedEntry: OldEntry) => {
     return oldEntries.map((entry) => {
       if (entry.id === entryId) {
         return changedEntry;

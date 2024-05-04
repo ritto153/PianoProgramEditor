@@ -11,10 +11,8 @@ type Props = {
 
 export default function EntryTable(props: Props) {
   const { part_num } = props;
-  const { entries } = useEntries();
-  const selectedEntries = entries.filter(
-    (entry) => entry.part_num === part_num
-  );
+  const { entryMap } = useEntries();
+  const selectedEntries = entryMap;
 
   return (
     <Table striped bordered hover>

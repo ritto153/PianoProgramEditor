@@ -1,4 +1,4 @@
-export type Entry = {
+export type OldEntry = {
   id: number
   part_num: number
   last_name: string
@@ -11,7 +11,7 @@ export type Entry = {
   memo: string
 }
 
-export type NewEntry = {
+export type Entry = {
   id: number
   partId: number
   lastName: string
@@ -22,4 +22,8 @@ export type NewEntry = {
   work: string
   time: number
   memo: string
+}
+
+export type EntryMap = {
+  [id: number]: Entry;
 }
