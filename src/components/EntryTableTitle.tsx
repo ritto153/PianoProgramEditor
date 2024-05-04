@@ -1,24 +1,21 @@
 import { useEntries } from "../EntryProvider";
 
 type Props = {
-  part_num: number | null;
-  title: string;
+  partId: string;
 };
 
 export default function EntryTableTitle(props: Props) {
-  const { part_num, title } = props;
-  const { entries } = useEntries();
-  const selectedEntries = entries.filter((entry) => entry.part_num === part_num);
+  const { partId } = props;
+  const { entryMap, partMap } = useEntries();
+  const part = partMap[partId];
+  const totalPlayTime = part.entryIds
+    .map((entryId) => entryMap[entryId].time)
+    .reduce((a, b) => a + b, 0);
 
   return (
     <div>
-      <h3>{title}</h3>
-      <p>
-        {`総演奏時間：${selectedEntries.reduce(
-          (total, entry) => total + entry.time,
-          0
-        )}分`}
-      </p>
+      <h3>{part.partNum === 0 ? "全エントリー" : `第${part.partNum}部`}</h3>
+      <p>{`総演奏時間：${totalPlayTime}分`}</p>
     </div>
   );
 }

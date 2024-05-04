@@ -1,95 +1,57 @@
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { Draggable, Droppable } from "react-beautiful-dnd";
 import Table from "react-bootstrap/Table";
 import "bootstrap/dist/css/bootstrap.min.css";
 import EntryTableRow from "./EntryTableRow";
 import { entryAttributesInfo } from "../constants/EntryAttributesInfo";
 import { useEntries } from "../EntryProvider";
-import { Entry } from "../type/Entry";
-import { DropResult } from "../type/DropResult";
 
 type Props = {
-  part_num: number | null;
-}
+  partId: string;
+};
+
 export default function EntryTable(props: Props) {
-  const { part_num } = props;
-  const { entries, setEntries } = useEntries();
-  const selectedEntries = entries.filter((entry) => entry.part_num === part_num);
-
-  // https://github.com/atlassian/react-beautiful-dnd/blob/013bfceac04ff48548c33cdc468dd2927446fc1b/stories/src/reorder.js#L6
-  const reorderEntry = (
-    list: Entry[],
-    startIndex: number,
-    endIndex: number
-  ): Entry[] => {
-    let result = Array.from(list);
-    const [removed] = result.splice(startIndex, 1);
-    result.splice(endIndex, 0, removed);
-
-    result = result.map((entry, i) => ({
-      ...entry,
-      sort: i + 1,
-    }));
-
-    return result;
-  };
-
-  // https://github.com/atlassian/react-beautiful-dnd/blob/013bfceac04ff48548c33cdc468dd2927446fc1b/stories/src/table/with-fixed-columns.jsx#L107
-  const onDragEnd = (result: DropResult) => {
-    // 表の外にドロップされた場合
-    if (!result.destination) {
-      return;
-    }
-
-    // 同じ場所にドロップされた場合
-    if (result.destination.index === result.source.index) {
-      return;
-    }
-
-    const reorderedEntries = reorderEntry(
-      selectedEntries,
-      result.source.index,
-      result.destination.index
-    );
-    setEntries(reorderedEntries);
-  };
+  const { partId } = props;
+  const { partMap } = useEntries();
+  const part = partMap[partId];
+  const selectedEntryIds = part.entryIds;
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th></th>
-            {Object.entries(entryAttributesInfo).map(([_, value]) => {
-              if (value["displayInTable"]) return <th>{value["displayName"]}</th>;
-              else return null;
-            })}
-          </tr>
-        </thead>
-        <Droppable droppableId="table">
+    <Table striped bordered hover>
+      <thead>
+        <tr>
+          <th key={0}></th>
+          {Object.entries(entryAttributesInfo).map(([_, value], i) => {
+            if (value.displayInTable)
+              return <th key={i + 1}>{value.displayName}</th>;
+            else return null;
+          })}
+        </tr>
+      </thead>
+      {
+        <Droppable droppableId={partId}>
           {(droppableProvided) => (
             <tbody
               ref={droppableProvided.innerRef}
               {...droppableProvided.droppableProps}
             >
-              {selectedEntries.map((entry, i) => (
-                <Draggable
-                  key={entry.id}
-                  draggableId={String(entry.id)}
-                  index={i}
-                >
+              {selectedEntryIds.map((entryId, i) => (
+                <Draggable key={entryId} draggableId={entryId} index={i}>
                   {(draggableProvided) => (
                     <EntryTableRow
-                      key={entry.id}
+                      key={entryId}
                       draggableProvided={draggableProvided}
-                      entryId={entry.id}
+                      partNum={part.partNum}
+                      entryId={entryId}
+                      index={i + 1}
                     />
                   )}
                 </Draggable>
               ))}
+              {droppableProvided.placeholder}
             </tbody>
           )}
         </Droppable>
-      </Table>
-    </DragDropContext>
+      }
+    </Table>
   );
 }

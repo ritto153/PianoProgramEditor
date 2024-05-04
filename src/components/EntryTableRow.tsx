@@ -1,32 +1,32 @@
 import { useEntries } from "../EntryProvider";
-import { entryAttributesInfo } from "../constants/EntryAttributesInfo";
-import { Entry } from "../type/Entry";
 
 interface Props {
-  key: number;
+  partNum: number;
+  key: string;
   draggableProvided: any;
-  entryId: number;
+  entryId: string;
+  index: number;
 }
 
 export default function EntryTableRow(props: Props) {
-  const { entryId, draggableProvided } = props;
-  const { entries, setEntries } = useEntries();
-  const entry = entries.find((entry) => entry.id === entryId);
+  const { partNum, entryId, draggableProvided, index } = props;
+  const { entryMap } = useEntries();
+  const entry = entryMap[entryId];
 
-  const buildNewEntries = (oldEntries: Entry[], changedEntry: Entry) => {
-    return oldEntries.map((entry) => {
-      if (entry.id === entryId) {
-        return changedEntry;
-      } else {
-        return entry;
-      }
-    });
+  if (!entry) throw new Error(`Entry with id ${entryId} not found`);
+
+  const entryForDisplay = {
+    part_num: partNum,
+    index: index,
+    last_name: entry.lastName,
+    first_name: entry.firstName,
+    affiliation: entry.affiliation,
+    grade: entry.grade,
+    composer: entry.composer,
+    work: entry.work,
+    time: entry.time,
+    memo: entry.memo,
   };
-
-  if (!entry) {
-    // entry が undefined になることが基本的にあり得ないが、型対策
-    return <tr></tr>;
-  }
 
   return (
     <tr
@@ -35,27 +35,9 @@ export default function EntryTableRow(props: Props) {
       {...draggableProvided.dragHandleProps}
     >
       <th></th>
-      {Object.entries(entry).map(([key, value], i) => {
-        if (!entryAttributesInfo[key as keyof Entry]["displayInTable"]) return null;
-        else if (key !== "memo") return <th key={i}>{value}</th>;
-        else {
-          return (
-            <th key={i}>
-              <input
-                defaultValue={value === null ? "" : value}
-                onChange={(e) => {
-                  setEntries(
-                    buildNewEntries(entries, {
-                      ...entry,
-                      memo: e.target.value,
-                    })
-                  );
-                }}
-              />
-            </th>
-          );
-        }
-      })}
+      {Object.entries(entryForDisplay).map(([_, value], i) => (
+        <th key={i}>{value}</th>
+      ))}
     </tr>
   );
 }
