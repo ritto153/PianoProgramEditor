@@ -6,13 +6,13 @@ import { entryAttributesInfo } from "../constants/EntryAttributesInfo";
 import { useEntries } from "../EntryProvider";
 
 type Props = {
-  part_num: number;
+  partNum: number;
 };
 
 export default function EntryTable(props: Props) {
-  const { part_num } = props;
-  const { entryMap } = useEntries();
-  const selectedEntries = entryMap;
+  const { partNum } = props;
+  const { partMap } = useEntries();
+  const selectedEntryIds = partMap[partNum]["entryIds"];
 
   return (
     <Table striped bordered hover>
@@ -25,31 +25,36 @@ export default function EntryTable(props: Props) {
           })}
         </tr>
       </thead>
-      <Droppable droppableId={String(part_num)}>
-        {(droppableProvided) => (
-          <tbody
-            ref={droppableProvided.innerRef}
-            {...droppableProvided.droppableProps}
-          >
-            {selectedEntries.map((entry, i) => (
-              <Draggable
-                key={entry.id}
-                draggableId={String(entry.id)}
-                index={i}
-              >
-                {(draggableProvided) => (
-                  <EntryTableRow
-                    key={entry.id}
-                    draggableProvided={draggableProvided}
-                    entryId={entry.id}
-                    index={i + 1}
-                  />
-                )}
-              </Draggable>
-            ))}
-          </tbody>
-        )}
-      </Droppable>
+      {
+        <Droppable droppableId={String(partNum)}>
+          {(droppableProvided) => (
+            <tbody
+              ref={droppableProvided.innerRef}
+              {...droppableProvided.droppableProps}
+            >
+              {
+                selectedEntryIds.map((entryId, i) =>
+                  <Draggable
+                    key={entryId}
+                    draggableId={String(entryId)}
+                    index={i}
+                  >
+                    {(draggableProvided) => (
+                      <EntryTableRow
+                        key={entryId}
+                        draggableProvided={draggableProvided}
+                        partNum={partNum}
+                        entryId={entryId}
+                        index={i + 1}
+                      />
+                    )}
+                  </Draggable>
+                )
+              }
+            </tbody>
+          )}
+        </Droppable>
+      }
     </Table>
   );
 }

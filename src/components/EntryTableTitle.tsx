@@ -1,17 +1,16 @@
 import { useEntries } from "../EntryProvider";
 
 type Props = {
-  part_num: number;
+  partNum: number;
   title: string;
 };
 
 export default function EntryTableTitle(props: Props) {
-  const { part_num, title } = props;
+  const { partNum, title } = props;
   const { entryMap, partMap } = useEntries();
-  const totalPlayTime = partMap[part_num]["entryIds"].map((entryId) => {
-
-  });
-  // const selectedEntries = entries.filter((entry) => entry.partNum === part_num);
+  const totalPlayTime = partMap[partNum]["entryIds"].map(entry =>
+    entryMap[entry]["time"]
+  ).reduce((a, b) => a + b, 0);
 
   return (
     <div>

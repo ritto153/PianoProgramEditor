@@ -11,10 +11,10 @@ export default function Part(props: Props) {
   return (
     <div>
       <EntryTableTitle
-        part_num={partNum}
+        partNum={partNum}
         title={partNum === 0 ? "全エントリー" : `第${partNum}部`}
       />
-      <EntryTable part_num={partNum} />
+      <EntryTable partNum={partNum} />
     </div>
   );
 }
