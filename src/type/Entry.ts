@@ -1,5 +1,5 @@
 export type Entry = {
-  id: number
+  id: string;
   partId: string
   lastName: string
   firstName: string
@@ -12,5 +12,5 @@ export type Entry = {
 }
 
 export type EntryMap = {
-  [id: number]: Entry;
+  [id: string]: Entry;
 }

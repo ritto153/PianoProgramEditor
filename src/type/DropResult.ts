@@ -1,5 +1,5 @@
-type DraggableId = string;
-type DroppableId = string;
+export type DraggableId = string;
+export type DroppableId = string;
 
 type DraggableRubric = {
   draggableId: DraggableId;

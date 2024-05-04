@@ -3,7 +3,7 @@ import { DragDropContext } from "react-beautiful-dnd";
 import Part from "./components/Part";
 import { useEntries } from "./EntryProvider";
 import { PartMap } from "./type/Part";
-import { DropResult, DraggableLocation } from "./type/DropResult";
+import { DropResult, DraggableLocation, DraggableId } from "./type/DropResult";
 
 export default function App() {
   const { entryMap, partMap, setPartMap } = useEntries();
@@ -20,14 +20,16 @@ export default function App() {
 
   // https://github.com/atlassian/react-beautiful-dnd/blob/013bfceac04ff48548c33cdc468dd2927446fc1b/stories/src/reorder.js#L6
   const reorderEntry = (
-    partMap: PartMap,
+    draggableId: DraggableId,
     source: DraggableLocation,
     destination: DraggableLocation
   ): PartMap => {
     // 同じテーブル内に Drop した場合
     if (source.droppableId === destination.droppableId) {
-      // let part = partMap[destination.droppableId];
       let result = partMap;
+      
+      const entryIds = partMap[destination.droppableId].entryIds;
+      // const [removed] = entryMap[draggableId];
 
       // TODO: 表の中のデータだけでreorderして、それをresultと合体させる
       // const [removed] = result.splice(source.index, 1);
@@ -55,7 +57,7 @@ export default function App() {
     if (result.destination.index === result.source.index) return;
 
     const reorderedEntries = reorderEntry(
-      partMap,
+      result.draggableId,
       result.source,
       result.destination
     );

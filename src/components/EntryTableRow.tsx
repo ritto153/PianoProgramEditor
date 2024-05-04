@@ -2,9 +2,9 @@ import { useEntries } from "../EntryProvider";
 
 interface Props {
   partNum: number;
-  key: number;
+  key: string;
   draggableProvided: any;
-  entryId: number;
+  entryId: string;
   index: number;
 }
 

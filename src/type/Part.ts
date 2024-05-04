@@ -2,7 +2,7 @@ export type Part = {
   id: string;
   partNum: number;
   startingTime: string | null;
-  entryIds: number[];
+  entryIds: string[];
 }
 
 export type PartMap = {
