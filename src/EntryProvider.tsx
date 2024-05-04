@@ -25,6 +25,7 @@ export default function EntryProvider(props: { children: JSX.Element }) {
   const { children } = props;
   const entryMap = initialEntryMap;
   const [partMap, setPartMap] = useState(initialPartMap);
+  console.log("EntryProvider の確認ログ")
 
   return (
     <EntryContext.Provider value={{ entryMap, partMap, setPartMap }}>
