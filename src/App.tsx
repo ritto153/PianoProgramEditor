@@ -6,11 +6,11 @@ import { PartMap } from "./type/Part";
 import { DropResult, DraggableLocation, DraggableId } from "./type/DropResult";
 
 export default function App() {
-  const { entryMap, partMap, setPartMap } = useEntries();
+  const { partMap, setPartMap } = useEntries();
+
   const nonAssinedPart = Object.values(partMap).find(
     (part) => part.partNum === 0
   );
-
   if (!nonAssinedPart) {
     throw new Error("配置前のエントリーを格納する部が消えています");
   }
@@ -26,19 +26,16 @@ export default function App() {
   ): PartMap => {
     // 同じテーブル内に Drop した場合
     if (source.droppableId === destination.droppableId) {
-      let result = partMap;
-      
       const entryIds = partMap[destination.droppableId].entryIds;
-      // const [removed] = entryMap[draggableId];
 
-      // TODO: 表の中のデータだけでreorderして、それをresultと合体させる
-      // const [removed] = result.splice(source.index, 1);
-      // result.splice(destination.index, 0, removed);
+      const newEntryIds = entryIds.filter((entryId) => entryId !== draggableId);
+      newEntryIds.splice(destination.index, 0, draggableId);
 
-      // result = result.map((entry, i) => ({
-      //   ...entry,
-      //   sort: i + 1,
-      // }));
+      const result = partMap;
+      result[destination.droppableId] = {
+        ...partMap[destination.droppableId],
+        entryIds: newEntryIds,
+      };
 
       return result;
     } else {
@@ -56,19 +53,21 @@ export default function App() {
     // 同じ場所にドロップされた場合
     if (result.destination.index === result.source.index) return;
 
-    const reorderedEntries = reorderEntry(
+    const newPartMap = reorderEntry(
       result.draggableId,
       result.source,
       result.destination
     );
+
+    setPartMap(newPartMap);
   };
 
   return (
     <div className="App">
       <DragDropContext onDragEnd={onDragEnd}>
-        {Object.keys(partMap).map((partId) => {
-          return <Part key={partId} partId={partId} />;
-        })}
+        {Object.keys(partMap).map((partId) => (
+          <Part key={partId} partId={partId} />
+        ))}
       </DragDropContext>
     </div>
   );

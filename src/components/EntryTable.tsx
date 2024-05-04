@@ -19,9 +19,10 @@ export default function EntryTable(props: Props) {
     <Table striped bordered hover>
       <thead>
         <tr>
-          <th></th>
-          {Object.entries(entryAttributesInfo).map(([_, value]) => {
-            if (value.displayInTable) return <th>{value.displayName}</th>;
+          <th key={0}></th>
+          {Object.entries(entryAttributesInfo).map(([_, value], i) => {
+            if (value.displayInTable)
+              return <th key={i + 1}>{value.displayName}</th>;
             else return null;
           })}
         </tr>
@@ -34,11 +35,7 @@ export default function EntryTable(props: Props) {
               {...droppableProvided.droppableProps}
             >
               {selectedEntryIds.map((entryId, i) => (
-                <Draggable
-                  key={entryId}
-                  draggableId={entryId}
-                  index={i}
-                >
+                <Draggable key={entryId} draggableId={entryId} index={i}>
                   {(draggableProvided) => (
                     <EntryTableRow
                       key={entryId}
@@ -50,6 +47,7 @@ export default function EntryTable(props: Props) {
                   )}
                 </Draggable>
               ))}
+              {droppableProvided.placeholder}
             </tbody>
           )}
         </Droppable>

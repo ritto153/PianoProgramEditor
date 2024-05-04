@@ -1,7 +1,7 @@
 {
   "entries": [
     {
-      "id": "1",
+      "id": "majima",
       "partId": "0",
       "lastName": "真島",
       "firstName": "吾朗",
@@ -13,7 +13,7 @@
       "memo": "ヒーッヒッヒ"
     },
     {
-      "id": "2",
+      "id": "kiryu",
       "partId": "0",
       "lastName": "桐生",
       "firstName": "一馬",
@@ -25,7 +25,7 @@
       "memo": "よろしくな"
     },
     {
-      "id": "3",
+      "id": "nishiki",
       "partId": "0",
       "lastName": "錦山",
       "firstName": "彰",
@@ -37,7 +37,7 @@
       "memo": "これくらい弾けて極道ってもんだ"
     },
     {
-      "id": "4",
+      "id": "tachibana",
       "partId": "0",
       "lastName": "立華",
       "firstName": "鉄",
@@ -49,7 +49,7 @@
       "memo": ""
     },
     {
-      "id": "5",
+      "id": "shimano",
       "partId": "0",
       "lastName": "嶋野",
       "firstName": "太",
@@ -61,7 +61,7 @@
       "memo": ""
     },
     {
-      "id": "6",
+      "id": "kazama",
       "partId": "1",
       "lastName": "風間",
       "firstName": "新太郎",
@@ -73,7 +73,7 @@
       "memo": ""
     },
     {
-      "id": "7",
+      "id": "kashiwagi",
       "partId": "1",
       "lastName": "柏木",
       "firstName": "修",
