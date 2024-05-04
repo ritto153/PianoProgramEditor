@@ -6,7 +6,7 @@ import { EntryMap } from "./type/Entry";
 import { DropResult, DraggableLocation } from "./type/DropResult";
 
 export default function App() {
-  const { entryMap, partMap, setEntryMap, setPartMap } = useEntries();
+  const { entryMap, partMap, setPartMap } = useEntries();
   const maxPartNum = Object.keys(partMap).length;
 
   // memo: 複数選択してテーブル間移動する story。参考にする
@@ -52,7 +52,6 @@ export default function App() {
       result.source,
       result.destination
     );
-    setEntryMap(reorderedEntries);
   };
 
   return (
