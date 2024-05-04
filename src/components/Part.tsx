@@ -2,19 +2,18 @@ import EntryTableTitle from "./EntryTableTitle";
 import EntryTable from "./EntryTable";
 
 type Props = {
-  partNum: number;
+  partId: number;
 };
 
 export default function Part(props: Props) {
-  const { partNum } = props;
+  const { partId } = props;
 
   return (
     <div>
       <EntryTableTitle
-        partNum={partNum}
-        title={partNum === 0 ? "全エントリー" : `第${partNum}部`}
+        partId={partId}
       />
-      <EntryTable partNum={partNum} />
+      <EntryTable partId={partId} />
     </div>
   );
 }

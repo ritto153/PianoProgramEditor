@@ -5,7 +5,7 @@ import { EntryMapBuilder } from "./utils/EntryMapBuilder";
 import { EntryMap } from "./type/Entry";
 import { PartMap } from "./type/Part";
 
-const initialEntryMap = EntryMapBuilder(response["entries"]);
+const initialEntryMap = EntryMapBuilder(response.entries);
 const initialPartMap = PartMapBuilder(response);
 
 interface EntryContextValue {

@@ -6,13 +6,14 @@ import { entryAttributesInfo } from "../constants/EntryAttributesInfo";
 import { useEntries } from "../EntryProvider";
 
 type Props = {
-  partNum: number;
+  partId: number;
 };
 
 export default function EntryTable(props: Props) {
-  const { partNum } = props;
+  const { partId } = props;
   const { partMap } = useEntries();
-  const selectedEntryIds = partMap[partNum]["entryIds"];
+  const part = partMap[partId];
+  const selectedEntryIds = part.entryIds;
 
   return (
     <Table striped bordered hover>
@@ -20,13 +21,13 @@ export default function EntryTable(props: Props) {
         <tr>
           <th></th>
           {Object.entries(entryAttributesInfo).map(([_, value]) => {
-            if (value["displayInTable"]) return <th>{value["displayName"]}</th>;
+            if (value.displayInTable) return <th>{value.displayName}</th>;
             else return null;
           })}
         </tr>
       </thead>
       {
-        <Droppable droppableId={String(partNum)}>
+        <Droppable droppableId={String(partId)}>
           {(droppableProvided) => (
             <tbody
               ref={droppableProvided.innerRef}
@@ -42,7 +43,7 @@ export default function EntryTable(props: Props) {
                     <EntryTableRow
                       key={entryId}
                       draggableProvided={draggableProvided}
-                      partNum={partNum}
+                      partNum={part.partNum}
                       entryId={entryId}
                       index={i + 1}
                     />
