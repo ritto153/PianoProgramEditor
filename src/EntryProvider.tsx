@@ -5,8 +5,7 @@ import { EntryMapBuilder } from "./utils/EntryMapBuilder";
 import { EntryMap } from "./type/Entry";
 import { PartMap } from "./type/Part";
 
-const initialEntries = response["entries"];
-const initialEntryMap = EntryMapBuilder(initialEntries);
+const initialEntryMap = EntryMapBuilder(response["entries"]);
 const initialPartMap = PartMapBuilder(response);
 
 interface EntryContextValue {
@@ -24,7 +23,7 @@ export const useEntries = () => useContext(EntryContext);
 
 export default function EntryProvider(props: { children: JSX.Element }) {
   const { children } = props;
-  const [entryMap] = useState(initialEntryMap);
+  const entryMap = initialEntryMap;
   const [partMap, setPartMap] = useState(initialPartMap);
 
   return (
