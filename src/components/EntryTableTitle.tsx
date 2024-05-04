@@ -1,7 +1,7 @@
 import { useEntries } from "../EntryProvider";
 
 type Props = {
-  partId: number;
+  partId: string;
 };
 
 export default function EntryTableTitle(props: Props) {

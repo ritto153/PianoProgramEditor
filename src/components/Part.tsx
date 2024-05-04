@@ -2,7 +2,7 @@ import EntryTableTitle from "./EntryTableTitle";
 import EntryTable from "./EntryTable";
 
 type Props = {
-  partId: number;
+  partId: string;
 };
 
 export default function Part(props: Props) {

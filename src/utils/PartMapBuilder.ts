@@ -2,13 +2,13 @@ import { Entry } from "../type/Entry";
 import { PartMap } from "../type/Part";
 
 type ResponsePart = {
-  id: number;
+  id: string;
   partNum: number;
   startingTime: string | null;
 }
 
 type ResponsePartMap = {
-  [id: number]: ResponsePart;
+  [id: string]: ResponsePart;
 }
 
 export const PartMapBuilder = (response: {

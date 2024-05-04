@@ -1,6 +1,6 @@
 export type Entry = {
   id: number
-  partId: number
+  partId: string
   lastName: string
   firstName: string
   affiliation: string

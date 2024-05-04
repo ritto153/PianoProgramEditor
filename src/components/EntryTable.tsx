@@ -6,7 +6,7 @@ import { entryAttributesInfo } from "../constants/EntryAttributesInfo";
 import { useEntries } from "../EntryProvider";
 
 type Props = {
-  partId: number;
+  partId: string;
 };
 
 export default function EntryTable(props: Props) {
