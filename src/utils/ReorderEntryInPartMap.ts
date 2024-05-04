@@ -14,7 +14,7 @@ export const ReorderEntryInPartMap = (
     const newEntryIds = entryIds.filter((entryId) => entryId !== draggableId);
     newEntryIds.splice(destination.index, 0, draggableId);
 
-    const result = partMap;
+    const result = {...partMap};
     result[destination.droppableId] = {
       ...partMap[destination.droppableId],
       entryIds: newEntryIds,
