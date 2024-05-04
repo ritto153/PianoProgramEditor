@@ -7,13 +7,15 @@ import { DropResult, DraggableLocation } from "./type/DropResult";
 
 export default function App() {
   const { entryMap, partMap, setPartMap } = useEntries();
-  const nonAssinedPart = Object.values(partMap).find(part => part.partNum === 0);
+  const nonAssinedPart = Object.values(partMap).find(
+    (part) => part.partNum === 0
+  );
 
   if (!nonAssinedPart) {
     throw new Error("配置前のエントリーを格納する部が消えています");
   }
 
-  const nonAssinedPartId = nonAssinedPart.id
+  const nonAssinedPartId = nonAssinedPart.id;
 
   // memo: 複数選択してテーブル間移動する story。参考にする
   // https://github.com/atlassian/react-beautiful-dnd/tree/013bfceac04ff48548c33cdc468dd2927446fc1b/stories/src/multi-drag
@@ -63,12 +65,10 @@ export default function App() {
   return (
     <div className="App">
       <DragDropContext onDragEnd={onDragEnd}>
-        {/* まだ部に割り振られていないエントリーを表示するテーブル */}
-        <Part key={0} partId={0}/>
-
-        {/* {Object.keys(partMap).map((_, i) => (
-          <Part key={i + 1} partId={i + 1} />
-        ))} */}
+        {Object.keys(partMap).map((partId) => {
+          const numPartId = Number(partId);
+          return <Part key={numPartId} partId={numPartId} />;
+        })}
       </DragDropContext>
     </div>
   );
