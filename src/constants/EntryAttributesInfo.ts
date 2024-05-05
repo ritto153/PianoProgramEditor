@@ -3,15 +3,19 @@ export const entryAttributesInfo = {
     displayInTable: false,
     displayName: "id"
   },
-  part_num: {
+  partNum: {
     displayInTable: true,
     displayName: "部"
   },
-  last_name: {
+  index: {
+    displayInTable: true,
+    displayName: "番"
+  },
+  lastName: {
     displayInTable: true,
     displayName: "姓"
   },
-  first_name: {
+  firstName: {
     displayInTable: true,
     displayName: "名"
   },
