@@ -5,11 +5,11 @@ type ResponsePart = {
   id: string;
   partNum: number;
   startingTime: string | null;
-}
+};
 
 type ResponsePartMap = {
   [id: string]: ResponsePart;
-}
+};
 
 export const PartMapBuilder = (response: {
   entries: Entry[];
@@ -17,7 +17,7 @@ export const PartMapBuilder = (response: {
 }): PartMap => {
   const { entries, parts } = response;
 
-  const entriesByPartId: {[key: string]: Entry[]} = {};
+  const entriesByPartId: { [key: string]: Entry[] } = {};
   entries.forEach((entry) => {
     if (!entriesByPartId[entry.partId]) {
       entriesByPartId[entry.partId] = [];
@@ -31,21 +31,21 @@ export const PartMapBuilder = (response: {
     partsByPartId[part.id] = part;
   });
 
-  const result: PartMap = {}
+  const result: PartMap = {};
 
   Object.entries(entriesByPartId).forEach(([partId, entries]) => {
     if (!entries) throw new Error();
 
     const part = partsByPartId[partId];
 
-    if (!part) throw new Error('エントリーの持つ部が存在しません');
+    if (!part) throw new Error("エントリーの持つ部が存在しません");
 
     result[part.id] = {
       id: part.id,
       partNum: part.partNum,
-      startingTime: part.startingTime,
+      startingTime: part.startingTime ? new Date(part.startingTime) : null,
       entryIds: entries.map((entry) => entry.id),
-    }
+    };
   });
 
   return result;

@@ -1,7 +1,7 @@
 export type Part = {
   id: string;
   partNum: number;
-  startingTime: string | null;
+  startingTime: Date | null;
   entryIds: string[];
 }
 
