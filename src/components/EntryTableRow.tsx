@@ -16,10 +16,10 @@ export default function EntryTableRow(props: Props) {
   if (!entry) throw new Error(`Entry with id ${entryId} not found`);
 
   const entryForDisplay = {
-    part_num: partNum,
+    partNum: partNum,
     index: index,
-    last_name: entry.lastName,
-    first_name: entry.firstName,
+    lastName: entry.lastName,
+    firstName: entry.firstName,
     affiliation: entry.affiliation,
     grade: entry.grade,
     composer: entry.composer,
