@@ -8,7 +8,7 @@ type Props = {
 };
 
 export default function Part(props: Props) {
-  const Wrapper = styled.section`
+  const Wrapper = styled.div`
     margin-bottom: 1.5em;
   `;
 

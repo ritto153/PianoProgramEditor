@@ -25,7 +25,6 @@ export const PartMapBuilder = (response: {
     entriesByPartId[entry.partId].push(entry);
   });
 
-  // const entriesByPartId = Object.groupBy(entries, (entry) => entry.partId);
   const partsByPartId: ResponsePartMap = {};
   parts.forEach((part) => {
     partsByPartId[part.id] = part;

@@ -36,11 +36,15 @@ export default function App() {
     setPartMap(newPartMap);
   };
 
+  const sortedParts = Object.values(partMap).sort(
+    (a, b) => a.partNum - b.partNum
+  );
+
   return (
     <div className="App">
       <DragDropContext onDragEnd={onDragEnd}>
-        {Object.keys(partMap).map((partId) => (
-          <Part key={partId} partId={partId} />
+        {sortedParts.map((part) => (
+          <Part key={part.id} partId={part.id} />
         ))}
       </DragDropContext>
     </div>
