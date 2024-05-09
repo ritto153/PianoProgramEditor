@@ -34,7 +34,6 @@ export default function EntryTableRow(props: Props) {
       {...draggableProvided.draggableProps}
       {...draggableProvided.dragHandleProps}
     >
-      <th></th>
       {Object.entries(entryForDisplay).map(([_, value], i) => (
         <th key={i}>{value}</th>
       ))}

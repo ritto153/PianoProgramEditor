@@ -25,7 +25,6 @@ export default function EntryTable(props: Props) {
     <Table striped bordered hover>
       <thead>
         <tr>
-          <th key={0}></th>
           {keysOfEntryForDisplay.map((entryKey, i) => {
             if (!Object.keys(entryAttributesInfo).includes(entryKey)) {
               throw new Error(
@@ -34,7 +33,7 @@ export default function EntryTable(props: Props) {
             }
 
             const attributeInfo = entryAttributesInfo[entryKey];
-            return <th key={i + 1}>{attributeInfo.displayName}</th>;
+            return <th key={i}>{attributeInfo.displayName}</th>;
           })}
         </tr>
       </thead>

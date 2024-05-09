@@ -1,32 +1,42 @@
 export const entryAttributesInfo = {
   partNum: {
-    displayName: "部"
+    columnWidth: 5,
+    displayName: "部",
   },
   index: {
-    displayName: "番"
+    columnWidth: 5,
+    displayName: "番",
   },
   lastName: {
-    displayName: "姓"
+    columnWidth: 10,
+    displayName: "姓",
   },
   firstName: {
-    displayName: "名"
+    columnWidth: 10,
+    displayName: "名",
   },
   affiliation: {
-    displayName: "所属"
+    columnWidth: 10,
+    displayName: "所属",
   },
   grade: {
-    displayName: "学年"
+    columnWidth: 5,
+    displayName: "学年",
   },
   composer: {
-    displayName: "作曲家"
+    columnWidth: 20,
+    displayName: "作曲家",
   },
   work: {
-    displayName: "曲名"
+    columnWidth: 25,
+    displayName: "曲名",
   },
   time: {
-    displayName: "演奏時間"
+    columnWidth: 5,
+    displayName: "演奏時間",
   },
   memo: {
-    displayName: "メモ"
+    columnWidth: 5,
+    displayName: "メモ",
   },
 };
