@@ -2,6 +2,9 @@ import { PartMap } from "../type/Part";
 
 export const RemovePart = (partId: string, partMap: PartMap) => {
   const originalPart = partMap[partId];
+  if (originalPart.partNum === 0) {
+    throw new Error("配置前のエントリーを格納する部は削除できません");
+  }
 
   const newPartMap = { ...partMap };
 
