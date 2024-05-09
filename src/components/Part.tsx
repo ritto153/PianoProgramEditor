@@ -9,11 +9,11 @@ type Props = {
   partId: string;
 };
 
-export default function Part(props: Props) {
-  const Wrapper = styled.div`
-    margin-bottom: 1.5em;
-  `;
+const Wrapper = styled.div`
+  margin-bottom: 1.5em;
+`;
 
+export default function Part(props: Props) {
   const { partId } = props;
   const { partMap } = useEntries();
   const part = partMap[partId];
