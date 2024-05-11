@@ -32,7 +32,9 @@ export const ReorderEntryInPartMap = (
       (entryId) => entryId !== draggableId
     );
     // ドラッグしたエントリーを加えた、移動先の部のentryIds
-    const newForeignPartEntryIds = [...partMap[destination.droppableId].entryIds];
+    const newForeignPartEntryIds = [
+      ...partMap[destination.droppableId].entryIds,
+    ];
     newForeignPartEntryIds.splice(destination.index, 0, draggableId);
 
     const result = { ...partMap };

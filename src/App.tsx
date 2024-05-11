@@ -23,8 +23,13 @@ export default function App() {
     // 表の外にドロップされた場合
     if (!result.destination) return;
 
-    // 同じ場所にドロップされた場合
-    if (result.destination.index === result.source.index) return;
+    // 同じテーブルの同じ場所にドロップされた場合
+    if (
+      result.destination.droppableId === result.source.droppableId &&
+      result.destination.index === result.source.index
+    ) {
+      return;
+    }
 
     const newPartMap = ReorderEntryInPartMap(
       partMap,
