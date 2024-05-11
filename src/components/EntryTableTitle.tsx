@@ -1,9 +1,10 @@
 import Container from 'react-bootstrap/Container';
 import Row from "react-bootstrap/Row";
 import Col from 'react-bootstrap/Col';
+import styled from "styled-components";
+
 import { useEntries } from "../EntryProvider";
 import StartingTimeInputForm from "./StartingTimeInputForm";
-import styled from "styled-components";
 
 type Props = {
   partId: string;
@@ -43,7 +44,7 @@ export default function EntryTableTitle(props: Props) {
 
   const startingTime = part.startingTime;
 
-  const endingTime = startingTime ? new Date(startingTime.getTime()) : null;
+  const endingTime = startingTime ? new Date(startingTime) : null;
   endingTime?.setMinutes(endingTime.getMinutes() + totalPlayTime);
 
   const sheduleString = TwoDatesToString(startingTime, endingTime);
@@ -54,7 +55,7 @@ export default function EntryTableTitle(props: Props) {
       <Container>
         <Row>
           <Col md={2}>
-            <StartingTimeInputForm/>
+            <StartingTimeInputForm partId={partId}/>
           </Col>
           <Col md={2}>
             <p>総演奏時間</p>
