@@ -4,8 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import EntryTableRow from "./EntryTableRow";
 import { useEntries } from "../EntryProvider";
 import { BuildEntryForDisplay } from "../utils/BuildEntryForDisplay";
+import { BuildEntrySchedules } from "../utils/BuildEntrySchedules";
 import { entryAttributesInfo } from "../constants/EntryAttributesInfo";
-import { minutesBetweenSolo, minutesBeforOrAfterDuet } from "../constants/MinutesBetweenEntries";
 import { EntryForDisplay } from "../type/Entry";
 
 type Props = {
@@ -21,6 +21,7 @@ export default function EntryTable(props: Props) {
   const keysOfEntryForDisplay = Object.keys(
     BuildEntryForDisplay(randomEntry, 0, 0, null)
   ) as (keyof EntryForDisplay)[];
+  const entrySchedules = BuildEntrySchedules(selectedEntryIds, entryMap, part.startingTime);
 
   return (
     <Table striped bordered hover>
@@ -54,6 +55,7 @@ export default function EntryTable(props: Props) {
                       partNum={part.partNum}
                       entryId={entryId}
                       index={i + 1}
+                      schedules={entrySchedules[entryId]}
                     />
                   )}
                 </Draggable>

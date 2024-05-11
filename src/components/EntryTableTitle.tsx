@@ -1,6 +1,6 @@
-import Container from 'react-bootstrap/Container';
+import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Col from 'react-bootstrap/Col';
+import Col from "react-bootstrap/Col";
 import styled from "styled-components";
 
 import { useEntries } from "../EntryProvider";
@@ -23,10 +23,18 @@ const TwoDatesToString = (
   startingTime: Date | null,
   endingTime: Date | null
 ): string => {
-  const RjustNumber = (num: number) => String(num).padStart(2, '0')
+  const timeFormatter = new Intl.DateTimeFormat("ja-jp", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  const RjustNumber = (num: number) => String(num).padStart(2, "0");
 
   if (startingTime && endingTime) {
-    return `${RjustNumber(startingTime.getHours())}:${RjustNumber(startingTime.getMinutes())}~${RjustNumber(endingTime.getHours())}:${RjustNumber(endingTime.getMinutes())}`;
+    return `${timeFormatter.format(startingTime)}~${timeFormatter.format(
+      endingTime
+    )}
+    `;
   } else if (!startingTime && !endingTime) {
     return "";
   } else {
@@ -51,11 +59,14 @@ export default function EntryTableTitle(props: Props) {
 
   return (
     <Wrapper>
-      <h3>{part.partNum === 0 ? "全エントリー" : `第${part.partNum}部`} {sheduleString}</h3>
+      <h3>
+        {part.partNum === 0 ? "全エントリー" : `第${part.partNum}部`}{" "}
+        {sheduleString}
+      </h3>
       <Container fluid>
         <Row>
           <Col md={2}>
-            <StartingTimeInputForm partId={partId}/>
+            <StartingTimeInputForm partId={partId} />
           </Col>
           <Col md={2}>
             <p>総演奏時間</p>

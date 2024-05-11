@@ -17,7 +17,7 @@ export type EntryMap = {
 
 export type EntryForDisplay = {
   playMinutes: number;
-  startingTime: Date | null;
+  startingTime: string;
   partNum: number;
   index: number;
   lastName: string;

@@ -7,16 +7,20 @@ interface Props {
   draggableProvided: any;
   entryId: string;
   index: number;
+  schedules: {
+    startingTime: Date | null,
+    endingTime: Date | null,
+  };
 }
 
 export default function EntryTableRow(props: Props) {
-  const { partNum, entryId, draggableProvided, index } = props;
+  const { partNum, entryId, draggableProvided, index, schedules } = props;
   const { entryMap } = useEntries();
   const entry = entryMap[entryId];
 
   if (!entry) throw new Error(`Id ${entryId}  のエントリーが見つかりませんでした。`);
 
-  const entryForDisplay = BuildEntryForDisplay(entry, partNum, index, null);
+  const entryForDisplay = BuildEntryForDisplay(entry, partNum, index, schedules.startingTime);
 
   return (
     <tr
