@@ -1,4 +1,6 @@
-import { Row, Col } from "react-bootstrap";
+import Container from 'react-bootstrap/Container';
+import Row from "react-bootstrap/Row";
+import Col from 'react-bootstrap/Col';
 import { useEntries } from "../EntryProvider";
 import StartingTimeInputForm from "./StartingTimeInputForm";
 import styled from "styled-components";
@@ -49,15 +51,17 @@ export default function EntryTableTitle(props: Props) {
   return (
     <Wrapper>
       <h3>{part.partNum === 0 ? "全エントリー" : `第${part.partNum}部`} {sheduleString}</h3>
-      <Row>
-        <Col md={2}>
-          <StartingTimeInputForm/>
-        </Col>
-        <Col md={2}>
-          <p>総演奏時間</p>
-          <BoldP>{totalPlayTime}分</BoldP>
-        </Col>
-      </Row>
+      <Container>
+        <Row>
+          <Col md={2}>
+            <StartingTimeInputForm/>
+          </Col>
+          <Col md={2}>
+            <p>総演奏時間</p>
+            <BoldP>{totalPlayTime}分</BoldP>
+          </Col>
+        </Row>
+      </Container>
     </Wrapper>
   );
 }
