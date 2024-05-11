@@ -1,9 +1,20 @@
+import { Row, Col } from "react-bootstrap";
 import { useEntries } from "../EntryProvider";
 import StartingTimeInputForm from "./StartingTimeInputForm";
+import styled from "styled-components";
 
 type Props = {
   partId: string;
 };
+
+const Wrapper = styled.div`
+  margin-bottom: 1.5em;
+`;
+
+const BoldP = styled.p`
+  font-size: 20px;
+  font-weight: bold;
+`;
 
 const TwoDatesToString = (
   startingTime: Date | null,
@@ -36,10 +47,17 @@ export default function EntryTableTitle(props: Props) {
   const sheduleString = TwoDatesToString(startingTime, endingTime);
 
   return (
-    <div>
+    <Wrapper>
       <h3>{part.partNum === 0 ? "全エントリー" : `第${part.partNum}部`} {sheduleString}</h3>
-      <StartingTimeInputForm/>
-      <p>{`総演奏時間：${totalPlayTime}分`}</p>
-    </div>
+      <Row>
+        <Col md={2}>
+          <StartingTimeInputForm/>
+        </Col>
+        <Col md={2}>
+          <p>総演奏時間</p>
+          <BoldP>{totalPlayTime}分</BoldP>
+        </Col>
+      </Row>
+    </Wrapper>
   );
 }
