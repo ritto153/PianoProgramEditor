@@ -4,16 +4,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import EntryTableRow from "./EntryTableRow";
 import { useEntries } from "../EntryProvider";
 import { BuildEntryForDisplay } from "../utils/BuildEntryForDisplay";
-import { BuildEntrySchedules } from "../utils/BuildEntrySchedules";
 import { entryAttributesInfo } from "../constants/EntryAttributesInfo";
 import { EntryForDisplay } from "../type/Entry";
+import { EntrySchedules } from "../type/EntrySchedules";
 
 type Props = {
   partId: string;
+  entrySchedules: EntrySchedules;
 };
 
 export default function EntryTable(props: Props) {
-  const { partId } = props;
+  const { partId, entrySchedules } = props;
   const { partMap, entryMap } = useEntries();
   const part = partMap[partId];
   const selectedEntryIds = part.entryIds;
@@ -21,7 +22,6 @@ export default function EntryTable(props: Props) {
   const keysOfEntryForDisplay = Object.keys(
     BuildEntryForDisplay(randomEntry, 0, 0, null)
   ) as (keyof EntryForDisplay)[];
-  const entrySchedules = BuildEntrySchedules(selectedEntryIds, entryMap, part.startingTime);
 
   return (
     <Table striped bordered hover>

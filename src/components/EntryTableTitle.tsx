@@ -8,6 +8,7 @@ import StartingTimeInputForm from "./StartingTimeInputForm";
 
 type Props = {
   partId: string;
+  endingTime: Date | null;
 };
 
 const Wrapper = styled.div`
@@ -28,8 +29,6 @@ const TwoDatesToString = (
     minute: "2-digit",
   });
 
-  const RjustNumber = (num: number) => String(num).padStart(2, "0");
-
   if (startingTime && endingTime) {
     return `${timeFormatter.format(startingTime)}~${timeFormatter.format(
       endingTime
@@ -43,19 +42,14 @@ const TwoDatesToString = (
 };
 
 export default function EntryTableTitle(props: Props) {
-  const { partId } = props;
+  const { partId, endingTime } = props;
   const { entryMap, partMap } = useEntries();
   const part = partMap[partId];
   const totalPlayTime = part.entryIds
     .map((entryId) => entryMap[entryId].time)
     .reduce((a, b) => a + b, 0);
 
-  const startingTime = part.startingTime;
-
-  const endingTime = startingTime ? new Date(startingTime) : null;
-  endingTime?.setMinutes(endingTime.getMinutes() + totalPlayTime);
-
-  const sheduleString = TwoDatesToString(startingTime, endingTime);
+  const sheduleString = TwoDatesToString(part.startingTime, endingTime);
 
   return (
     <Wrapper>

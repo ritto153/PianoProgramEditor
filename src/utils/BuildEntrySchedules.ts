@@ -1,12 +1,6 @@
 import { minutesBetweenSolo } from "../constants/MinutesBetweenEntries";
 import { EntryMap } from "../type/Entry";
-
-type EntrySchedules = {
-  [entryId: string]: {
-    startingTime: Date | null;
-    endingTime: Date | null;
-  };
-};
+import { EntrySchedules } from "../type/EntrySchedules";
 
 export const BuildEntrySchedules = (
   entryIds: string[],

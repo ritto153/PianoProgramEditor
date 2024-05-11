@@ -3,6 +3,7 @@ import EntryTable from "./EntryTable";
 import EntryTableAddingButton from "./EntryTableAddingButton";
 import EntryTableRemovingButton from "./EntryTableRemovingButton";
 import { useEntries } from "../EntryProvider";
+import { BuildEntrySchedules } from "../utils/BuildEntrySchedules";
 import styled from "styled-components";
 
 type Props = {
@@ -15,13 +16,19 @@ const Wrapper = styled.div`
 
 export default function Part(props: Props) {
   const { partId } = props;
-  const { partMap } = useEntries();
+  const { partMap, entryMap } = useEntries();
   const part = partMap[partId];
+  const entrySchedules = BuildEntrySchedules(
+    part.entryIds,
+    entryMap,
+    part.startingTime
+  );
+  const partEndingTime = entrySchedules[part.entryIds[part.entryIds.length - 1]].endingTime;
 
   return (
     <Wrapper>
-      <EntryTableTitle partId={partId} />
-      <EntryTable partId={partId} />
+      <EntryTableTitle partId={partId} endingTime={partEndingTime}/>
+      <EntryTable partId={partId} entrySchedules={entrySchedules} />
       <EntryTableAddingButton partId={partId} />
       {
         // エントリー数が0件の部は削除ボタンを表示する
