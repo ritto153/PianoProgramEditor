@@ -1,4 +1,5 @@
 import { useEntries } from "../EntryProvider";
+import StartingTimeInputForm from "./StartingTimeInputForm";
 
 type Props = {
   partId: string;
@@ -36,8 +37,8 @@ export default function EntryTableTitle(props: Props) {
 
   return (
     <div>
-      <h3>{part.partNum === 0 ? "全エントリー" : `第${part.partNum}部`}</h3>
-      <p>{sheduleString}</p>
+      <h3>{part.partNum === 0 ? "全エントリー" : `第${part.partNum}部`} {sheduleString}</h3>
+      <StartingTimeInputForm/>
       <p>{`総演奏時間：${totalPlayTime}分`}</p>
     </div>
   );
