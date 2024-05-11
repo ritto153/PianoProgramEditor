@@ -59,11 +59,13 @@ export default function EntryTableTitle(props: Props) {
       </h3>
       <Container fluid>
         <Row>
+          {part.partNum !== 0 ? (
+            <Col md={2}>
+              <StartingTimeInputForm partId={partId} />
+            </Col>
+          ) : null}
           <Col md={2}>
-            <StartingTimeInputForm partId={partId} />
-          </Col>
-          <Col md={2}>
-            <p>総演奏時間</p>
+            <p>総演奏時間：</p>
             <BoldP>{totalPlayTime}分</BoldP>
           </Col>
         </Row>
