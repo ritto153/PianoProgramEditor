@@ -23,17 +23,20 @@ export const BuildEntrySchedules = (
     let endingTime = new Date(startingTime);
     endingTime.setMinutes(endingTime.getMinutes() + firstEntry.time);
 
-    entryIds.forEach((entryId) => {
+    entryIds.forEach((entryId, i) => {
+      if (i > 0) {
+        // ひとつ前のエントリーの終了時刻 + 間の時間
+        startingTime = new Date(endingTime);
+        startingTime.setMinutes(startingTime.getMinutes() + minutesBetweenSolo);
+
+        // 開始時刻 + 演奏時間
+        endingTime = new Date(startingTime);
+        endingTime.setMinutes(endingTime.getMinutes() + entryMap[entryId].time);
+      }
       result[entryId] = {
         startingTime: new Date(startingTime),
         endingTime: new Date(endingTime),
       };
-
-      startingTime = new Date(endingTime);
-      startingTime.setMinutes(startingTime.getMinutes() + minutesBetweenSolo);
-
-      endingTime = new Date(startingTime);
-      endingTime.setMinutes(endingTime.getMinutes() + entryMap[entryId].time);
     });
 
     return result;
