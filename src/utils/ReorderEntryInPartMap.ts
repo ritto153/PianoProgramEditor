@@ -7,46 +7,44 @@ export const ReorderEntryInPartMap = (
   source: DraggableLocation,
   destination: DraggableLocation
 ): PartMap => {
-  // 同じテーブル内に Drop した場合
   if (source.droppableId === destination.droppableId) {
-    const entryIds = partMap[destination.droppableId].entryIds;
+    // 同じテーブル内に Drop した場合
+    const partId = destination.droppableId;
+    const entryIds = partMap[partId].entryIds;
 
+    // ドラッグしたエントリーを除く
     const newEntryIds = entryIds.filter((entryId) => entryId !== draggableId);
+    // ドラッグしたエントリーをドロップした場所に追加
     newEntryIds.splice(destination.index, 0, draggableId);
 
-    const result = { ...partMap };
-    result[destination.droppableId] = {
-      ...partMap[destination.droppableId],
-      entryIds: newEntryIds,
+    return {
+      ...partMap,
+      [partId]: {
+        ...partMap[partId],
+        entryIds: newEntryIds,
+      },
     };
-
-    return result;
   } else {
-    const homePartEntryIds = partMap[source.droppableId].entryIds;
-    const foreignPartEntryIds = partMap[destination.droppableId].entryIds;
+    // 異なるテーブルにドロップした場合
 
-    const newHomePartEntryIds = homePartEntryIds.filter(
+    // ドラッグしたエントリーを除いた、移動元の部のentryIds
+    const newHomePartEntryIds = partMap[source.droppableId].entryIds.filter(
       (entryId) => entryId !== draggableId
     );
-
-    foreignPartEntryIds.splice(
-      destination.index,
-      0,
-      draggableId
-    );
-    const newForeignPartEntryIds = [...foreignPartEntryIds];
+    // ドラッグしたエントリーを加えた、移動先の部のentryIds
+    const newForeignPartEntryIds = [...partMap[destination.droppableId].entryIds];
+    newForeignPartEntryIds.splice(destination.index, 0, draggableId);
 
     const result = { ...partMap };
     result[source.droppableId] = {
-     ...partMap[source.droppableId],
+      ...partMap[source.droppableId],
       entryIds: newHomePartEntryIds,
     };
     result[destination.droppableId] = {
-     ...partMap[destination.droppableId],
+      ...partMap[destination.droppableId],
       entryIds: newForeignPartEntryIds,
     };
 
-    console.log(result);
     return result;
   }
 };
