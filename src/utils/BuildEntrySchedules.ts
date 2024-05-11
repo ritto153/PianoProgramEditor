@@ -25,9 +25,9 @@ export const BuildEntrySchedules = (
     return result;
   } else {
     const firstEntry = entryMap[entryIds[0]];
-    const startingTime = new Date(partStartingTime);
-    const endingTime = new Date(startingTime);
-    endingTime.setMinutes(startingTime.getMinutes() + firstEntry.time);
+    let startingTime = new Date(partStartingTime);
+    let endingTime = new Date(startingTime);
+    endingTime.setMinutes(endingTime.getMinutes() + firstEntry.time);
 
     entryIds.forEach((entryId) => {
       result[entryId] = {
@@ -35,8 +35,11 @@ export const BuildEntrySchedules = (
         endingTime: new Date(endingTime),
       };
 
-      startingTime.setMinutes(endingTime.getMinutes() + minutesBetweenSolo);
-      endingTime.setMinutes(startingTime.getMinutes() + entryMap[entryId].time);
+      startingTime = new Date(endingTime);
+      startingTime.setMinutes(startingTime.getMinutes() + minutesBetweenSolo);
+
+      endingTime = new Date(startingTime);
+      endingTime.setMinutes(endingTime.getMinutes() + entryMap[entryId].time);
     });
 
     return result;
