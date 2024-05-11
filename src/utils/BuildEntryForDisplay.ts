@@ -3,8 +3,11 @@ import { Entry, EntryForDisplay } from "../type/Entry";
 export const BuildEntryForDisplay = (
   entry: Entry,
   partNum: number,
-  index: number
+  index: number,
+  startingTime: Date | null,
 ): EntryForDisplay => ({
+  playMinutes: entry.time,
+  startingTime: startingTime,
   partNum: partNum,
   index: index,
   lastName: entry.lastName,
@@ -13,6 +16,5 @@ export const BuildEntryForDisplay = (
   grade: entry.grade,
   composer: entry.composer,
   work: entry.work,
-  time: entry.time,
   memo: entry.memo,
 });

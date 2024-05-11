@@ -16,6 +16,8 @@ export type EntryMap = {
 };
 
 export type EntryForDisplay = {
+  playMinutes: number;
+  startingTime: Date | null;
   partNum: number;
   index: number;
   lastName: string;
@@ -24,6 +26,5 @@ export type EntryForDisplay = {
   grade: number;
   composer: string;
   work: string;
-  time: number;
   memo: string;
 };

@@ -5,6 +5,7 @@ import EntryTableRow from "./EntryTableRow";
 import { useEntries } from "../EntryProvider";
 import { BuildEntryForDisplay } from "../utils/BuildEntryForDisplay";
 import { entryAttributesInfo } from "../constants/EntryAttributesInfo";
+import { minutesBetweenSolo, minutesBeforOrAfterDuet } from "../constants/MinutesBetweenEntries";
 import { EntryForDisplay } from "../type/Entry";
 
 type Props = {
@@ -18,7 +19,7 @@ export default function EntryTable(props: Props) {
   const selectedEntryIds = part.entryIds;
   const randomEntry = Object.values(entryMap)[0];
   const keysOfEntryForDisplay = Object.keys(
-    BuildEntryForDisplay(randomEntry, 0, 0)
+    BuildEntryForDisplay(randomEntry, 0, 0, null)
   ) as (keyof EntryForDisplay)[];
 
   return (

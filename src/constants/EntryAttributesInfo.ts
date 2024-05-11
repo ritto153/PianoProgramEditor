@@ -1,4 +1,12 @@
 export const entryAttributesInfo = {
+  playMinutes: {
+    columnWidth: 100,
+    displayName: "演奏時間",
+  },
+  startingTime: {
+    columnWidth: 100,
+    displayName: "開始時間",
+  },
   partNum: {
     columnWidth: 50,
     displayName: "部",
@@ -31,10 +39,7 @@ export const entryAttributesInfo = {
     columnWidth: 300,
     displayName: "曲名",
   },
-  time: {
-    columnWidth: 100,
-    displayName: "演奏時間",
-  },
+
   memo: {
     columnWidth: 200,
     displayName: "メモ",

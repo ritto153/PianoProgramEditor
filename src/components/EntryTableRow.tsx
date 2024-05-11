@@ -1,4 +1,5 @@
 import { useEntries } from "../EntryProvider";
+import { BuildEntryForDisplay } from "../utils/BuildEntryForDisplay";
 
 interface Props {
   partNum: number;
@@ -13,20 +14,9 @@ export default function EntryTableRow(props: Props) {
   const { entryMap } = useEntries();
   const entry = entryMap[entryId];
 
-  if (!entry) throw new Error(`Entry with id ${entryId} not found`);
+  if (!entry) throw new Error(`Id ${entryId}  のエントリーが見つかりませんでした。`);
 
-  const entryForDisplay = {
-    partNum: partNum,
-    index: index,
-    lastName: entry.lastName,
-    firstName: entry.firstName,
-    affiliation: entry.affiliation,
-    grade: entry.grade,
-    composer: entry.composer,
-    work: entry.work,
-    time: entry.time,
-    memo: entry.memo,
-  };
+  const entryForDisplay = BuildEntryForDisplay(entry, partNum, index, null);
 
   return (
     <tr
@@ -35,7 +25,7 @@ export default function EntryTableRow(props: Props) {
       {...draggableProvided.dragHandleProps}
     >
       {Object.entries(entryForDisplay).map(([_, value], i) => (
-        <th key={i}>{value}</th>
+        <th key={i}>{String(value)}</th>
       ))}
     </tr>
   );
