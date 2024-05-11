@@ -52,7 +52,7 @@ export default function EntryTableTitle(props: Props) {
   return (
     <Wrapper>
       <h3>{part.partNum === 0 ? "全エントリー" : `第${part.partNum}部`} {sheduleString}</h3>
-      <Container>
+      <Container fluid>
         <Row>
           <Col md={2}>
             <StartingTimeInputForm partId={partId}/>
