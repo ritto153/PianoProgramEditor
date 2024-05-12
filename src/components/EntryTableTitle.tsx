@@ -45,14 +45,24 @@ const TwoDatesToString = (
   }
 };
 
+const MinutesBetweenTwoDates = (
+  startingTime: Date | null,
+  endingTime: Date | null
+): number | null => {
+  if (startingTime && endingTime) {
+    return (endingTime.getTime() - startingTime.getTime()) / 60000;
+  } else if (!startingTime && !endingTime) {
+    return null;
+  } else {
+    throw new Error("開始時間と終了時間の片方がnullになっています");
+  }
+}
+ 
 export default function EntryTableTitle(props: Props) {
   const { partId, endingTime } = props;
-  const { entryMap, partMap } = useEntries();
+  const { partMap } = useEntries();
   const part = partMap[partId];
-  const totalPlayTime = part.entryIds
-    .map((entryId) => entryMap[entryId].time)
-    .reduce((a, b) => a + b, 0);
-
+  const totalPlayTime = MinutesBetweenTwoDates(part.startingTime, endingTime);
   const sheduleString = TwoDatesToString(part.startingTime, endingTime);
 
   return (
@@ -69,7 +79,7 @@ export default function EntryTableTitle(props: Props) {
             </Col>
           ) : null}
           <Col md={2}>
-            <PWithNoMargin>総演奏時間：</PWithNoMargin>
+            <PWithNoMargin>所要時間：</PWithNoMargin>
             <BoldP>{totalPlayTime}分</BoldP>
           </Col>
         </Row>
