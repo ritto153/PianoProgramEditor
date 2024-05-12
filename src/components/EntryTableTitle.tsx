@@ -5,6 +5,8 @@ import styled from "styled-components";
 
 import { useEntries } from "../EntryProvider";
 import StartingTimeInputForm from "./StartingTimeInputForm";
+import { Part } from "../type/Part";
+import { EntryMap } from "../type/Entry";
 
 type Props = {
   partId: string;
@@ -47,22 +49,31 @@ const TwoDatesToString = (
 
 const MinutesBetweenTwoDates = (
   startingTime: Date | null,
-  endingTime: Date | null
+  endingTime: Date | null,
+  part: Part,
+  entryMap: EntryMap
 ): number | null => {
   if (startingTime && endingTime) {
     return (endingTime.getTime() - startingTime.getTime()) / 60000;
   } else if (!startingTime && !endingTime) {
-    return null;
+    return part.entryIds
+      .map((entryId) => entryMap[entryId].time)
+      .reduce((a, b) => a + b, 0);
   } else {
     throw new Error("開始時間と終了時間の片方がnullになっています");
   }
-}
- 
+};
+
 export default function EntryTableTitle(props: Props) {
   const { partId, endingTime } = props;
-  const { partMap } = useEntries();
+  const { entryMap, partMap } = useEntries();
   const part = partMap[partId];
-  const totalPlayTime = MinutesBetweenTwoDates(part.startingTime, endingTime);
+  const totalPlayTime = MinutesBetweenTwoDates(
+    part.startingTime,
+    endingTime,
+    part,
+    entryMap
+  );
   const sheduleString = TwoDatesToString(part.startingTime, endingTime);
 
   return (
