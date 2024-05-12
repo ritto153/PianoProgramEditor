@@ -15,6 +15,10 @@ const Wrapper = styled.div`
   margin-bottom: 1.5em;
 `;
 
+const PWithNoMargin = styled.p`
+  margin: 0
+`
+
 const BoldP = styled.p`
   font-size: 20px;
   font-weight: bold;
@@ -65,7 +69,7 @@ export default function EntryTableTitle(props: Props) {
             </Col>
           ) : null}
           <Col md={2}>
-            <p>総演奏時間：</p>
+            <PWithNoMargin>総演奏時間：</PWithNoMargin>
             <BoldP>{totalPlayTime}分</BoldP>
           </Col>
         </Row>
