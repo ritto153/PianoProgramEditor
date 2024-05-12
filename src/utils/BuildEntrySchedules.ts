@@ -21,7 +21,8 @@ export const BuildEntrySchedules = (
     const firstEntry = entryMap[entryIds[0]];
     let startingTime = new Date(partStartingTime);
     let endingTime = new Date(startingTime);
-    endingTime.setMinutes(endingTime.getMinutes() + firstEntry.time);
+    const firstEntryPlayTime = firstEntry ? firstEntry.time : 0;
+    endingTime.setMinutes(endingTime.getMinutes() + firstEntryPlayTime);
 
     entryIds.forEach((entryId, i) => {
       if (i > 0) {

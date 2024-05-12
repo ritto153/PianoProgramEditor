@@ -23,10 +23,15 @@ export default function Part(props: Props) {
     entryMap,
     part.startingTime
   );
-  const partEndingTime =
-    part.entryIds.length > 0
-      ? entrySchedules[part.entryIds[part.entryIds.length - 1]].endingTime
-      : null;
+
+  let partEndingTime: Date | null;
+  if (part.startingTime === null) {
+    partEndingTime = null;
+  } else if (part.entryIds.length === 0) {
+    partEndingTime = new Date(part.startingTime);
+  } else {
+    partEndingTime = entrySchedules[part.entryIds[part.entryIds.length - 1]].endingTime;
+  }
 
   return (
     <Wrapper>
