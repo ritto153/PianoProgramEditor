@@ -1,5 +1,5 @@
+import { useMemo } from "react";
 import Form from "react-bootstrap/Form";
-
 import { PartMap } from "../type/Part";
 import { useEntries } from "../EntryProvider";
 import { randomStandardDate } from "../constants/RandomStardardDate";
@@ -47,10 +47,16 @@ export default function StartingTimeInputForm(props: Props) {
     );
   };
 
-  return (
+  const formGroup = (
     <Form.Group controlId="startingTime">
       <Form.Label>開始時間</Form.Label>
       <Form.Control type="time" onChange={ChangeStartingTime} />
     </Form.Group>
   );
+
+  const memoFormGroup = useMemo(() => {
+    return formGroup;
+  }, []);
+
+  return memoFormGroup;
 }
