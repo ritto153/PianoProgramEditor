@@ -16,8 +16,8 @@ const Wrapper = styled.div`
 `;
 
 const PWithNoMargin = styled.p`
-  margin: 0
-`
+  margin: 0;
+`;
 
 const BoldP = styled.p`
   font-size: 20px;
