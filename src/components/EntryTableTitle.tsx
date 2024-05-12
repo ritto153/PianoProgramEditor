@@ -1,3 +1,4 @@
+import { memo, useMemo } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -76,7 +77,7 @@ export default function EntryTableTitle(props: Props) {
   );
   const sheduleString = TwoDatesToString(part.startingTime, endingTime);
 
-  return (
+  const wrappedComponent = (
     <Wrapper>
       <h3>
         {part.partNum === 0 ? "全エントリー" : `第${part.partNum}部`}{" "}
@@ -97,4 +98,10 @@ export default function EntryTableTitle(props: Props) {
       </Container>
     </Wrapper>
   );
+
+  const memoComponent = useMemo(()=>{
+    return wrappedComponent
+  }, [part])
+
+  return memoComponent;
 }
