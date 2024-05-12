@@ -101,7 +101,7 @@ export default function EntryTableTitle(props: Props) {
 
   const memoComponent = useMemo(()=>{
     return wrappedComponent
-  }, [part])
+  }, [partMap])
 
   return memoComponent;
 }
