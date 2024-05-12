@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import EntryTableTitle from "./EntryTableTitle";
 import EntryTable from "./EntryTable";
 import EntryTableAddingButton from "./EntryTableAddingButton";
@@ -30,10 +31,11 @@ export default function Part(props: Props) {
   } else if (part.entryIds.length === 0) {
     partEndingTime = new Date(part.startingTime);
   } else {
-    partEndingTime = entrySchedules[part.entryIds[part.entryIds.length - 1]].endingTime;
+    partEndingTime =
+      entrySchedules[part.entryIds[part.entryIds.length - 1]].endingTime;
   }
 
-  return (
+  const wrapperComponent = (
     <Wrapper>
       <EntryTableTitle partId={partId} endingTime={partEndingTime} />
       <EntryTable partId={partId} entrySchedules={entrySchedules} />
@@ -47,4 +49,9 @@ export default function Part(props: Props) {
       }
     </Wrapper>
   );
+  const memoWrapperComponent = useMemo(() => {
+    return wrapperComponent;
+  }, [part]);
+
+  return memoWrapperComponent;
 }
