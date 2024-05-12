@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import Table from "react-bootstrap/Table";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -23,7 +24,7 @@ export default function EntryTable(props: Props) {
     BuildEntryForDisplay(randomEntry, 0, 0, null)
   ) as (keyof EntryForDisplay)[];
 
-  return (
+  const tableComponent = (
     <Table striped bordered hover>
       <thead>
         <tr>
@@ -67,4 +68,9 @@ export default function EntryTable(props: Props) {
       }
     </Table>
   );
+  const memoTableComponent = useMemo(() => {
+    return tableComponent;
+  }, [part]);
+
+  return memoTableComponent;
 }
