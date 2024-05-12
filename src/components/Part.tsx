@@ -23,11 +23,14 @@ export default function Part(props: Props) {
     entryMap,
     part.startingTime
   );
-  const partEndingTime = entrySchedules[part.entryIds[part.entryIds.length - 1]].endingTime;
+  const partEndingTime =
+    part.entryIds.length > 0
+      ? entrySchedules[part.entryIds[part.entryIds.length - 1]].endingTime
+      : null;
 
   return (
     <Wrapper>
-      <EntryTableTitle partId={partId} endingTime={partEndingTime}/>
+      <EntryTableTitle partId={partId} endingTime={partEndingTime} />
       <EntryTable partId={partId} entrySchedules={entrySchedules} />
       <EntryTableAddingButton partId={partId} />
       {
