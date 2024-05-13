@@ -19,6 +19,9 @@ const BuildStartingTimeUpdatedPart = (
   newDate.setHours(Number(hour));
   newDate.setMinutes(Number(minute));
 
+  console.log('旧');
+  console.log(partMap);
+
   const newPartMap = {
     ...partMap,
     [partId]: {
@@ -26,6 +29,9 @@ const BuildStartingTimeUpdatedPart = (
       startingTime: newDate,
     },
   };
+
+  console.log('新');
+  console.log(newPartMap);
 
   return newPartMap;
 };
@@ -56,7 +62,7 @@ export default function StartingTimeInputForm(props: Props) {
 
   const memoFormGroup = useMemo(() => {
     return formGroup;
-  }, []);
+  }, [partMap]);
 
   return memoFormGroup;
 }
