@@ -1,12 +1,14 @@
 import "./App.css";
 import { DragDropContext } from "react-beautiful-dnd";
 import Part from "./components/Part";
+import CsvDownloadButton from "./components/CsvDownloadButton";
 import { ReorderEntryInPartMap } from "./utils/ReorderEntryInPartMap";
 import { useEntries } from "./EntryProvider";
 import { DropResult } from "./type/DropResult";
+import { Entry } from "./type/Entry";
 
 export default function App() {
-  const { partMap, setPartMap } = useEntries();
+  const { partMap, entryMap, setPartMap } = useEntries();
 
   const nonAssinedPart = Object.values(partMap).find(
     (part) => part.partNum === 0
@@ -45,8 +47,15 @@ export default function App() {
     (a, b) => a.partNum - b.partNum
   );
 
+  const csvData: Entry[] = sortedParts
+    .map((entry) =>
+      Object.values(entry.entryIds).map((entryId) => entryMap[entryId])
+    )
+    .flat();
+
   return (
     <div className="App">
+      <CsvDownloadButton csvData={csvData} />
       <DragDropContext onDragEnd={onDragEnd}>
         {sortedParts.map((part) => (
           <Part key={part.id} partId={part.id} />
