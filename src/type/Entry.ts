@@ -20,7 +20,7 @@ export type NewEntry = {
     firstName: string;
     affiliation: string;
     grade: number;
-  };
+  }[];
   composer: string;
   work: string;
   time: number;
