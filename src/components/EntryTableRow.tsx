@@ -15,12 +15,16 @@ interface Props {
 
 export default function EntryTableRow(props: Props) {
   const { partNum, entryId, draggableProvided, index, schedules } = props;
-  const { entryMap } = useEntries();
+  const { entryMap, newEntryMap } = useEntries();
   const entry = entryMap[entryId];
+  const newEntry = newEntryMap[entryId];
 
   if (!entry) throw new Error(`Id ${entryId}  のエントリーが見つかりませんでした。`);
 
   const entryForDisplay = BuildEntryForDisplay(entry, partNum, index, schedules.startingTime);
+
+  // newEntryを組み立てる。最終的には br で改行させればよさそう
+  const newEntryForDisplay = entryForDisplay;
 
   return (
     <tr
