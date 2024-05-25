@@ -5,6 +5,7 @@ import {
   DividedSubordinaryEntry,
 } from "../type/DividedEntryForRow";
 import { EntrySchedules } from "../type/EntrySchedules";
+import { StringifyDate } from "./StringifyDate";
 
 type PropsForBuildEntriesForTableRow = {
   entryIds: string[];
@@ -27,7 +28,7 @@ export const BuildEntriesForTableRow = (
       entry: entry,
       partNum: partNum,
       index: i + 1,
-      stringStartingTime: "",
+      stringStartingTime: StringifyDate(entrySchedules[entryId].startingTime),
     });
 
     dividedEntries.forEach((entry) => {
