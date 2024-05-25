@@ -23,9 +23,6 @@ export default function EntryTableRow(props: Props) {
 
   const entryForDisplay = BuildEntryForDisplay(entry, partNum, index, schedules.startingTime);
 
-  // newEntryを組み立てる。最終的には br で改行させればよさそう
-  const newEntryForDisplay = entryForDisplay;
-
   return (
     <tr
       ref={draggableProvided.innerRef}

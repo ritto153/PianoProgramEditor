@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import EntryTableRow from "./EntryTableRow";
 import { useEntries } from "../EntryProvider";
 import { BuildEntryForDisplay } from "../utils/BuildEntryForDisplay";
+import { BuildEntriesForTableRow } from "../utils/BuildEntriesForTableRow";
 import { entryAttributesInfo } from "../constants/EntryAttributesInfo";
 import { EntryForDisplay } from "../type/Entry";
 import { EntrySchedules } from "../type/EntrySchedules";
@@ -16,12 +17,24 @@ type Props = {
 
 export default function EntryTable(props: Props) {
   const { partId, entrySchedules } = props;
-  const { partMap, entryMap } = useEntries();
+  const { partMap, entryMap, newEntryMap } = useEntries();
+
   const part = partMap[partId];
   const selectedEntryIds = part.entryIds;
-  const randomEntry = Object.values(entryMap)[0];
+
+  const selectedEntryIdsShouldRemove = ['tachibanafu', 'kazama'];
+  const entriesForTableRow = useMemo(
+    () => BuildEntriesForTableRow({
+      entryIds: selectedEntryIdsShouldRemove,
+      entryMap: newEntryMap,
+      partNum: part.partNum,
+      entrySchedules: entrySchedules,
+    }),
+    [selectedEntryIds, entryMap]
+  );
+
   const keysOfEntryForDisplay = Object.keys(
-    BuildEntryForDisplay(randomEntry, 0, 0, null)
+    BuildEntryForDisplay(Object.values(entryMap)[0], 0, 0, null)
   ) as (keyof EntryForDisplay)[];
 
   const tableComponent = (
