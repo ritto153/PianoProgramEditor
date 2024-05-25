@@ -47,6 +47,7 @@ type PropsForDivideEntryForRow = {
 };
 
 // 連弾や複数曲エントリーを持つエントリーは複数行で表示するため、行で表示できるようにEntryを配列に変換する
+// Entry をクラスにしてインスタンスメソッドとして定義したほうがきれいかも
 const DivideEntryForRow = (
   props: PropsForDivideEntryForRow
 ): DividedEntryForRow[] => {
