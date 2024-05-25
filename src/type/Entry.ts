@@ -21,8 +21,11 @@ export type NewEntry = {
     affiliation: string;
     grade: number;
   }[];
-  composer: string;
-  work: string;
+  works: {
+    id: string;
+    composer: string;
+    work: string;
+  }[];
   time: number;
   memo: string;
 };
@@ -34,6 +37,12 @@ export type EntryMap = {
 export type NewEntryMap = {
   [id: string]: NewEntry;
 };
+
+export type DividedEntryForTableRow = {
+  topRow: boolean;
+  id: string;
+  
+}
 
 export type EntryForDisplay = {
   playMinutes: number;

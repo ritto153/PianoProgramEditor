@@ -19,8 +19,13 @@
           "grade": 2
         }
       ],
-      "composer": "モーツァルト",
-      "work": "ソナタ",
+      "works": [
+        {
+          "id": "mozaSona",
+          "composer": "モーツァルト",
+          "work": "ソナタ"
+        }
+      ],
       "time": 4,
       "memo": "兄さんの強い希望で、、"
     },
@@ -50,8 +55,13 @@
           "grade": 2
         }
       ],
-      "composer": "チャイコフスキー",
-      "work": "組曲「くるみ割り人形」より「花のワルツ」",
+      "works": [
+        {
+          "id": "kurumiHana",
+          "composer": "チャイコフスキー",
+          "work": "組曲「くるみ割り人形」より「花のワルツ」"
+        }
+      ],
       "time": 4,
       "memo": ""
     },
@@ -67,8 +77,13 @@
           "grade": 4
         }
       ],
-      "composer": "ショパン",
-      "work": "バラード 第2番",
+      "works": [
+        {
+          "id": "chopinBallade2",
+          "composer": "ショパン",
+          "work":"バラード 第2番"
+        }
+      ],
       "time": 8,
       "memo": "ヒーッヒッヒ"
     },
@@ -84,8 +99,13 @@
           "grade": 2
         }
       ],
-      "composer": "ショパン",
-      "work": "ノクターン",
+      "works": [
+        {
+          "id": "chopinNoc",
+          "composer": "ショパン",
+          "work": "ノクターン"
+        }
+      ],
       "time": 5,
       "memo": "よろしくな"
     },
@@ -101,8 +121,13 @@
           "grade": 2
         }
       ],
-      "composer": "リスト",
-      "work": "ラ・カンパネラ",
+      "works": [
+        {
+          "id": "laCampanera",
+          "composer": "リスト",
+          "work": "ラ・カンパネラ"
+        }
+      ],
       "time": 9,
       "memo": "これくらい弾けて極道ってもんだ"
     },
@@ -116,6 +141,13 @@
           "firstName": "太",
           "affiliation": "関西",
           "grade": 6
+        }
+      ],
+      "works": [
+        {
+          "id": "lisztSonata",
+          "composer": "リスト",
+          "work": "ラ・カンパネラ"
         }
       ],
       "composer": "リスト",
@@ -135,8 +167,13 @@
           "grade": 6
         }
       ],
-      "composer": "バッハ",
-      "work": "ゴルドベルグ変奏曲",
+      "works": [
+        {
+          "id": "goldbergVariations",
+          "composer": "バッハ",
+          "work": "ゴルドベルグ変奏曲"
+        }
+      ],
       "time": 50,
       "memo": ""
     }
