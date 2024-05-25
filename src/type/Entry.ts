@@ -24,7 +24,7 @@ export type NewEntry = {
   works: {
     id: string;
     composer: string;
-    work: string;
+    name: string;
   }[];
   time: number;
   memo: string;
@@ -37,12 +37,6 @@ export type EntryMap = {
 export type NewEntryMap = {
   [id: string]: NewEntry;
 };
-
-export type DividedEntryForTableRow = {
-  topRow: boolean;
-  id: string;
-  
-}
 
 export type EntryForDisplay = {
   playMinutes: number;

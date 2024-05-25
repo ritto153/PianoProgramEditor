@@ -23,7 +23,7 @@
         {
           "id": "mozaSona",
           "composer": "モーツァルト",
-          "work": "ソナタ"
+          "name": "ソナタ"
         }
       ],
       "time": 4,
@@ -59,7 +59,7 @@
         {
           "id": "kurumiHana",
           "composer": "チャイコフスキー",
-          "work": "組曲「くるみ割り人形」より「花のワルツ」"
+          "name": "組曲「くるみ割り人形」より「花のワルツ」"
         }
       ],
       "time": 4,
@@ -81,7 +81,7 @@
         {
           "id": "chopinBallade2",
           "composer": "ショパン",
-          "work":"バラード 第2番"
+          "name":"バラード 第2番"
         }
       ],
       "time": 8,
@@ -103,7 +103,7 @@
         {
           "id": "chopinNoc",
           "composer": "ショパン",
-          "work": "ノクターン"
+          "name": "ノクターン"
         }
       ],
       "time": 5,
@@ -125,7 +125,7 @@
         {
           "id": "laCampanera",
           "composer": "リスト",
-          "work": "ラ・カンパネラ"
+          "name": "ラ・カンパネラ"
         }
       ],
       "time": 9,
@@ -147,11 +147,9 @@
         {
           "id": "lisztSonata",
           "composer": "リスト",
-          "work": "ラ・カンパネラ"
+          "name": "ラ・カンパネラ"
         }
       ],
-      "composer": "リスト",
-      "work": "ピアノソナタ",
       "time": 20,
       "memo": ""
     },
@@ -171,7 +169,7 @@
         {
           "id": "goldbergVariations",
           "composer": "バッハ",
-          "work": "ゴルドベルグ変奏曲"
+          "name": "ゴルドベルグ変奏曲"
         }
       ],
       "time": 50,
