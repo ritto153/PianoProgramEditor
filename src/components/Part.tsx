@@ -5,6 +5,7 @@ import EntryTableAddingButton from "./EntryTableAddingButton";
 import EntryTableRemovingButton from "./EntryTableRemovingButton";
 import { useEntries } from "../EntryProvider";
 import { BuildEntrySchedules } from "../utils/BuildEntrySchedules";
+import { NewBuildEntrySchedules } from "../utils/NewBuildEntrySchedules";
 import styled from "styled-components";
 
 type Props = {
@@ -17,11 +18,18 @@ const Wrapper = styled.div`
 
 export default function Part(props: Props) {
   const { partId } = props;
-  const { partMap, entryMap } = useEntries();
+  const { partMap, entryMap, newEntryMap } = useEntries();
   const part = partMap[partId];
   const entrySchedules = BuildEntrySchedules(
     part.entryIds,
     entryMap,
+    part.startingTime
+  );
+  
+  const selectedEntryIdsShouldRemove = ['tachibanafu', 'kazama'];
+  const newEntrySchedules = NewBuildEntrySchedules(
+    selectedEntryIdsShouldRemove,
+    newEntryMap,
     part.startingTime
   );
 
@@ -38,7 +46,7 @@ export default function Part(props: Props) {
   const wrapperComponent = (
     <Wrapper>
       <EntryTableTitle partId={partId} endingTime={partEndingTime} />
-      <EntryTable partId={partId} entrySchedules={entrySchedules} />
+      <EntryTable partId={partId} entrySchedules={entrySchedules} newEntrySchedules={newEntrySchedules} />
       <EntryTableAddingButton partId={partId} />
       {
         // エントリー数が0件の部は削除ボタンを表示する
