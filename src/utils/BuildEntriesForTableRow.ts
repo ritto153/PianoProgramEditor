@@ -90,7 +90,7 @@ const DivideEntryForRow = (
 
       const dividedSubordinaryEntry: DividedSubordinaryEntry = {
         isTopRow: false,
-        id: null,
+        id: entry.id,
         playMinutes: null,
         startingTime: null,
         partNum: partNum,

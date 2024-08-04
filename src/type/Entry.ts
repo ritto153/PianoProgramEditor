@@ -39,15 +39,15 @@ export type NewEntryMap = {
 };
 
 export type EntryForDisplay = {
-  playMinutes: number;
+  playMinutes: number | null;
   startingTime: string;
   partNum: number;
   index: number;
-  lastName: string;
-  firstName: string;
-  affiliation: string;
-  grade: number;
-  composer: string;
-  work: string;
-  memo: string;
+  lastName: string | null;
+  firstName: string | null;
+  affiliation: string | null;
+  grade: number | null;
+  composer: string | null;
+  work: string | null;
+  memo: string | null;
 };

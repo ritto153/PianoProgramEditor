@@ -1,5 +1,5 @@
 import { useEntries } from "../EntryProvider";
-import { BuildEntryForDisplay } from "../utils/BuildEntryForDisplay";
+import { OldBuildEntryForDisplay } from "../utils/OldBuildEntryForDisplay";
 
 interface Props {
   partNum: number;
@@ -21,7 +21,7 @@ export default function EntryTableRow(props: Props) {
 
   if (!entry) throw new Error(`Id ${entryId}  のエントリーが見つかりませんでした。`);
 
-  const entryForDisplay = BuildEntryForDisplay(entry, partNum, index, schedules.startingTime);
+  const entryForDisplay = OldBuildEntryForDisplay(entry, partNum, index, schedules.startingTime);
 
   return (
     <tr

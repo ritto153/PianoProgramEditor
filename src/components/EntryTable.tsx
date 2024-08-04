@@ -3,8 +3,9 @@ import { Draggable, Droppable } from "react-beautiful-dnd";
 import Table from "react-bootstrap/Table";
 import "bootstrap/dist/css/bootstrap.min.css";
 import EntryTableRow from "./EntryTableRow";
+import NewEntryTableRow from "./NewEntryTableRow";
 import { useEntries } from "../EntryProvider";
-import { BuildEntryForDisplay } from "../utils/BuildEntryForDisplay";
+import { OldBuildEntryForDisplay } from "../utils/OldBuildEntryForDisplay";
 import { BuildEntriesForTableRow } from "../utils/BuildEntriesForTableRow";
 import { entryAttributesInfo } from "../constants/EntryAttributesInfo";
 import { EntryForDisplay } from "../type/Entry";
@@ -23,7 +24,7 @@ export default function EntryTable(props: Props) {
   const part = partMap[partId];
   const selectedEntryIds = part.entryIds;
 
-  const selectedEntryIdsShouldRemove = ['tachibanafu', 'kazama'];
+  const selectedEntryIdsShouldRemove = ['tachibanafu'];
   const entriesForTableRow = useMemo(
     () => BuildEntriesForTableRow({
       entryIds: selectedEntryIdsShouldRemove,
@@ -36,7 +37,7 @@ export default function EntryTable(props: Props) {
   console.log(entriesForTableRow);
 
   const keysOfEntryForDisplay = Object.keys(
-    BuildEntryForDisplay(Object.values(entryMap)[0], 0, 0, null)
+    OldBuildEntryForDisplay(Object.values(entryMap)[0], 0, 0, null)
   ) as (keyof EntryForDisplay)[];
 
   const tableComponent = (
@@ -76,6 +77,23 @@ export default function EntryTable(props: Props) {
                   )}
                 </Draggable>
               ))}
+              {
+                <tr>以下は複数行エントリー用の行</tr>
+              }
+              {
+                entriesForTableRow.map((dividedEntryForTableRow, i) => {
+                  return (
+                    <NewEntryTableRow
+                      key={String(i)}
+                      draggableProvided={null}
+                      partNum={dividedEntryForTableRow.partNum}
+                      dividedEntryForRow={dividedEntryForTableRow}
+                      index={i}
+                      schedules={newEntrySchedules[dividedEntryForTableRow.id]}
+                    />
+                  );
+                })
+              }
               {droppableProvided.placeholder}
             </tbody>
           )}

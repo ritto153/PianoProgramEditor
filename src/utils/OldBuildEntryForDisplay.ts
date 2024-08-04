@@ -1,7 +1,7 @@
 import { Entry, EntryForDisplay } from "../type/Entry";
 import { StringifyDate } from "./StringifyDate";
 
-export const BuildEntryForDisplay = (
+export const OldBuildEntryForDisplay = (
   entry: Entry,
   partNum: number,
   index: number,

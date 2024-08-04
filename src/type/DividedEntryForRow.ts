@@ -16,7 +16,7 @@ export type DividedTopEntry = {
 
 export type DividedSubordinaryEntry = {
   isTopRow: boolean;
-  id: null;
+  id: string;
   playMinutes: null;
   startingTime: null;
   partNum: number;
