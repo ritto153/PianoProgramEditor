@@ -2,12 +2,12 @@ import React, { createContext, useContext, useState } from "react";
 import response from "./data/response.json";
 import newResponse from "./data/newResponse.json";
 import { PartMapBuilder } from "./utils/PartMapBuilder";
-import { EntryMapBuilder } from "./utils/EntryMapBuilder";
+import { OldEntryMapBuilder } from "./utils/OldEntryMapBuilder";
 import { NewEntryMapBuilder } from "./utils/NewEntryMapBuilder";
 import { EntryMap, NewEntryMap } from "./type/Entry";
 import { PartMap } from "./type/Part";
 
-const initialEntryMap = EntryMapBuilder(response.entries);
+const initialEntryMap = OldEntryMapBuilder(response.entries);
 const initialNewEntryMap = NewEntryMapBuilder(newResponse.entries);
 const initialPartMap = PartMapBuilder(response);
 

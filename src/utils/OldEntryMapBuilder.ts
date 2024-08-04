@@ -1,6 +1,6 @@
 import { Entry, EntryMap } from "../type/Entry";
 
-export const EntryMapBuilder = (entries: Entry[]): EntryMap => {
+export const OldEntryMapBuilder = (entries: Entry[]): EntryMap => {
   const result: EntryMap = {};
 
   entries.forEach((entry) => {

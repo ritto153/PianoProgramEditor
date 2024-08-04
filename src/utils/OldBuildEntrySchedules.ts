@@ -2,7 +2,7 @@ import { minutesBetweenSolo } from "../constants/MinutesBetweenEntries";
 import { EntryMap } from "../type/Entry";
 import { EntrySchedules } from "../type/EntrySchedules";
 
-export const BuildEntrySchedules = (
+export const OldBuildEntrySchedules = (
   entryIds: string[],
   entryMap: EntryMap,
   partStartingTime: Date | null

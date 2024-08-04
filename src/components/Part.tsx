@@ -4,7 +4,7 @@ import EntryTable from "./EntryTable";
 import EntryTableAddingButton from "./EntryTableAddingButton";
 import EntryTableRemovingButton from "./EntryTableRemovingButton";
 import { useEntries } from "../EntryProvider";
-import { BuildEntrySchedules } from "../utils/BuildEntrySchedules";
+import { OldBuildEntrySchedules } from "../utils/OldBuildEntrySchedules";
 import { NewBuildEntrySchedules } from "../utils/NewBuildEntrySchedules";
 import styled from "styled-components";
 
@@ -20,7 +20,7 @@ export default function Part(props: Props) {
   const { partId } = props;
   const { partMap, entryMap, newEntryMap } = useEntries();
   const part = partMap[partId];
-  const entrySchedules = BuildEntrySchedules(
+  const entrySchedules = OldBuildEntrySchedules(
     part.entryIds,
     entryMap,
     part.startingTime

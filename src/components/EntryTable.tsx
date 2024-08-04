@@ -33,6 +33,7 @@ export default function EntryTable(props: Props) {
     }),
     [selectedEntryIds, entryMap]
   );
+  console.log(entriesForTableRow);
 
   const keysOfEntryForDisplay = Object.keys(
     BuildEntryForDisplay(Object.values(entryMap)[0], 0, 0, null)
