@@ -20,9 +20,9 @@ export default function NewEntryTableRow(props: Props) {
 
   return (
     <tr
-      // ref={draggableProvided.innerRef}
-      // {...draggableProvided.draggableProps}
-      // {...draggableProvided.dragHandleProps}
+      ref={draggableProvided.innerRef}
+      {...draggableProvided.draggableProps}
+      {...draggableProvided.dragHandleProps}
     >
       {Object.entries(entryForDisplay).map(([_, value], i) => (
         <th key={i}>{value}</th>

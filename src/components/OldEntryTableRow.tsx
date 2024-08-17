@@ -13,11 +13,10 @@ interface Props {
   };
 }
 
-export default function EntryTableRow(props: Props) {
+export default function OldEntryTableRow(props: Props) {
   const { partNum, entryId, draggableProvided, index, schedules } = props;
-  const { entryMap, newEntryMap } = useEntries();
+  const { entryMap } = useEntries();
   const entry = entryMap[entryId];
-  const newEntry = newEntryMap[entryId];
 
   if (!entry) throw new Error(`Id ${entryId}  のエントリーが見つかりませんでした。`);
 

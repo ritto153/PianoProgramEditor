@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import Table from "react-bootstrap/Table";
 import "bootstrap/dist/css/bootstrap.min.css";
-import EntryTableRow from "./EntryTableRow";
+import OldEntryTableRow from "./OldEntryTableRow";
 import NewEntryTableRow from "./NewEntryTableRow";
 import { useEntries } from "../EntryProvider";
 import { OldBuildEntryForDisplay } from "../utils/OldBuildEntryForDisplay";
@@ -24,17 +24,17 @@ export default function EntryTable(props: Props) {
   const part = partMap[partId];
   const selectedEntryIds = part.entryIds;
 
-  const selectedEntryIdsShouldRemove = ['tachibanafu'];
+  const selectedEntryIdsShouldRemove = ["tachibanafu"];
   const entriesForTableRow = useMemo(
-    () => BuildEntriesForTableRow({
-      entryIds: selectedEntryIdsShouldRemove,
-      entryMap: newEntryMap,
-      partNum: part.partNum,
-      entrySchedules: newEntrySchedules,
-    }),
+    () =>
+      BuildEntriesForTableRow({
+        entryIds: selectedEntryIdsShouldRemove,
+        entryMap: newEntryMap,
+        partNum: part.partNum,
+        entrySchedules: newEntrySchedules,
+      }),
     [selectedEntryIds, entryMap]
   );
-  console.log(entriesForTableRow);
 
   const keysOfEntryForDisplay = Object.keys(
     OldBuildEntryForDisplay(Object.values(entryMap)[0], 0, 0, null)
@@ -63,37 +63,26 @@ export default function EntryTable(props: Props) {
               ref={droppableProvided.innerRef}
               {...droppableProvided.droppableProps}
             >
-              {selectedEntryIds.map((entryId, i) => (
-                <Draggable key={entryId} draggableId={entryId} index={i}>
-                  {(draggableProvided) => (
-                    <EntryTableRow
-                      key={entryId}
-                      draggableProvided={draggableProvided}
-                      partNum={part.partNum}
-                      entryId={entryId}
-                      index={i + 1}
-                      schedules={entrySchedules[entryId]}
-                    />
-                  )}
-                </Draggable>
-              ))}
-              {
-                <tr>以下は複数行エントリー用の行</tr>
-              }
-              {
-                entriesForTableRow.map((dividedEntryForTableRow, i) => {
-                  return (
-                    <NewEntryTableRow
-                      key={String(i)}
-                      draggableProvided={null}
-                      partNum={dividedEntryForTableRow.partNum}
-                      dividedEntryForRow={dividedEntryForTableRow}
-                      index={i}
-                      schedules={newEntrySchedules[dividedEntryForTableRow.id]}
-                    />
-                  );
-                })
-              }
+              {entriesForTableRow.map((dividedEntryForTableRow, i) => {
+                const rowId = dividedEntryForTableRow["id"] + "-" + i;
+
+                return (
+                  <Draggable key={rowId} draggableId={rowId} index={i}>
+                    {(draggableProvided) => (
+                      <NewEntryTableRow
+                        key={rowId}
+                        draggableProvided={draggableProvided}
+                        partNum={dividedEntryForTableRow.partNum}
+                        dividedEntryForRow={dividedEntryForTableRow}
+                        index={i}
+                        schedules={
+                          newEntrySchedules[dividedEntryForTableRow.id]
+                        }
+                      />
+                    )}
+                  </Draggable>
+                );
+              })}
               {droppableProvided.placeholder}
             </tbody>
           )}
