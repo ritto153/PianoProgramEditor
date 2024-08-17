@@ -21,7 +21,7 @@ export default function Part(props: Props) {
   const part = partMap[partId];
   
   const selectedEntryIdsShouldRemove = ['tachibanafu', 'kazama'];
-  const newEntrySchedules = BuildEntrySchedules(
+  const EntrySchedules = BuildEntrySchedules(
     selectedEntryIdsShouldRemove,
     newEntryMap,
     part.startingTime
@@ -34,13 +34,13 @@ export default function Part(props: Props) {
     partEndingTime = new Date(part.startingTime);
   } else {
     // ToDo: 部の最後のエントリーの終了時間を取得するように変更する必要あり
-    partEndingTime = newEntrySchedules['tachibanafu'].endingTime;
+    partEndingTime = EntrySchedules['tachibanafu'].endingTime;
   }
 
   const wrapperComponent = (
     <Wrapper>
       <EntryTableTitle partId={partId} endingTime={partEndingTime} />
-      <EntryTable partId={partId} newEntrySchedules={newEntrySchedules} />
+      <EntryTable partId={partId} EntrySchedules={EntrySchedules} />
       <EntryTableAddingButton partId={partId} />
       {
         // エントリー数が0件の部は削除ボタンを表示する
