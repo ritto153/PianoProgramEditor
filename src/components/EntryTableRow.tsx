@@ -13,7 +13,7 @@ interface Props {
   };
 }
 
-export default function NewEntryTableRow(props: Props) {
+export default function EntryTableRow(props: Props) {
   const { partNum, dividedEntryForRow, draggableProvided, index, schedules } = props;
 
   const entryForDisplay = NewBuildEntryForDisplay(dividedEntryForRow, partNum, index, schedules.startingTime);

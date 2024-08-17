@@ -2,8 +2,7 @@ import { useMemo } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import Table from "react-bootstrap/Table";
 import "bootstrap/dist/css/bootstrap.min.css";
-import OldEntryTableRow from "./OldEntryTableRow";
-import NewEntryTableRow from "./NewEntryTableRow";
+import EntryTableRow from "./EntryTableRow";
 import { useEntries } from "../EntryProvider";
 import { OldBuildEntryForDisplay } from "../utils/OldBuildEntryForDisplay";
 import { BuildEntriesForTableRow } from "../utils/BuildEntriesForTableRow";
@@ -13,12 +12,11 @@ import { EntrySchedules } from "../type/EntrySchedules";
 
 type Props = {
   partId: string;
-  entrySchedules: EntrySchedules;
   newEntrySchedules: EntrySchedules;
 };
 
 export default function EntryTable(props: Props) {
-  const { partId, entrySchedules, newEntrySchedules } = props;
+  const { partId, newEntrySchedules } = props;
   const { partMap, entryMap, newEntryMap } = useEntries();
 
   const part = partMap[partId];
@@ -69,7 +67,7 @@ export default function EntryTable(props: Props) {
                 return (
                   <Draggable key={rowId} draggableId={rowId} index={i}>
                     {(draggableProvided) => (
-                      <NewEntryTableRow
+                      <EntryTableRow
                         key={rowId}
                         draggableProvided={draggableProvided}
                         partNum={dividedEntryForTableRow.partNum}
