@@ -4,8 +4,7 @@ import EntryTable from "./EntryTable";
 import EntryTableAddingButton from "./EntryTableAddingButton";
 import EntryTableRemovingButton from "./EntryTableRemovingButton";
 import { useEntries } from "../EntryProvider";
-import { OldBuildEntrySchedules } from "../utils/OldBuildEntrySchedules";
-import { NewBuildEntrySchedules } from "../utils/NewBuildEntrySchedules";
+import { BuildEntrySchedules } from "../utils/BuildEntrySchedules";
 import styled from "styled-components";
 
 type Props = {
@@ -18,16 +17,11 @@ const Wrapper = styled.div`
 
 export default function Part(props: Props) {
   const { partId } = props;
-  const { partMap, entryMap, newEntryMap } = useEntries();
+  const { partMap, newEntryMap } = useEntries();
   const part = partMap[partId];
-  const entrySchedules = OldBuildEntrySchedules(
-    part.entryIds,
-    entryMap,
-    part.startingTime
-  );
   
   const selectedEntryIdsShouldRemove = ['tachibanafu', 'kazama'];
-  const newEntrySchedules = NewBuildEntrySchedules(
+  const newEntrySchedules = BuildEntrySchedules(
     selectedEntryIdsShouldRemove,
     newEntryMap,
     part.startingTime
@@ -39,8 +33,8 @@ export default function Part(props: Props) {
   } else if (part.entryIds.length === 0) {
     partEndingTime = new Date(part.startingTime);
   } else {
-    partEndingTime =
-      entrySchedules[part.entryIds[part.entryIds.length - 1]].endingTime;
+    // ToDo: 部の最後のエントリーの終了時間を取得するように変更する必要あり
+    partEndingTime = newEntrySchedules['tachibanafu'].endingTime;
   }
 
   const wrapperComponent = (
