@@ -1,4 +1,5 @@
 import { DividedEntryForRow } from "../type/DividedEntryForRow";
+import { NewBuildEntryForDisplay } from "../utils/NewBuildEntryForDisplay";
 
 interface Props {
   partNum: number;
@@ -14,10 +15,8 @@ interface Props {
 
 export default function NewEntryTableRow(props: Props) {
   const { partNum, dividedEntryForRow, draggableProvided, index, schedules } = props;
-  // 作業中
-  // dividedEntryForRow を列に分けて表示できるようにする必要
 
-  // const entryForDisplay = NewBuildEntryForDisplay(entry, partNum, index, schedules.startingTime);
+  const entryForDisplay = NewBuildEntryForDisplay(dividedEntryForRow, partNum, index, schedules.startingTime);
 
   return (
     <tr
@@ -25,7 +24,7 @@ export default function NewEntryTableRow(props: Props) {
       // {...draggableProvided.draggableProps}
       // {...draggableProvided.dragHandleProps}
     >
-      {Object.entries(dividedEntryForRow).map(([_, value], i) => (
+      {Object.entries(entryForDisplay).map(([_, value], i) => (
         <th key={i}>{value}</th>
       ))}
     </tr>
