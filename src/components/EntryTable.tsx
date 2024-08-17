@@ -17,16 +17,15 @@ type Props = {
 
 export default function EntryTable(props: Props) {
   const { partId, EntrySchedules } = props;
-  const { partMap, entryMap, newEntryMap } = useEntries();
+  const { newPartMap, entryMap, newEntryMap } = useEntries();
 
-  const part = partMap[partId];
+  const part = newPartMap[partId];
   const selectedEntryIds = part.entryIds;
 
-  const selectedEntryIdsShouldRemove = ["tachibanafu"];
   const entriesForTableRow = useMemo(
     () =>
       BuildEntriesForTableRow({
-        entryIds: selectedEntryIdsShouldRemove,
+        entryIds: selectedEntryIds,
         entryMap: newEntryMap,
         partNum: part.partNum,
         entrySchedules: EntrySchedules,

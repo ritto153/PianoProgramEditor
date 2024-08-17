@@ -5,10 +5,10 @@ import CsvDownloadButton from "./components/CsvDownloadButton";
 import { ReorderEntryInPartMap } from "./utils/ReorderEntryInPartMap";
 import { useEntries } from "./EntryProvider";
 import { DropResult } from "./type/DropResult";
-import { Entry } from "./type/Entry";
+import { NewEntry } from "./type/Entry";
 
 export default function App() {
-  const { partMap, entryMap, setPartMap } = useEntries();
+  const { partMap, newPartMap, newEntryMap, setPartMap } = useEntries();
 
   const nonAssinedPart = Object.values(partMap).find(
     (part) => part.partNum === 0
@@ -43,13 +43,13 @@ export default function App() {
     setPartMap(newPartMap);
   };
 
-  const sortedParts = Object.values(partMap).sort(
+  const sortedParts = Object.values(newPartMap).sort(
     (a, b) => a.partNum - b.partNum
   );
 
-  const csvData: Entry[] = sortedParts
+  const csvData: NewEntry[] = sortedParts
     .map((entry) =>
-      Object.values(entry.entryIds).map((entryId) => entryMap[entryId])
+      Object.values(entry.entryIds).map((entryId) => newEntryMap[entryId])
     )
     .flat();
 
