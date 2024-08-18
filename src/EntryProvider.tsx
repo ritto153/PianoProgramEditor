@@ -1,12 +1,12 @@
 import React, { createContext, useContext, useState } from "react";
-import newResponse from "./data/newResponse.json";
+import response from "./data/response.json";
 import { EntryMapBuilder } from "./utils/EntryMapBuilder";
 import { PartMapBuilder } from "./utils/PartMapBuilder";
 import { EntryMap } from "./type/Entry";
 import { PartMap } from "./type/Part";
 
-const initialNewEntryMap = EntryMapBuilder(newResponse.entries);
-const initialPartMap = PartMapBuilder(newResponse);
+const initialNewEntryMap = EntryMapBuilder(response.entries);
+const initialPartMap = PartMapBuilder(response);
 
 interface EntryContextValue {
   entryMap: EntryMap;
