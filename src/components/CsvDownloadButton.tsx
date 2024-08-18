@@ -1,5 +1,5 @@
 import { CSVLink } from "react-csv";
-import { Entry, NewEntry } from "../type/Entry";
+import { NewEntry } from "../type/Entry";
 import Button from "react-bootstrap/Button";
 import styled from "styled-components";
 

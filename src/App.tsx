@@ -10,7 +10,7 @@ import { NewEntry } from "./type/Entry";
 export default function App() {
   const { partMap, newPartMap, newEntryMap, setPartMap } = useEntries();
 
-  const nonAssinedPart = Object.values(partMap).find(
+  const nonAssinedPart = Object.values(newPartMap).find(
     (part) => part.partNum === 0
   );
   if (!nonAssinedPart) {
@@ -33,14 +33,14 @@ export default function App() {
       return;
     }
 
-    const newPartMap = ReorderEntryInPartMap(
+    const reorderedPartMap = ReorderEntryInPartMap(
       partMap,
       result.draggableId,
       result.source,
       result.destination
     );
 
-    setPartMap(newPartMap);
+    setPartMap(reorderedPartMap);
   };
 
   const sortedParts = Object.values(newPartMap).sort(

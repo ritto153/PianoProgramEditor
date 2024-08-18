@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
 import response from "./data/response.json";
 import newResponse from "./data/newResponse.json";
-import { PartMapBuilder } from "./utils/PartMapBuilder";
+import { PartMapBuilder } from "./utils/OldPartMapBuilder";
 import { EntryMapBuilder } from "./utils/EntryMapBuilder";
 import { NewPartMapBuilder } from "./utils/NewPartMapBuilder";
 import { EntryMap } from "./type/Entry";
