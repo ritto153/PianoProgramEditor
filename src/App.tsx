@@ -29,9 +29,8 @@ export default function App() {
     if (
       result.destination.droppableId === result.source.droppableId &&
       result.destination.index === result.source.index
-    ) {
+    )
       return;
-    }
 
     const reorderedPartMap = ReorderEntryInPartMap(
       partMap,
