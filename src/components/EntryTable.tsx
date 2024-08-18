@@ -15,7 +15,7 @@ type Props = {
 
 export default function EntryTable(props: Props) {
   const { partId, EntrySchedules } = props;
-  const { newPartMap, entryMap, newEntryMap } = useEntries();
+  const { newPartMap, newEntryMap } = useEntries();
 
   const part = newPartMap[partId];
   const selectedEntryIds = part.entryIds;

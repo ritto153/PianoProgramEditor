@@ -2,19 +2,16 @@ import React, { createContext, useContext, useState } from "react";
 import response from "./data/response.json";
 import newResponse from "./data/newResponse.json";
 import { PartMapBuilder } from "./utils/PartMapBuilder";
-import { OldEntryMapBuilder } from "./utils/OldEntryMapBuilder";
 import { NewEntryMapBuilder } from "./utils/NewEntryMapBuilder";
 import { NewPartMapBuilder } from "./utils/NewPartMapBuilder";
-import { EntryMap, NewEntryMap } from "./type/Entry";
+import { NewEntryMap } from "./type/Entry";
 import { PartMap } from "./type/Part";
 
-const initialEntryMap = OldEntryMapBuilder(response.entries);
 const initialNewEntryMap = NewEntryMapBuilder(newResponse.entries);
 const initialPartMap = PartMapBuilder(response);
 const initialNewPartMap = NewPartMapBuilder(newResponse);
 
 interface EntryContextValue {
-  entryMap: EntryMap;
   newEntryMap: NewEntryMap;
   partMap: PartMap;
   newPartMap: PartMap;
@@ -22,7 +19,6 @@ interface EntryContextValue {
 }
 
 const EntryContext = createContext<EntryContextValue>({
-  entryMap: {},
   newEntryMap: {},
   partMap: {},
   newPartMap: {},
@@ -32,13 +28,12 @@ export const useEntries = () => useContext(EntryContext);
 
 export default function EntryProvider(props: { children: JSX.Element }) {
   const { children } = props;
-  const entryMap = initialEntryMap;
   const newEntryMap = initialNewEntryMap;
   const [partMap, setPartMap] = useState(initialPartMap);
   const [newPartMap, setNewPartMap] = useState(initialNewPartMap);
 
   return (
-    <EntryContext.Provider value={{ entryMap, newEntryMap, partMap, newPartMap, setPartMap }}>
+    <EntryContext.Provider value={{ newEntryMap, partMap, newPartMap, setPartMap }}>
       {children}
     </EntryContext.Provider>
   );

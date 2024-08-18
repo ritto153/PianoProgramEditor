@@ -1,4 +1,4 @@
-import { memo, useMemo } from "react";
+import { useMemo } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -7,7 +7,7 @@ import styled from "styled-components";
 import { useEntries } from "../EntryProvider";
 import StartingTimeInputForm from "./StartingTimeInputForm";
 import { Part } from "../type/Part";
-import { EntryMap } from "../type/Entry";
+import { NewEntryMap } from "../type/Entry";
 
 type Props = {
   partId: string;
@@ -52,13 +52,13 @@ const MinutesBetweenTwoDates = (
   startingTime: Date | null,
   endingTime: Date | null,
   part: Part,
-  entryMap: EntryMap
+  newEntryMap: NewEntryMap
 ): number | null => {
   if (startingTime && endingTime) {
     return (endingTime.getTime() - startingTime.getTime()) / 60000;
   } else if (!startingTime && !endingTime) {
     return part.entryIds
-      .map((entryId) => entryMap[entryId].time)
+      .map((entryId) => newEntryMap[entryId].time)
       .reduce((a, b) => a + b, 0);
   } else {
     throw new Error("開始時間と終了時間の片方がnullになっています");
@@ -67,13 +67,13 @@ const MinutesBetweenTwoDates = (
 
 export default function EntryTableTitle(props: Props) {
   const { partId, endingTime } = props;
-  const { entryMap, partMap } = useEntries();
+  const { newEntryMap, partMap } = useEntries();
   const part = partMap[partId];
   const totalPlayTime = MinutesBetweenTwoDates(
     part.startingTime,
     endingTime,
     part,
-    entryMap
+    newEntryMap
   );
   const sheduleString = TwoDatesToString(part.startingTime, endingTime);
 
