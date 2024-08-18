@@ -17,8 +17,8 @@ const Wrapper = styled.div`
 
 export default function Part(props: Props) {
   const { partId } = props;
-  const { newPartMap, entryMap } = useEntries();
-  const part = newPartMap[partId];
+  const { partMap, entryMap } = useEntries();
+  const part = partMap[partId];
   
   const entrySchedules = BuildEntrySchedules(
     part.entryIds,

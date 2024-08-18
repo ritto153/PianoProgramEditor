@@ -8,9 +8,9 @@ import { DropResult } from "./type/DropResult";
 import { Entry } from "./type/Entry";
 
 export default function App() {
-  const { partMap, newPartMap, entryMap, setPartMap } = useEntries();
+  const { partMap, entryMap, setPartMap } = useEntries();
 
-  const nonAssinedPart = Object.values(newPartMap).find(
+  const nonAssinedPart = Object.values(partMap).find(
     (part) => part.partNum === 0
   );
   if (!nonAssinedPart) {
@@ -43,7 +43,7 @@ export default function App() {
     setPartMap(reorderedPartMap);
   };
 
-  const sortedParts = Object.values(newPartMap).sort(
+  const sortedParts = Object.values(partMap).sort(
     (a, b) => a.partNum - b.partNum
   );
 
