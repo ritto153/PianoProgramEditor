@@ -4,7 +4,7 @@ import newResponse from "./data/newResponse.json";
 import { PartMapBuilder } from "./utils/PartMapBuilder";
 import { EntryMapBuilder } from "./utils/EntryMapBuilder";
 import { NewPartMapBuilder } from "./utils/NewPartMapBuilder";
-import { NewEntryMap } from "./type/Entry";
+import { EntryMap } from "./type/Entry";
 import { PartMap } from "./type/Part";
 
 const initialNewEntryMap = EntryMapBuilder(newResponse.entries);
@@ -12,7 +12,7 @@ const initialPartMap = PartMapBuilder(response);
 const initialNewPartMap = NewPartMapBuilder(newResponse);
 
 interface EntryContextValue {
-  newEntryMap: NewEntryMap;
+  newEntryMap: EntryMap;
   partMap: PartMap;
   newPartMap: PartMap;
   setPartMap: React.Dispatch<React.SetStateAction<PartMap>>;

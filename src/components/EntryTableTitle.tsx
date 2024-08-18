@@ -7,7 +7,7 @@ import styled from "styled-components";
 import { useEntries } from "../EntryProvider";
 import StartingTimeInputForm from "./StartingTimeInputForm";
 import { Part } from "../type/Part";
-import { NewEntryMap } from "../type/Entry";
+import { EntryMap } from "../type/Entry";
 
 type Props = {
   partId: string;
@@ -52,7 +52,7 @@ const MinutesBetweenTwoDates = (
   startingTime: Date | null,
   endingTime: Date | null,
   part: Part,
-  newEntryMap: NewEntryMap
+  newEntryMap: EntryMap
 ): number | null => {
   if (startingTime && endingTime) {
     return (endingTime.getTime() - startingTime.getTime()) / 60000;

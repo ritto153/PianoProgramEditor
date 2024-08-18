@@ -31,10 +31,6 @@ export type NewEntry = {
 };
 
 export type EntryMap = {
-  [id: string]: Entry;
-};
-
-export type NewEntryMap = {
   [id: string]: NewEntry;
 };
 
