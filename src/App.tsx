@@ -35,7 +35,7 @@ export default function App() {
     const reorderedPartMap = ReorderEntryInPartMap(
       partMap,
       result.draggableId,
-      result.source,
+      result.source.droppableId,
       result.destination
     );
 

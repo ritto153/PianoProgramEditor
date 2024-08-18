@@ -4,16 +4,16 @@ import { DraggableId, DraggableLocation } from "react-beautiful-dnd";
 export function ReorderEntryInPartMap(
   partMap: PartMap,
   draggableId: DraggableId,
-  source: DraggableLocation,
+  droppableId: string,
   destination: DraggableLocation
 ): PartMap {
-  if (source.droppableId === destination.droppableId) {
+  if (droppableId === destination.droppableId) {
     return ReorderEntryDroppedOnSamePart(partMap, draggableId, destination);
   } else {
     return ReorderEntryDroppedOnOtherPart(
       partMap,
       draggableId,
-      source.droppableId,
+      droppableId,
       destination
     );
   }
