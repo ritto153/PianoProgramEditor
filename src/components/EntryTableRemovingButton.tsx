@@ -23,7 +23,7 @@ export default function EntryTableRemovingButton(props: Props) {
     </Button>
   );
   const memoButtonComponent = useMemo(() => {
-    return buttonComponent
+    return buttonComponent;
   }, [part]);
 
   return memoButtonComponent;

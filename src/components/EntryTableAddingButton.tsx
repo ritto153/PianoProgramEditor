@@ -15,5 +15,9 @@ export default function EntryTableAddingButton(props: Props) {
     setPartMap(newPartMap);
   };
 
-  return <Button variant="secondary" onClick={addPart}>下に部を追加する</Button>;
+  return (
+    <Button variant="secondary" onClick={addPart}>
+      下に部を追加する
+    </Button>
+  );
 }

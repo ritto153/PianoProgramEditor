@@ -5,18 +5,24 @@ interface Props {
   partNum: number;
   key: string;
   draggableProvided: any;
-  dividedEntryForRow: DividedEntryForRow; 
+  dividedEntryForRow: DividedEntryForRow;
   index: number;
   schedules: {
-    startingTime: Date | null,
-    endingTime: Date | null,
+    startingTime: Date | null;
+    endingTime: Date | null;
   };
 }
 
 export default function EntryTableRow(props: Props) {
-  const { partNum, dividedEntryForRow, draggableProvided, index, schedules } = props;
+  const { partNum, dividedEntryForRow, draggableProvided, index, schedules } =
+    props;
 
-  const entryForDisplay = BuildEntryForDisplay(dividedEntryForRow, partNum, index, schedules.startingTime);
+  const entryForDisplay = BuildEntryForDisplay(
+    dividedEntryForRow,
+    partNum,
+    index,
+    schedules.startingTime
+  );
 
   return (
     <tr

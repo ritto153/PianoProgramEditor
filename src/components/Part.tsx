@@ -19,7 +19,7 @@ export default function Part(props: Props) {
   const { partId } = props;
   const { partMap, entryMap } = useEntries();
   const part = partMap[partId];
-  
+
   const entrySchedules = BuildEntrySchedules(
     part.entryIds,
     entryMap,
@@ -32,7 +32,8 @@ export default function Part(props: Props) {
   } else if (part.entryIds.length === 0) {
     partEndingTime = new Date(part.startingTime);
   } else {
-    partEndingTime = entrySchedules[part.entryIds[part.entryIds.length - 1]].endingTime;
+    partEndingTime =
+      entrySchedules[part.entryIds[part.entryIds.length - 1]].endingTime;
   }
 
   const wrapperComponent = (
