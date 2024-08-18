@@ -1,4 +1,4 @@
-import { NewEntry, EntryMap } from "../type/Entry";
+import { Entry, EntryMap } from "../type/Entry";
 import {
   DividedEntryForRow,
   DividedTopEntry,
@@ -40,7 +40,7 @@ export const BuildEntriesForTableRow = (
 };
 
 type PropsForDivideEntryForRow = {
-  entry: NewEntry;
+  entry: Entry;
   partNum: number;
   index: number;
   stringStartingTime: string;

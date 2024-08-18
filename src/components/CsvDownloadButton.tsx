@@ -1,10 +1,10 @@
 import { CSVLink } from "react-csv";
-import { NewEntry } from "../type/Entry";
+import { Entry } from "../type/Entry";
 import Button from "react-bootstrap/Button";
 import styled from "styled-components";
 
 type Props = {
-  csvData: NewEntry[];
+  csvData: Entry[];
   // TODO: ヘッダーの定義
   // headers: any;
 };

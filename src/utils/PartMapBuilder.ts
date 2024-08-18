@@ -1,4 +1,4 @@
-import { NewEntry } from "../type/Entry";
+import { Entry } from "../type/Entry";
 import { PartMap } from "../type/Part";
 
 type ResponsePart = {
@@ -12,12 +12,12 @@ type ResponsePartMap = {
 };
 
 export const PartMapBuilder = (response: {
-  entries: NewEntry[];
+  entries: Entry[];
   parts: ResponsePart[];
 }): PartMap => {
   const { entries, parts } = response;
 
-  const entriesByPartId: { [key: string]: NewEntry[] } = {};
+  const entriesByPartId: { [key: string]: Entry[] } = {};
   entries.forEach((entry) => {
     if (!entriesByPartId[entry.partId]) {
       entriesByPartId[entry.partId] = [];

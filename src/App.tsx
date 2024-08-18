@@ -5,7 +5,7 @@ import CsvDownloadButton from "./components/CsvDownloadButton";
 import { ReorderEntryInPartMap } from "./utils/ReorderEntryInPartMap";
 import { useEntries } from "./EntryProvider";
 import { DropResult } from "./type/DropResult";
-import { NewEntry } from "./type/Entry";
+import { Entry } from "./type/Entry";
 
 export default function App() {
   const { partMap, newPartMap, newEntryMap, setPartMap } = useEntries();
@@ -47,7 +47,7 @@ export default function App() {
     (a, b) => a.partNum - b.partNum
   );
 
-  const csvData: NewEntry[] = sortedParts
+  const csvData: Entry[] = sortedParts
     .map((entry) =>
       Object.values(entry.entryIds).map((entryId) => newEntryMap[entryId])
     )

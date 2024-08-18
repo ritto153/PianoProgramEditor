@@ -1,19 +1,6 @@
 export type Entry = {
   id: string;
   partId: string;
-  lastName: string;
-  firstName: string;
-  affiliation: string;
-  grade: number;
-  composer: string;
-  work: string;
-  time: number;
-  memo: string;
-};
-
-export type NewEntry = {
-  id: string;
-  partId: string;
   participants: {
     id: string;
     lastName: string;
@@ -31,7 +18,7 @@ export type NewEntry = {
 };
 
 export type EntryMap = {
-  [id: string]: NewEntry;
+  [id: string]: Entry;
 };
 
 export type EntryForDisplay = {
