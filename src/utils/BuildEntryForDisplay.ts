@@ -2,7 +2,7 @@ import { EntryForDisplay } from "../type/Entry";
 import { DividedEntryForRow } from "../type/DividedEntryForRow";
 import { StringifyDate } from "./StringifyDate";
 
-export const NewBuildEntryForDisplay = (
+export const BuildEntryForDisplay = (
   dividedEntryForRow: DividedEntryForRow,
   partNum: number,
   index: number,

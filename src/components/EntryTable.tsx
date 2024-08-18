@@ -4,10 +4,8 @@ import Table from "react-bootstrap/Table";
 import "bootstrap/dist/css/bootstrap.min.css";
 import EntryTableRow from "./EntryTableRow";
 import { useEntries } from "../EntryProvider";
-import { OldBuildEntryForDisplay } from "../utils/OldBuildEntryForDisplay";
 import { BuildEntriesForTableRow } from "../utils/BuildEntriesForTableRow";
 import { entryAttributesInfo } from "../constants/EntryAttributesInfo";
-import { EntryForDisplay } from "../type/Entry";
 import { EntrySchedules } from "../type/EntrySchedules";
 
 type Props = {
@@ -30,27 +28,18 @@ export default function EntryTable(props: Props) {
         partNum: part.partNum,
         entrySchedules: EntrySchedules,
       }),
-    [selectedEntryIds, entryMap]
+    [selectedEntryIds, newEntryMap]
   );
-
-  const keysOfEntryForDisplay = Object.keys(
-    OldBuildEntryForDisplay(Object.values(entryMap)[0], 0, 0, null)
-  ) as (keyof EntryForDisplay)[];
 
   const tableComponent = (
     <Table striped bordered hover>
       <thead>
         <tr>
-          {keysOfEntryForDisplay.map((entryKey, i) => {
-            if (!Object.keys(entryAttributesInfo).includes(entryKey)) {
-              throw new Error(
-                `Entry のキー ${entryKey} が entryArrtibutesInfo に含まれていません`
-              );
-            }
-
-            const attributeInfo = entryAttributesInfo[entryKey];
-            return <th key={i}>{attributeInfo.displayName}</th>;
-          })}
+          {Object.entries(entryAttributesInfo)
+            .sort((a, b) => a[1]["columnIndex"] - b[1]["columnIndex"])
+            .map(([_, { displayName }]) => (
+              <th>{displayName}</th>
+            ))}
         </tr>
       </thead>
       {
@@ -72,9 +61,7 @@ export default function EntryTable(props: Props) {
                         partNum={dividedEntryForTableRow.partNum}
                         dividedEntryForRow={dividedEntryForTableRow}
                         index={i}
-                        schedules={
-                          EntrySchedules[dividedEntryForTableRow.id]
-                        }
+                        schedules={EntrySchedules[dividedEntryForTableRow.id]}
                       />
                     )}
                   </Draggable>

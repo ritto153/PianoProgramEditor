@@ -49,7 +49,6 @@ export const entryAttributesInfo = {
     columnWidth: 300,
     displayName: "曲名",
   },
-
   memo: {
     columnIndex: 10,
     columnWidth: 200,

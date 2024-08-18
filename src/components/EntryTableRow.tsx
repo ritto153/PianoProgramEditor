@@ -1,5 +1,5 @@
 import { DividedEntryForRow } from "../type/DividedEntryForRow";
-import { NewBuildEntryForDisplay } from "../utils/NewBuildEntryForDisplay";
+import { BuildEntryForDisplay } from "../utils/BuildEntryForDisplay";
 
 interface Props {
   partNum: number;
@@ -16,7 +16,7 @@ interface Props {
 export default function EntryTableRow(props: Props) {
   const { partNum, dividedEntryForRow, draggableProvided, index, schedules } = props;
 
-  const entryForDisplay = NewBuildEntryForDisplay(dividedEntryForRow, partNum, index, schedules.startingTime);
+  const entryForDisplay = BuildEntryForDisplay(dividedEntryForRow, partNum, index, schedules.startingTime);
 
   return (
     <tr
