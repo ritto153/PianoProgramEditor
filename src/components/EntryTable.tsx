@@ -50,10 +50,11 @@ export default function EntryTable(props: Props) {
               {...droppableProvided.droppableProps}
             >
               {entriesForTableRow.map((dividedEntryForTableRow, i) => {
-                const rowId = dividedEntryForTableRow["id"] + "-" + i;
+                const entryId = dividedEntryForTableRow["id"]
+                const rowId = entryId + "-" + i;
 
                 return (
-                  <Draggable key={rowId} draggableId={rowId} index={i}>
+                  <Draggable key={rowId} draggableId={entryId} index={i}>
                     {(draggableProvided) => (
                       <EntryTableRow
                         key={rowId}
