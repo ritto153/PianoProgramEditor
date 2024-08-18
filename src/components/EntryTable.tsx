@@ -15,7 +15,7 @@ type Props = {
 
 export default function EntryTable(props: Props) {
   const { partId, EntrySchedules } = props;
-  const { newPartMap, newEntryMap } = useEntries();
+  const { newPartMap, entryMap } = useEntries();
 
   const part = newPartMap[partId];
   const selectedEntryIds = part.entryIds;
@@ -24,11 +24,11 @@ export default function EntryTable(props: Props) {
     () =>
       BuildEntriesForTableRow({
         entryIds: selectedEntryIds,
-        entryMap: newEntryMap,
+        entryMap: entryMap,
         partNum: part.partNum,
         entrySchedules: EntrySchedules,
       }),
-    [selectedEntryIds, newEntryMap]
+    [selectedEntryIds, entryMap]
   );
 
   const tableComponent = (

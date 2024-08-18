@@ -8,7 +8,7 @@ import { DropResult } from "./type/DropResult";
 import { Entry } from "./type/Entry";
 
 export default function App() {
-  const { partMap, newPartMap, newEntryMap, setPartMap } = useEntries();
+  const { partMap, newPartMap, entryMap, setPartMap } = useEntries();
 
   const nonAssinedPart = Object.values(newPartMap).find(
     (part) => part.partNum === 0
@@ -49,7 +49,7 @@ export default function App() {
 
   const csvData: Entry[] = sortedParts
     .map((entry) =>
-      Object.values(entry.entryIds).map((entryId) => newEntryMap[entryId])
+      Object.values(entry.entryIds).map((entryId) => entryMap[entryId])
     )
     .flat();
 

@@ -10,14 +10,14 @@ const initialPartMap = PartMapBuilder(newResponse);
 const initialNewPartMap = PartMapBuilder(newResponse);
 
 interface EntryContextValue {
-  newEntryMap: EntryMap;
+  entryMap: EntryMap;
   partMap: PartMap;
   newPartMap: PartMap;
   setPartMap: React.Dispatch<React.SetStateAction<PartMap>>;
 }
 
 const EntryContext = createContext<EntryContextValue>({
-  newEntryMap: {},
+  entryMap: {},
   partMap: {},
   newPartMap: {},
   setPartMap: () => {},
@@ -26,12 +26,12 @@ export const useEntries = () => useContext(EntryContext);
 
 export default function EntryProvider(props: { children: JSX.Element }) {
   const { children } = props;
-  const newEntryMap = initialNewEntryMap;
+  const entryMap = initialNewEntryMap;
   const [partMap, setPartMap] = useState(initialPartMap);
   const [newPartMap, setNewPartMap] = useState(initialNewPartMap);
 
   return (
-    <EntryContext.Provider value={{ newEntryMap, partMap, newPartMap, setPartMap }}>
+    <EntryContext.Provider value={{ entryMap, partMap, newPartMap, setPartMap }}>
       {children}
     </EntryContext.Provider>
   );

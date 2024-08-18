@@ -52,13 +52,13 @@ const MinutesBetweenTwoDates = (
   startingTime: Date | null,
   endingTime: Date | null,
   part: Part,
-  newEntryMap: EntryMap
+  entryMap: EntryMap
 ): number | null => {
   if (startingTime && endingTime) {
     return (endingTime.getTime() - startingTime.getTime()) / 60000;
   } else if (!startingTime && !endingTime) {
     return part.entryIds
-      .map((entryId) => newEntryMap[entryId].time)
+      .map((entryId) => entryMap[entryId].time)
       .reduce((a, b) => a + b, 0);
   } else {
     throw new Error("開始時間と終了時間の片方がnullになっています");
@@ -67,13 +67,13 @@ const MinutesBetweenTwoDates = (
 
 export default function EntryTableTitle(props: Props) {
   const { partId, endingTime } = props;
-  const { newEntryMap, partMap } = useEntries();
+  const { entryMap, partMap } = useEntries();
   const part = partMap[partId];
   const totalPlayTime = MinutesBetweenTwoDates(
     part.startingTime,
     endingTime,
     part,
-    newEntryMap
+    entryMap
   );
   const sheduleString = TwoDatesToString(part.startingTime, endingTime);
 

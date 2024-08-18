@@ -4,7 +4,7 @@ import { EntrySchedules } from "../type/EntrySchedules";
 
 export const BuildEntrySchedules = (
   entryIds: string[],
-  newEntryMap: EntryMap,
+  entryMap: EntryMap,
   partStartingTime: Date | null
 ): EntrySchedules => {
   const result: EntrySchedules = {};
@@ -18,7 +18,7 @@ export const BuildEntrySchedules = (
     });
     return result;
   } else {
-    const firstEntry = newEntryMap[entryIds[0]];
+    const firstEntry = entryMap[entryIds[0]];
     let startingTime = new Date(partStartingTime);
     let endingTime = new Date(startingTime);
     const firstEntryPlayTime = firstEntry ? firstEntry.time : 0;
@@ -32,7 +32,7 @@ export const BuildEntrySchedules = (
 
         // 開始時刻 + 演奏時間
         endingTime = new Date(startingTime);
-        endingTime.setMinutes(endingTime.getMinutes() + newEntryMap[entryId].time);
+        endingTime.setMinutes(endingTime.getMinutes() + entryMap[entryId].time);
       }
       result[entryId] = {
         startingTime: new Date(startingTime),

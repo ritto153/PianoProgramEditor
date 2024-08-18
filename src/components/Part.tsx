@@ -17,12 +17,12 @@ const Wrapper = styled.div`
 
 export default function Part(props: Props) {
   const { partId } = props;
-  const { newPartMap, newEntryMap } = useEntries();
+  const { newPartMap, entryMap } = useEntries();
   const part = newPartMap[partId];
   
   const entrySchedules = BuildEntrySchedules(
     part.entryIds,
-    newEntryMap,
+    entryMap,
     part.startingTime
   );
 
