@@ -38,7 +38,7 @@ export default function EntryTable(props: Props) {
           {Object.entries(entryAttributesInfo)
             .sort((a, b) => a[1]["columnIndex"] - b[1]["columnIndex"])
             .map(([_, { displayName }]) => (
-              <th>{displayName}</th>
+              <th key={displayName}>{displayName}</th>
             ))}
         </tr>
       </thead>
@@ -50,7 +50,7 @@ export default function EntryTable(props: Props) {
               {...droppableProvided.droppableProps}
             >
               {entriesForTableRow.map((dividedEntryForTableRow, i) => {
-                const entryId = dividedEntryForTableRow["id"]
+                const entryId = dividedEntryForTableRow["id"];
                 const rowId = entryId + "-" + i;
 
                 return (
