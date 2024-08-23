@@ -50,7 +50,7 @@ export default function EntryTable(props: Props) {
               {...droppableProvided.droppableProps}
             >
               {entriesForTableRow.map((dividedEntryForTableRow, i) => {
-                const entryId = dividedEntryForTableRow["id"];
+                const entryId = dividedEntryForTableRow.entryId;
                 const rowId = entryId + "-" + i;
 
                 return (
@@ -62,7 +62,7 @@ export default function EntryTable(props: Props) {
                         partNum={dividedEntryForTableRow.partNum}
                         dividedEntryForRow={dividedEntryForTableRow}
                         index={i}
-                        schedules={EntrySchedules[dividedEntryForTableRow.id]}
+                        schedules={EntrySchedules[dividedEntryForTableRow.entryId]}
                       />
                     )}
                   </Draggable>

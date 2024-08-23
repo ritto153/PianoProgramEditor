@@ -1,6 +1,6 @@
 export type DividedTopEntry = {
-  isTopRow: boolean;
-  id: string;
+  rowIndexInEntry: number;
+  entryId: string;
   playMinutes: number;
   startingTime: string;
   partNum: number;
@@ -15,8 +15,8 @@ export type DividedTopEntry = {
 };
 
 export type DividedSubordinaryEntry = {
-  isTopRow: boolean;
-  id: string;
+  rowIndexInEntry: number;
+  entryId: string;
   playMinutes: null;
   startingTime: null;
   partNum: number;

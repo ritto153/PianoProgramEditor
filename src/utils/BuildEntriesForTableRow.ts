@@ -67,8 +67,8 @@ const DivideEntryForRow = (
       const work = entry.works[0];
 
       const dividedTopEntry: DividedTopEntry = {
-        isTopRow: true,
-        id: entry.id,
+        rowIndexInEntry : i,
+        entryId: entry.id,
         playMinutes: entry.time,
         startingTime: stringStartingTime,
         partNum: partNum,
@@ -89,8 +89,8 @@ const DivideEntryForRow = (
       const work = i < entry.works.length ? entry.works[i] : null;
 
       const dividedSubordinaryEntry: DividedSubordinaryEntry = {
-        isTopRow: false,
-        id: entry.id,
+        rowIndexInEntry: i,
+        entryId: entry.id,
         playMinutes: null,
         startingTime: null,
         partNum: partNum,
