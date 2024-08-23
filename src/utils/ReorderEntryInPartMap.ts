@@ -19,19 +19,26 @@ export function ReorderEntryInPartMap(
   }
 }
 
+/**
+ * 同じ部の中にDropした場合のReorderのロジック
+ */
 function ReorderEntryDroppedOnSamePart(
   partMap: PartMap,
   draggableId: DraggableId,
   destination: DraggableLocation
 ): PartMap {
-  // 同じテーブル内に Drop した場合
   const partId = destination.droppableId;
   const entryIds = partMap[partId].entryIds;
 
-  // ドラッグしたエントリーを除く
-  const newEntryIds = entryIds.filter((entryId) => entryId !== draggableId);
+  // draggableIdはentryIdとrowIndexInEntryが+で連結された文字列なので、entryIdを抽出する
+  const draggedEntryId = draggableId.split("+")[0];
+  // ToDo: 移動先の列のindexからそのエントリーのentryIdを取得する
+  // const destinationEntryId =
+
+  // ドラッグしたエントリーを除いた entryIdの配列
+  const newEntryIds = entryIds.filter((entryId) => entryId !== draggedEntryId);
   // ドラッグしたエントリーをドロップした場所に追加
-  newEntryIds.splice(destination.index, 0, draggableId);
+  newEntryIds.splice(destination.index, 0, draggedEntryId);
 
   return {
     ...partMap,
@@ -42,19 +49,27 @@ function ReorderEntryDroppedOnSamePart(
   };
 }
 
+/**
+ * 異なるテーブルにDropしたときのReorerのロジック
+ */
 function ReorderEntryDroppedOnOtherPart(
   partMap: PartMap,
   draggableId: DraggableId,
   droppableId: string,
   destination: DraggableLocation
 ): PartMap {
+  // draggableIdはentryIdとrowIndexInEntryが+で連結された文字列なので、entryIdを抽出する
+  const draggedEntryId = draggableId.split("+")[0];
+  // ToDo: 移動先の列のindexからそのエントリーのentryIdを取得する
+  // const destinationEntryId =
+
   // ドラッグしたエントリーを除いた、移動元の部のentryIds
   const newHomePartEntryIds = partMap[droppableId].entryIds.filter(
-    (entryId) => entryId !== draggableId
+    (entryId) => entryId !== draggedEntryId
   );
   // ドラッグしたエントリーを加えた、移動先の部のentryIds
   const newForeignPartEntryIds = [...partMap[destination.droppableId].entryIds];
-  newForeignPartEntryIds.splice(destination.index, 0, draggableId);
+  newForeignPartEntryIds.splice(destination.index, 0, draggedEntryId);
 
   const result = { ...partMap };
   result[droppableId] = {

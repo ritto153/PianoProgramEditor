@@ -50,11 +50,17 @@ export default function EntryTable(props: Props) {
               {...droppableProvided.droppableProps}
             >
               {entriesForTableRow.map((dividedEntryForTableRow, i) => {
-                const entryId = dividedEntryForTableRow.entryId;
-                const rowId = entryId + "-" + i;
+                /**
+                 * `&{entryId}+&{rowIndexInEntry}` を列のIDとする
+                 * よって、entryId には + が入らないように作成部分で防止する必要あり
+                 */
+                const rowId =
+                  dividedEntryForTableRow.entryId +
+                  "+" +
+                  dividedEntryForTableRow.rowIndexInEntry;
 
                 return (
-                  <Draggable key={rowId} draggableId={entryId} index={i}>
+                  <Draggable key={rowId} draggableId={rowId} index={i}>
                     {(draggableProvided) => (
                       <EntryTableRow
                         key={rowId}
@@ -62,7 +68,9 @@ export default function EntryTable(props: Props) {
                         partNum={dividedEntryForTableRow.partNum}
                         dividedEntryForRow={dividedEntryForTableRow}
                         index={i}
-                        schedules={EntrySchedules[dividedEntryForTableRow.entryId]}
+                        schedules={
+                          EntrySchedules[dividedEntryForTableRow.entryId]
+                        }
                       />
                     )}
                   </Draggable>
