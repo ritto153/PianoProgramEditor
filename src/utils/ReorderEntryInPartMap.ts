@@ -104,11 +104,6 @@ function ReorderEntryDroppedOnOtherPart(
   // draggableIdはentryIdとrowIndexInEntryが+で連結された文字列なので、entryIdを抽出する
   const draggedEntryId = draggableId.split("+")[0];
 
-  // ドラッグしたエントリーを除いた、移動元の部のentryIds
-  const newHomePartEntryIds = partMap[droppableId].entryIds.filter(
-    (entryId) => entryId !== draggedEntryId
-  );
-
   // 移動先の部のentryIds
   const foreignPartEntryIds = partMap[destination.droppableId].entryIds;
 
@@ -118,7 +113,7 @@ function ReorderEntryDroppedOnOtherPart(
     draggedEntryId,
     mapOfRowCountOfEntry,
     destination.index,
-    false
+    false,
   );
 
   const newForeignPartEntryIds = [...foreignPartEntryIds];
@@ -131,6 +126,11 @@ function ReorderEntryDroppedOnOtherPart(
       draggedEntryId
     );
   }
+
+  // ドラッグしたエントリーを除いた、移動元の部のentryIds
+  const newHomePartEntryIds = partMap[droppableId].entryIds.filter(
+    (entryId) => entryId !== draggedEntryId
+  );
 
   const result = { ...partMap };
   result[droppableId] = {
@@ -153,7 +153,7 @@ function FindDestinationEntryId(
   draggedEntryId: string,
   mapOfRowCountOfEntry: RowCountOfEntryMap,
   destination_index: number,
-  isSamePart: boolean
+  isSamePart: boolean,
 ): string {
   // 部のテーブルに並ぶエントリーを列の数だけ並べた配列を作る
   const entryIdsShownInTable = BuildEntryIdsShownInTable(
@@ -166,7 +166,7 @@ function FindDestinationEntryId(
   if (isSamePart) {
     entryIdsShownInTable.splice(
       entryIdsShownInTable.indexOf(draggedEntryId),
-      1
+      1,
     );
   }
 
@@ -186,7 +186,8 @@ function FindDestinationEntryId(
 }
 
 /**
- * テーブルに並ぶエントリーのIDを順番に並べる
+ * テーブルに並ぶエントリーのIDを順番に並べる。
+ * 非破壊的
  * example: [
  *  majima, majima, kiryuu, nishiki, nishiki, nishiki
  * ]
