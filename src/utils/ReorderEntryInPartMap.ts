@@ -61,23 +61,25 @@ function ReorderEntryDroppedOnSamePart(
   // draggableIdはentryIdとrowIndexInEntryが+で連結された文字列なので、entryIdを抽出する
   const draggedEntryId = draggableId.split("+")[0];
 
-  // 部のテーブルに並ぶエントリーを列の数だけ並べた配列を作る
-  const entryIdsShownInTable = BuildEntryIdsShownInTable(
+  // ドロップ先のエントリーのID
+  const destinationEntryId = FindDestinationEntryId(
     entryIds,
-    mapOfRowCountOfEntry
+    draggedEntryId,
+    mapOfRowCountOfEntry,
+    destination.index,
+    true
   );
-  
-  // 移動先の列のエントリーのIDを取得
-  const destinationEntryId = entryIdsShownInTable[destination.index];
-  
+
   if (draggedEntryId === destinationEntryId) {
     return partMap; // 同じエントリーの列にドロップした場合は順番を変更しない
   }
 
-  // ドラッグしたエントリーを除いた entryIdの配列
   const newEntryIds = entryIds.filter((entryId) => entryId !== draggedEntryId);
-  // ドラッグしたエントリーをドロップした場所に追加
-  InsertAfterValue(newEntryIds, destinationEntryId, draggedEntryId);
+  if (destinationEntryId === "end") {
+    newEntryIds.push(draggedEntryId);
+  } else {
+    InsertBeforeValue(newEntryIds, destinationEntryId, draggedEntryId);
+  }
 
   return {
     ...partMap,
@@ -110,19 +112,25 @@ function ReorderEntryDroppedOnOtherPart(
   // 移動先の部のentryIds
   const foreignPartEntryIds = partMap[destination.droppableId].entryIds;
 
-  // 移動先の部のテーブルに並ぶエントリーを列の数だけ並べた配列を作る
-  const entryIdsShownInTable = BuildEntryIdsShownInTable(
+  // 移動先の列のエントリーのIDを取得
+  const destinationEntryId = FindDestinationEntryId(
     foreignPartEntryIds,
-    mapOfRowCountOfEntry
+    draggedEntryId,
+    mapOfRowCountOfEntry,
+    destination.index,
+    false
   );
 
-  // 移動先の列のエントリーのIDを取得
-  const destinationEntryId = entryIdsShownInTable[destination.index];
-
-  // 移動先の部のentryIdsのコピー
   const newForeignPartEntryIds = [...foreignPartEntryIds];
-  // ドラッグしたエントリーをドロップした場所に追加
-  InsertAfterValue(newForeignPartEntryIds, destinationEntryId, draggedEntryId);
+  if (destinationEntryId === "end") {
+    newForeignPartEntryIds.push(draggedEntryId);
+  } else {
+    InsertBeforeValue(
+      newForeignPartEntryIds,
+      destinationEntryId,
+      draggedEntryId
+    );
+  }
 
   const result = { ...partMap };
   result[droppableId] = {
@@ -135,6 +143,46 @@ function ReorderEntryDroppedOnOtherPart(
   };
 
   return result;
+}
+
+/**
+ * 移動先のエントリーのIDを見つけるロジック
+ */
+function FindDestinationEntryId(
+  entryIds: string[],
+  draggedEntryId: string,
+  mapOfRowCountOfEntry: RowCountOfEntryMap,
+  destination_index: number,
+  isSamePart: boolean
+): string {
+  // 部のテーブルに並ぶエントリーを列の数だけ並べた配列を作る
+  const entryIdsShownInTable = BuildEntryIdsShownInTable(
+    entryIds,
+    mapOfRowCountOfEntry
+  );
+
+  // beautiful-dndのdestination_indexは、ドラッグ中のエントリーをテーブルから省いてから数えている
+  // よって、同じテーブル内での移動では、移動中のentryIdを ShownInTableから取り除いてから特定する
+  if (isSamePart) {
+    entryIdsShownInTable.splice(
+      entryIdsShownInTable.indexOf(draggedEntryId),
+      1
+    );
+  }
+
+  // 最後の列へドロップした場合はエントリーIDの直前への挿入はできないため、'end'を返して
+  // 後続の並び替えで最終行に追加する
+  if (destination_index === entryIdsShownInTable.length) {
+    return "end";
+  }
+
+  if (!entryIdsShownInTable[destination_index]) {
+    throw new Error(
+      `destinationEntryIdが見つかりません ${destination_index} ${entryIdsShownInTable}`
+    );
+  }
+
+  return entryIdsShownInTable[destination_index];
 }
 
 /**
@@ -160,14 +208,14 @@ function BuildEntryIdsShownInTable(
 }
 
 /**
- * 与えられた配列のある値の直後に値を挿入して、新しい配列を返す破壊的関数
+ * 与えられた配列のある値の直前に値を挿入して、新しい配列を返す破壊的関数
  */
-function InsertAfterValue<T>(arr: T[], targetValue: T, newValue: T): void {
+function InsertBeforeValue<T>(arr: T[], targetValue: T, newValue: T): void {
   const index = arr.indexOf(targetValue);
 
   if (index === -1) {
     throw new Error(`配列内に${targetValue}が存在しません`);
   }
 
-  arr.splice(index + 1, 0, newValue);
+  arr.splice(index, 0, newValue);
 }
