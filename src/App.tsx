@@ -17,10 +17,6 @@ export default function App() {
     throw new Error("配置前のエントリーを格納する部が消えています");
   }
 
-  // memo: 複数選択してテーブル間移動する story。参考にする
-  // https://github.com/atlassian/react-beautiful-dnd/tree/013bfceac04ff48548c33cdc468dd2927446fc1b/stories/src/multi-drag
-
-  // https://github.com/atlassian/react-beautiful-dnd/blob/013bfceac04ff48548c33cdc468dd2927446fc1b/stories/src/table/with-fixed-columns.jsx#L107
   const onDragEnd = (result: DropResult) => {
     // 表の外にドロップされた場合
     if (!result.destination) return;
@@ -32,12 +28,13 @@ export default function App() {
     )
       return;
 
-    const reorderedPartMap = ReorderEntryInPartMap(
-      partMap,
-      result.draggableId,
-      result.source.droppableId,
-      result.destination
-    );
+    const reorderedPartMap = ReorderEntryInPartMap({
+      partMap: partMap,
+      entryMap: entryMap,
+      draggableId: result.draggableId,
+      droppableId: result.source.droppableId,
+      destination: result.destination,
+    });
 
     setPartMap(reorderedPartMap);
   };

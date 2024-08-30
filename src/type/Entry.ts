@@ -34,3 +34,7 @@ export type EntryForDisplay = {
   work: string | null;
   memo: string | null;
 };
+
+export type RowCountOfEntryMap = {
+  [key: string]: number
+}

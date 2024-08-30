@@ -57,7 +57,6 @@ const MinutesBetweenTwoDates = (
   if (startingTime && endingTime) {
     return (endingTime.getTime() - startingTime.getTime()) / 60000;
   } else if (!startingTime && !endingTime) {
-    console.log(entryMap, part.entryIds);
     return part.entryIds
       .map((entryId) => entryMap[entryId].time)
       .reduce((a, b) => a + b, 0);
