@@ -5,13 +5,12 @@ import { StringifyDate } from "../../utils/StringifyDate";
 export const BuildEntryForDisplay = (
   dividedEntryForRow: DividedEntryForRow,
   partNum: number,
-  index: number,
   startingTime: Date | null
 ): EntryForDisplay => ({
   playMinutes: dividedEntryForRow.playMinutes,
   startingTime: StringifyDate(startingTime),
   partNum: partNum,
-  index: index,
+  index: dividedEntryForRow.index,
   lastName: dividedEntryForRow.lastName,
   firstName: dividedEntryForRow.firstName,
   faculty: dividedEntryForRow.faculty,

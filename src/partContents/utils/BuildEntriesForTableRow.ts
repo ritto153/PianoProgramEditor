@@ -94,7 +94,7 @@ const DivideEntryForRow = (
         playMinutes: null,
         startingTime: null,
         partNum: partNum,
-        index: null,
+        index: index,
         lastName: participant ? participant.lastName : null,
         firstName: participant ? participant.firstName : null,
         faculty: participant ? participant.faculty : null,

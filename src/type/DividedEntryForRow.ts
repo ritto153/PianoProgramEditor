@@ -20,7 +20,7 @@ export type DividedSubordinaryEntry = {
   playMinutes: null;
   startingTime: null;
   partNum: number;
-  index: null;
+  index: number;
   lastName: string | null;
   firstName: string | null;
   faculty: string | null;

@@ -20,7 +20,7 @@ const StyledTable = styled.table`
   table-layout: fixed;
   border-collapse: collapse;
   border: 2px solid #555555;
-  margin: 5px 0 5px 0;
+  margin: 15px 0 15px 0;
   td {
     border: 1px solid #dee2e6;
     padding-top: 3px;
@@ -94,7 +94,6 @@ export default function EntryTable(props: Props) {
                         draggableProvided={draggableProvided}
                         partNum={dividedEntryForTableRow.partNum}
                         dividedEntryForRow={dividedEntryForTableRow}
-                        index={i}
                         schedules={
                           entrySchedules[dividedEntryForTableRow.entryId]
                         }
