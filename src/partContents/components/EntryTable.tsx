@@ -34,7 +34,7 @@ const StyledTable = styled.table`
     background-color: #BBBBBB;
   }
   tbody tr:hover {
-    background-color: #f5f5f5;
+    background-color: #BBBBBB;
   }
 `;
 

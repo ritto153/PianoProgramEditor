@@ -3,7 +3,7 @@ import { BuildEntryForDisplay } from "../utils/BuildEntryForDisplay";
 import styled from "styled-components";
 
 const StyledRow = styled.tr<{shownGray: boolean}>`
-  background-color: ${(props) => props.shownGray && "#E6FFE9"};
+  background-color: ${(props) => props.shownGray && "#EEEEEE"};
 `
 
 interface Props {
