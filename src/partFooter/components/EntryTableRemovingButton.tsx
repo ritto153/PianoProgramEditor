@@ -10,21 +10,15 @@ type Props = {
 export default function EntryTableRemovingButton(props: Props) {
   const { partId } = props;
   const { partMap, setPartMap } = useParts();
-  const part = partMap[partId];
 
   const removePart = () => {
     const newPartMap = RemovePart(partId, partMap);
     setPartMap(newPartMap);
   };
 
-  const buttonComponent = (
+  return (
     <Button variant="warning" onClick={removePart}>
       部を削除する
     </Button>
   );
-  const memoButtonComponent = useMemo(() => {
-    return buttonComponent;
-  }, [part]);
-
-  return memoButtonComponent;
 }

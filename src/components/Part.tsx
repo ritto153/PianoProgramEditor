@@ -56,7 +56,7 @@ export default function Part(props: Props) {
   );
   const memoWrapperComponent = useMemo(() => {
     return wrapperComponent;
-  }, [part]);
+  }, [partMap]);
 
   return memoWrapperComponent;
 }
