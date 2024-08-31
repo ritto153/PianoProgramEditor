@@ -4,6 +4,7 @@ import Table from "react-bootstrap/Table";
 import "bootstrap/dist/css/bootstrap.min.css";
 import EntryTableRow from "./EntryTableRow";
 import { useEntries } from "../EntryProvider";
+import { useParts } from "../PartProvider";
 import { BuildEntriesForTableRow } from "../utils/BuildEntriesForTableRow";
 import { entryAttributesInfo } from "../constants/EntryAttributesInfo";
 import { EntrySchedules } from "../type/EntrySchedules";
@@ -15,7 +16,9 @@ type Props = {
 
 export default function EntryTable(props: Props) {
   const { partId, EntrySchedules } = props;
-  const { partMap, entryMap } = useEntries();
+
+  const { partMap } = useParts();
+  const { entryMap } = useEntries();
 
   const part = partMap[partId];
   const selectedEntryIds = part.entryIds;

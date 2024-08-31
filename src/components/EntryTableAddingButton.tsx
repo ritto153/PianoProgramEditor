@@ -1,5 +1,5 @@
 import Button from "react-bootstrap/Button";
-import { useEntries } from "../EntryProvider";
+import { useParts } from "../PartProvider";
 import { AddPart } from "../utils/AddPart";
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 
 export default function EntryTableAddingButton(props: Props) {
   const { partId } = props;
-  const { partMap, setPartMap } = useEntries();
+  const { partMap, setPartMap } = useParts();
 
   const addPart = () => {
     const newPartMap = AddPart(partId, partMap);

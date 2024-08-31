@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 import styled from "styled-components";
 
 import { useEntries } from "../EntryProvider";
+import { useParts } from "../PartProvider";
 import StartingTimeInputForm from "./StartingTimeInputForm";
 import { Part } from "../type/Part";
 import { EntryMap } from "../type/Entry";
@@ -27,47 +28,12 @@ const BoldP = styled.p`
   font-weight: bold;
 `;
 
-const TwoDatesToString = (
-  startingTime: Date | null,
-  endingTime: Date | null
-): string => {
-  const timeFormatter = new Intl.DateTimeFormat("ja-jp", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-
-  if (startingTime && endingTime) {
-    return `${timeFormatter.format(startingTime)}~${timeFormatter.format(
-      endingTime
-    )}
-    `;
-  } else if (!startingTime && !endingTime) {
-    return "";
-  } else {
-    throw new Error("開始時間と終了時間の片方がnullになっています");
-  }
-};
-
-const MinutesBetweenTwoDates = (
-  startingTime: Date | null,
-  endingTime: Date | null,
-  part: Part,
-  entryMap: EntryMap
-): number | null => {
-  if (startingTime && endingTime) {
-    return (endingTime.getTime() - startingTime.getTime()) / 60000;
-  } else if (!startingTime && !endingTime) {
-    return part.entryIds
-      .map((entryId) => entryMap[entryId].time)
-      .reduce((a, b) => a + b, 0);
-  } else {
-    throw new Error("開始時間と終了時間の片方がnullになっています");
-  }
-};
-
 export default function EntryTableTitle(props: Props) {
   const { partId, endingTime } = props;
-  const { entryMap, partMap } = useEntries();
+
+  const { partMap } = useParts();
+  const { entryMap } = useEntries();
+
   const part = partMap[partId];
   const totalPlayTime = MinutesBetweenTwoDates(
     part.startingTime,
@@ -105,3 +71,56 @@ export default function EntryTableTitle(props: Props) {
 
   return memoComponent;
 }
+
+/**
+ * 二つの Date型の値を文字列にする
+ *  example: 
+ *  12:20~13:30
+ * 
+ * 二つの日時がnullなら空文字を返す
+ */
+const TwoDatesToString = (
+  startingTime: Date | null,
+  endingTime: Date | null
+): string => {
+  const timeFormatter = new Intl.DateTimeFormat("ja-jp", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  if (startingTime && endingTime) {
+    return `${timeFormatter.format(startingTime)}~${timeFormatter.format(
+      endingTime
+    )}
+    `;
+  } else if (!startingTime && !endingTime) {
+    return "";
+  } else {
+    throw new Error("開始時間と終了時間の片方がnullになっています");
+  }
+};
+
+/**
+ * 開始時間と終了時間が存在する場合
+ *  -> 間の時間を返す
+ * 開始時間と終了時間が共に存在しない場合
+ *  -> 部のエントリーの演奏時間の合計を返す
+ * 開始時間と終了時間の片方のみ存在する場合
+ *  -> エラーを発火
+ */
+const MinutesBetweenTwoDates = (
+  startingTime: Date | null,
+  endingTime: Date | null,
+  part: Part,
+  entryMap: EntryMap
+): number | null => {
+  if (startingTime && endingTime) {
+    return (endingTime.getTime() - startingTime.getTime()) / 60000;
+  } else if (!startingTime && !endingTime) {
+    return part.entryIds
+      .map((entryId) => entryMap[entryId].time)
+      .reduce((a, b) => a + b, 0);
+  } else {
+    throw new Error("開始時間と終了時間の片方がnullになっています");
+  }
+};

@@ -2,15 +2,18 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import EntryProvider from './EntryProvider';
+import PartProvider from './PartProvider';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <EntryProvider>
-    <App />
-  </EntryProvider>
+  <PartProvider>
+    <EntryProvider>
+      <App />
+    </EntryProvider>
+  </PartProvider>
 );
 
 reportWebVitals();

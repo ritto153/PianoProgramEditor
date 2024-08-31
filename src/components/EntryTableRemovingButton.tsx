@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import Button from "react-bootstrap/Button";
-import { useEntries } from "../EntryProvider";
+import { useParts } from "../PartProvider";
 import { RemovePart } from "../utils/RemovePart";
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 
 export default function EntryTableRemovingButton(props: Props) {
   const { partId } = props;
-  const { partMap, setPartMap } = useEntries();
+  const { partMap, setPartMap } = useParts();
   const part = partMap[partId];
 
   const removePart = () => {

@@ -4,6 +4,7 @@ import EntryTable from "./EntryTable";
 import EntryTableAddingButton from "./EntryTableAddingButton";
 import EntryTableRemovingButton from "./EntryTableRemovingButton";
 import { useEntries } from "../EntryProvider";
+import { useParts } from "../PartProvider";
 import { BuildEntrySchedules } from "../utils/BuildEntrySchedules";
 import styled from "styled-components";
 
@@ -17,7 +18,10 @@ const Wrapper = styled.div`
 
 export default function Part(props: Props) {
   const { partId } = props;
-  const { partMap, entryMap } = useEntries();
+
+  const { partMap } = useParts();
+  const { entryMap } = useEntries();
+
   const part = partMap[partId];
 
   const entrySchedules = BuildEntrySchedules(

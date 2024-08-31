@@ -4,11 +4,13 @@ import Part from "./components/Part";
 import CsvDownloadButton from "./components/CsvDownloadButton";
 import { ReorderEntryInPartMap } from "./utils/ReorderEntryInPartMap";
 import { useEntries } from "./EntryProvider";
+import { useParts } from "./PartProvider";
 import { DropResult } from "./type/DropResult";
 import { Entry } from "./type/Entry";
 
 export default function App() {
-  const { partMap, entryMap, setPartMap } = useEntries();
+  const { partMap, setPartMap } = useParts();
+  const { entryMap } = useEntries();
 
   const nonAssinedPart = Object.values(partMap).find(
     (part) => part.partNum === 0
