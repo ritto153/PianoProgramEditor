@@ -11,11 +11,11 @@ import { EntrySchedules } from "../../type/EntrySchedules";
 
 type Props = {
   partId: string;
-  EntrySchedules: EntrySchedules;
+  entrySchedules: EntrySchedules;
 };
 
 export default function EntryTable(props: Props) {
-  const { partId, EntrySchedules } = props;
+  const { partId, entrySchedules } = props;
 
   const { partMap } = useParts();
   const { entryMap } = useEntries();
@@ -29,7 +29,7 @@ export default function EntryTable(props: Props) {
         entryIds: selectedEntryIds,
         entryMap: entryMap,
         partNum: part.partNum,
-        entrySchedules: EntrySchedules,
+        entrySchedules: entrySchedules,
       }),
     [selectedEntryIds, entryMap]
   );
@@ -72,7 +72,7 @@ export default function EntryTable(props: Props) {
                         dividedEntryForRow={dividedEntryForTableRow}
                         index={i}
                         schedules={
-                          EntrySchedules[dividedEntryForTableRow.entryId]
+                          entrySchedules[dividedEntryForTableRow.entryId]
                         }
                       />
                     )}

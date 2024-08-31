@@ -43,7 +43,7 @@ export default function Part(props: Props) {
   const wrapperComponent = (
     <Wrapper>
       <EntryTableTitle partId={partId} endingTime={partEndingTime} />
-      <EntryTable partId={partId} EntrySchedules={entrySchedules} />
+      <EntryTable partId={partId} entrySchedules={entrySchedules} />
       <EntryTableAddingButton partId={partId} />
       {
         // エントリー数が0件の部は削除ボタンを表示する
