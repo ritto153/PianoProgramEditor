@@ -1,10 +1,5 @@
 import { DividedEntryForRow } from "../../type/DividedEntryForRow";
 import { BuildEntryForDisplay } from "../utils/BuildEntryForDisplay";
-import styled from "styled-components";
-
-const StyledRow = styled.tr<{shownGray: boolean}>`
-  background-color: ${(props) => props.shownGray && "#EEEEEE"};
-`
 
 interface Props {
   partNum: number;
@@ -27,12 +22,8 @@ export default function EntryTableRow(props: Props) {
     schedules.startingTime,
   );
 
-  // エントリーが偶数番目なら灰色で表示する
-  const shownGray = entryForDisplay.index % 2 === 0;
-
   return (
-    <StyledRow
-      shownGray={shownGray}
+    <tr
       ref={draggableProvided.innerRef}
       {...draggableProvided.draggableProps}
       {...draggableProvided.dragHandleProps}
@@ -40,6 +31,6 @@ export default function EntryTableRow(props: Props) {
       {Object.entries(entryForDisplay).map(([_, value], i) => (
         <td key={i}>{value}</td>
       ))}
-    </StyledRow>
+    </tr>
   );
 }
