@@ -1,5 +1,5 @@
 import Button from "react-bootstrap/Button";
-import { useParts } from "../PartProvider";
+import { useParts } from "../../PartProvider";
 import { AddPart } from "../utils/AddPart";
 
 type Props = {

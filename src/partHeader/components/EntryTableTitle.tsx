@@ -4,11 +4,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import styled from "styled-components";
 
-import { useEntries } from "../EntryProvider";
-import { useParts } from "../PartProvider";
+import { useEntries } from "../../EntryProvider";
+import { useParts } from "../../PartProvider";
 import StartingTimeInputForm from "./StartingTimeInputForm";
-import { Part } from "../type/Part";
-import { EntryMap } from "../type/Entry";
+import { Part } from "../../type/Part";
+import { EntryMap } from "../../type/Entry";
 
 type Props = {
   partId: string;

@@ -1,6 +1,6 @@
-import { EntryForDisplay } from "../type/Entry";
-import { DividedEntryForRow } from "../type/DividedEntryForRow";
-import { StringifyDate } from "./StringifyDate";
+import { EntryForDisplay } from "../../type/Entry";
+import { DividedEntryForRow } from "../../type/DividedEntryForRow";
+import { StringifyDate } from "../../utils/StringifyDate";
 
 export const BuildEntryForDisplay = (
   dividedEntryForRow: DividedEntryForRow,

@@ -1,4 +1,4 @@
-import { Part, PartMap } from "../type/Part";
+import { Part, PartMap } from "../../type/Part";
 import { v4 as uuidv4 } from "uuid";
 
 export const AddPart = (partId: string, partMap: PartMap) => {

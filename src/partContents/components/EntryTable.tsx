@@ -3,11 +3,11 @@ import { Draggable, Droppable } from "react-beautiful-dnd";
 import Table from "react-bootstrap/Table";
 import "bootstrap/dist/css/bootstrap.min.css";
 import EntryTableRow from "./EntryTableRow";
-import { useEntries } from "../EntryProvider";
-import { useParts } from "../PartProvider";
+import { useEntries } from "../../EntryProvider";
+import { useParts } from "../../PartProvider";
 import { BuildEntriesForTableRow } from "../utils/BuildEntriesForTableRow";
-import { entryAttributesInfo } from "../constants/EntryAttributesInfo";
-import { EntrySchedules } from "../type/EntrySchedules";
+import { entryAttributesInfo } from "../../constants/EntryAttributesInfo";
+import { EntrySchedules } from "../../type/EntrySchedules";
 
 type Props = {
   partId: string;

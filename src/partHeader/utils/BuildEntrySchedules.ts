@@ -1,6 +1,6 @@
-import { minutesBetweenSolo } from "../constants/MinutesBetweenEntries";
-import { EntryMap } from "../type/Entry";
-import { EntrySchedules } from "../type/EntrySchedules";
+import { minutesBetweenSolo } from "../../constants/MinutesBetweenEntries";
+import { EntryMap } from "../../type/Entry";
+import { EntrySchedules } from "../../type/EntrySchedules";
 
 export const BuildEntrySchedules = (
   entryIds: string[],

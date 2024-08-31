@@ -1,4 +1,4 @@
-import { DividedEntryForRow } from "../type/DividedEntryForRow";
+import { DividedEntryForRow } from "../../type/DividedEntryForRow";
 import { BuildEntryForDisplay } from "../utils/BuildEntryForDisplay";
 
 interface Props {

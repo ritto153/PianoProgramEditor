@@ -1,11 +1,11 @@
 import { useMemo } from "react";
-import EntryTableTitle from "./EntryTableTitle";
-import EntryTable from "./EntryTable";
-import EntryTableAddingButton from "./EntryTableAddingButton";
-import EntryTableRemovingButton from "./EntryTableRemovingButton";
+import EntryTableTitle from "../partHeader/components/EntryTableTitle";
+import EntryTable from "../partContents/components/EntryTable";
+import EntryTableAddingButton from "../partFooter/components/EntryTableAddingButton";
+import EntryTableRemovingButton from "../partFooter/components/EntryTableRemovingButton";
 import { useEntries } from "../EntryProvider";
 import { useParts } from "../PartProvider";
-import { BuildEntrySchedules } from "../utils/BuildEntrySchedules";
+import { BuildEntrySchedules } from "../partHeader/utils/BuildEntrySchedules";
 import styled from "styled-components";
 
 type Props = {

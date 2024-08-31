@@ -1,11 +1,11 @@
-import { Entry, EntryMap } from "../type/Entry";
+import { Entry, EntryMap } from "../../type/Entry";
 import {
   DividedEntryForRow,
   DividedTopEntry,
   DividedSubordinaryEntry,
-} from "../type/DividedEntryForRow";
-import { EntrySchedules } from "../type/EntrySchedules";
-import { StringifyDate } from "./StringifyDate";
+} from "../../type/DividedEntryForRow";
+import { EntrySchedules } from "../../type/EntrySchedules";
+import { StringifyDate } from "../../utils/StringifyDate";
 
 type PropsForBuildEntriesForTableRow = {
   entryIds: string[];

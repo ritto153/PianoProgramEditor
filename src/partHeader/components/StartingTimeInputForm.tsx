@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 import Form from "react-bootstrap/Form";
-import { PartMap } from "../type/Part";
-import { useParts } from "../PartProvider";
-import { randomStandardDate } from "../constants/RandomStardardDate";
+import { PartMap } from "../../type/Part";
+import { useParts } from "../../PartProvider";
+import { randomStandardDate } from "../../constants/RandomStardardDate";
 
 type Props = {
   partId: string;

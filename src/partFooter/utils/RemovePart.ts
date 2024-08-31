@@ -1,4 +1,4 @@
-import { PartMap } from "../type/Part";
+import { PartMap } from "../../type/Part";
 
 export const RemovePart = (partId: string, partMap: PartMap) => {
   const originalPart = partMap[partId];
