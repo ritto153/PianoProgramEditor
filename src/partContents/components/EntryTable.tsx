@@ -19,7 +19,6 @@ const StyledTable = styled.table`
   text-align: center;
   table-layout: fixed;
   border-collapse: collapse;
-  border: 2px solid #555555;
   margin: 15px 0 15px 0;
   td {
     border: 1px solid #dee2e6;
@@ -30,7 +29,6 @@ const StyledTable = styled.table`
   }
   thead th {
     padding: 5px;
-    border-bottom: 2px solid #555555;
     background-color: #BBBBBB;
   }
   tbody tr:hover {
