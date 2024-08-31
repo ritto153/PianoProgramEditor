@@ -31,7 +31,7 @@ export default function EntryTableRow(props: Props) {
       {...draggableProvided.dragHandleProps}
     >
       {Object.entries(entryForDisplay).map(([_, value], i) => (
-        <th key={i}>{value}</th>
+        <td key={i}>{value}</td>
       ))}
     </tr>
   );
