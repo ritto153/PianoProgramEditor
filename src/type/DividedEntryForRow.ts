@@ -7,7 +7,7 @@ export type DividedTopEntry = {
   index: number;
   lastName: string;
   firstName: string;
-  affiliation: string;
+  faculty: string;
   grade: number;
   composer: string;
   work: string;
@@ -23,7 +23,7 @@ export type DividedSubordinaryEntry = {
   index: null;
   lastName: string | null;
   firstName: string | null;
-  affiliation: string | null;
+  faculty: string | null;
   grade: number | null;
   composer: string | null;
   work: string | null;

@@ -29,7 +29,7 @@ export const entryAttributesInfo = {
     columnWidth: 60,
     displayName: "名",
   },
-  affiliation: {
+  faculty: {
     columnIndex: 6,
     columnWidth: 80,
     displayName: "所属",

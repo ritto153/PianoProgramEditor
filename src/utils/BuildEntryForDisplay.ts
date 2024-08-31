@@ -14,7 +14,7 @@ export const BuildEntryForDisplay = (
   index: index,
   lastName: dividedEntryForRow.lastName,
   firstName: dividedEntryForRow.firstName,
-  affiliation: dividedEntryForRow.affiliation,
+  faculty: dividedEntryForRow.faculty,
   grade: dividedEntryForRow.grade,
   composer: dividedEntryForRow.composer,
   work: dividedEntryForRow.work,

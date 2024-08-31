@@ -8,14 +8,14 @@
           "id": "majima",
           "lastName": "真島",
           "firstName": "吾朗",
-          "affiliation": "建築",
+          "faculty": "建築",
           "grade": 4
         },
         {
           "id": "kiryu",
           "lastName": "桐生",
           "firstName": "一馬",
-          "affiliation": "経営",
+          "faculty": "経営",
           "grade": 2
         }
       ],
@@ -37,21 +37,21 @@
           "id": "kiryu",
           "lastName": "桐生",
           "firstName": "一馬",
-          "affiliation": "経営",
+          "faculty": "経営",
           "grade": 2
         },
         {
           "id": "tachibana",
           "lastName": "立華",
           "firstName": "鉄",
-          "affiliation": "医",
+          "faculty": "医",
           "grade": 5
         },
         {
           "id": "makimura",
           "lastName": "マキムラ",
           "firstName": "マコト",
-          "affiliation": "体育",
+          "faculty": "体育",
           "grade": 2
         }
       ],
@@ -73,7 +73,7 @@
           "id": "majima",
           "lastName": "真島",
           "firstName": "吾朗",
-          "affiliation": "建築",
+          "faculty": "建築",
           "grade": 4
         }
       ],
@@ -95,7 +95,7 @@
           "id": "kiryu",
           "lastName": "桐生",
           "firstName": "一馬",
-          "affiliation": "経営",
+          "faculty": "経営",
           "grade": 2
         }
       ],
@@ -117,7 +117,7 @@
           "id": "nishiki",
           "lastName": "錦山",
           "firstName": "彰",
-          "affiliation": "医",
+          "faculty": "医",
           "grade": 2
         }
       ],
@@ -139,7 +139,7 @@
           "id": "shimano",
           "lastName": "嶋野",
           "firstName": "太",
-          "affiliation": "関西",
+          "faculty": "関西",
           "grade": 6
         }
       ],
@@ -161,7 +161,7 @@
           "id": "kazama",
           "lastName": "風間",
           "firstName": "新太郎",
-          "affiliation": "理",
+          "faculty": "理",
           "grade": 6
         }
       ],

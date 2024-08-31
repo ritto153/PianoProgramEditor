@@ -5,7 +5,7 @@ export type Entry = {
     id: string;
     lastName: string;
     firstName: string;
-    affiliation: string;
+    faculty: string;
     grade: number;
   }[];
   works: {
@@ -28,7 +28,7 @@ export type EntryForDisplay = {
   index: number;
   lastName: string | null;
   firstName: string | null;
-  affiliation: string | null;
+  faculty: string | null;
   grade: number | null;
   composer: string | null;
   work: string | null;
