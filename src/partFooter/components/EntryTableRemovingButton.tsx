@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import Button from "react-bootstrap/Button";
 import { useParts } from "../../PartProvider";
 import { RemovePart } from "../utils/RemovePart";
