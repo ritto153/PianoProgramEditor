@@ -6,6 +6,7 @@ import { useParts } from "./PartProvider";
 import { DropResult } from "./type/DropResult";
 import { PartMap } from "./type/Part";
 import styled from "styled-components";
+import { useEffect } from "react";
 
 const Wrapper = styled.div`
   margin: 1em;
@@ -21,6 +22,10 @@ export default function App() {
   const sortedParts = Object.values(partMap).sort(
     (a, b) => a.partNum - b.partNum
   );
+
+  useEffect(()=>{
+    localStorage.setItem('partMap', JSON.stringify(partMap));
+  }, [partMap]);
 
   return (
     <Wrapper>
