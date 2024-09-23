@@ -11,7 +11,7 @@ const StyledTable = styled.table`
   text-align: center;
   table-layout: fixed;
   border-collapse: collapse;
-  margin: 15px 0 15px 0;
+  margin-bottom: 10px;
   td {
     border: 1px solid #dee2e6;
     padding-top: 3px;

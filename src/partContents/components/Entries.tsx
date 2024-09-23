@@ -13,7 +13,7 @@ const StyledTable = styled.table`
   text-align: center;
   table-layout: fixed;
   border-collapse: collapse;
-  margin: 15px 0 15px 0;
+  margin-top: 15px;
 `;
 
 const StyledEntries = styled.div`
