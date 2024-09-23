@@ -45,7 +45,7 @@ export default function SingleEntryTable(props: Props): JSX.Element {
         index,
         stringStartingTime,
       }),
-    [entryId, entryMap]
+    [entryId, entryMap, index, stringStartingTime]
   );
 
   const rowCount = entriesForTableRow.length;
