@@ -14,17 +14,20 @@ const StyledTable = styled.table`
   table-layout: fixed;
   border-collapse: collapse;
   margin: 15px 0 15px 0;
-  thead th {
-    padding: 5px;
-    background-color: #bbbbbb;
-  }
 `;
 
 const StyledEntries = styled.div`
   table:hover {
     background-color: #cccccc;
   }
-`
+`;
+
+const ThWithWidth = styled.td<{ $width: number }>`
+  width: ${(props) => props.$width}px;
+  padding: 5px;
+  background-color: #bbbbbb;
+  font-weight: bold
+`;
 
 type Props = {
   partId: string;
@@ -46,8 +49,10 @@ export default function Entries(props: Props) {
           <tr>
             {Object.entries(entryAttributesInfo)
               .sort((a, b) => a[1]["columnIndex"] - b[1]["columnIndex"])
-              .map(([_, { displayName }]) => (
-                <th key={displayName}>{displayName}</th>
+              .map(([_, { displayName, columnWidthPx }]) => (
+                <ThWithWidth key={displayName} $width={columnWidthPx}>
+                  {displayName}
+                </ThWithWidth>
               ))}
           </tr>
         </thead>

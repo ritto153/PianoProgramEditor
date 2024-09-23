@@ -2,6 +2,9 @@ import { useEntries } from "../../EntryProvider";
 import { useMemo } from "react";
 import styled from "styled-components";
 import { DivideEntryForRow } from "../utils/BuildEntriesForTableRow";
+import { entryAttributesInfo } from "../../constants/EntryAttributesInfo";
+import { EntryForDisplay } from "../../type/Entry";
+import { DividedEntryForRow } from "../../type/DividedEntryForRow";
 
 const StyledTable = styled.table`
   width: 100%;
@@ -16,6 +19,10 @@ const StyledTable = styled.table`
     letter-spacing: 1px;
     font-weight: bold;
   }
+`;
+
+const TdWithWidth = styled.td<{ $width: number }>`
+  width: ${(props) => props.$width}px;
 `;
 
 type Props = {
@@ -52,37 +59,76 @@ export default function SingleEntryTable(props: Props): JSX.Element {
       {...draggableProvided.draggableProps}
       {...draggableProvided.dragHandleProps}
     >
-      {entriesForTableRow.map((entry, i) => {
-        if (i === 0) {
-          return (
-            <tr>
-              <td rowSpan={rowCount}>{entry.playMinutes}</td>
-              <td rowSpan={rowCount}>{entry.startingTime}</td>
-              <td rowSpan={rowCount}>{partNum}</td>
-              <td rowSpan={rowCount}>{index}</td>
-              <td>{entry.lastName}</td>
-              <td>{entry.firstName}</td>
-              <td>{entry.faculty}</td>
-              <td>{entry.grade}</td>
-              <td>{entry.composer}</td>
-              <td>{entry.work}</td>
-              <td>{entry.memo}</td>
-            </tr>
-          );
-        } else {
-          return (
-            <tr>
-              <td>{entry.lastName}</td>
-              <td>{entry.firstName}</td>
-              <td>{entry.faculty}</td>
-              <td>{entry.grade}</td>
-              <td>{entry.composer}</td>
-              <td>{entry.work}</td>
-              <td>{entry.memo}</td>
-            </tr>
-          );
-        }
-      })}
+      <tbody>
+        {entriesForTableRow.map((entry, i) => {
+          if (i === 0) {
+            return (
+              <tr>
+                <TdWithAttribute
+                  entry={entry}
+                  attribute="playMinutes"
+                  rowSpan={rowCount}
+                />
+                <TdWithAttribute
+                  entry={entry}
+                  attribute="startingTime"
+                  rowSpan={rowCount}
+                />
+                <TdWithAttribute
+                  entry={entry}
+                  attribute="partNum"
+                  rowSpan={rowCount}
+                />
+                <TdWithAttribute
+                  entry={entry}
+                  attribute="index"
+                  rowSpan={rowCount}
+                />
+                <TdWithAttribute entry={entry} attribute="lastName" />
+                <TdWithAttribute entry={entry} attribute="firstName" />
+                <TdWithAttribute entry={entry} attribute="faculty" />
+                <TdWithAttribute entry={entry} attribute="grade" />
+                <TdWithAttribute entry={entry} attribute="composer" />
+                <TdWithAttribute entry={entry} attribute="work" />
+                <TdWithAttribute entry={entry} attribute="memo" />
+              </tr>
+            );
+          } else {
+            return (
+              <tr>
+                <TdWithAttribute entry={entry} attribute="lastName" />
+                <TdWithAttribute entry={entry} attribute="firstName" />
+                <TdWithAttribute entry={entry} attribute="faculty" />
+                <TdWithAttribute entry={entry} attribute="grade" />
+                <TdWithAttribute entry={entry} attribute="composer" />
+                <TdWithAttribute entry={entry} attribute="work" />
+                <TdWithAttribute entry={entry} attribute="memo" />
+              </tr>
+            );
+          }
+        })}
+      </tbody>
     </StyledTable>
+  );
+}
+
+type PropsForTdWithAttribute = {
+  entry: DividedEntryForRow;
+  attribute: keyof EntryForDisplay;
+  rowSpan?: number;
+};
+
+function TdWithAttribute(props: PropsForTdWithAttribute) {
+  const { entry, attribute, rowSpan } = props;
+
+  const rowSpanNum = rowSpan ? rowSpan : 1;
+
+  return (
+    <TdWithWidth
+      $width={entryAttributesInfo[attribute].columnWidthPx}
+      rowSpan={rowSpanNum}
+    >
+      {entry[attribute]}
+    </TdWithWidth>
   );
 }
