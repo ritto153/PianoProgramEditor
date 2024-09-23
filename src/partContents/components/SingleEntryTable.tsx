@@ -2,7 +2,7 @@ import { useEntries } from "../../EntryProvider";
 import { useMemo } from "react";
 import styled from "styled-components";
 import { EntrySchedules } from "../../type/EntrySchedules";
-import { BuildEntriesForTableRow } from "../utils/BuildEntriesForTableRow";
+import { DivideEntryForRow } from "../utils/BuildEntriesForTableRow";
 
 const StyledTable = styled.table`
   width: 100%;
@@ -27,21 +27,23 @@ type Props = {
   entryId: string;
   index: number;
   partNum: number;
-  entrySchedules: EntrySchedules;
+  stringStartingTime: string;
 };
 
 export default function SingleEntryTable(props: Props): JSX.Element {
-  const { draggableProvided, entryId, index, partNum, entrySchedules } = props;
+  const { draggableProvided, entryId, index, partNum, stringStartingTime } =
+    props;
 
   const { entryMap } = useEntries();
+  const entry = entryMap[entryId];
 
   const entriesForTableRow = useMemo(
     () =>
-      BuildEntriesForTableRow({
-        entryIds: [entryId],
-        entryMap: entryMap,
-        partNum: partNum,
-        entrySchedules: entrySchedules,
+      DivideEntryForRow({
+        entry,
+        partNum,
+        index,
+        stringStartingTime,
       }),
     [entryId, entryMap]
   );

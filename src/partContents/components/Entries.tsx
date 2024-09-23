@@ -6,6 +6,7 @@ import { entryAttributesInfo } from "../../constants/EntryAttributesInfo";
 import { EntrySchedules } from "../../type/EntrySchedules";
 import SingleEntryTable from "./SingleEntryTable";
 import styled from "styled-components";
+import { StringifyDate } from "../../utils/StringifyDate";
 
 const StyledTable = styled.table`
   width: 100%;
@@ -15,10 +16,9 @@ const StyledTable = styled.table`
   margin: 15px 0 15px 0;
   thead th {
     padding: 5px;
-    background-color: #BBBBBB;
+    background-color: #bbbbbb;
   }
 `;
-
 
 type Props = {
   partId: string;
@@ -38,11 +38,11 @@ export default function Entries(props: Props) {
       <StyledTable>
         <thead>
           <tr>
-          {Object.entries(entryAttributesInfo)
-            .sort((a, b) => a[1]["columnIndex"] - b[1]["columnIndex"])
-            .map(([_, { displayName }]) => (
-              <th key={displayName}>{displayName}</th>
-            ))}
+            {Object.entries(entryAttributesInfo)
+              .sort((a, b) => a[1]["columnIndex"] - b[1]["columnIndex"])
+              .map(([_, { displayName }]) => (
+                <th key={displayName}>{displayName}</th>
+              ))}
           </tr>
         </thead>
       </StyledTable>
@@ -62,7 +62,9 @@ export default function Entries(props: Props) {
                         entryId: entryId,
                         index: i + 1,
                         partNum: part.partNum,
-                        entrySchedules: entrySchedules,
+                        stringStartingTime: StringifyDate(
+                          entrySchedules[entryId].startingTime
+                        ),
                       });
                     }}
                   </Draggable>
