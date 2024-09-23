@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import EntryTableTitle from "../partHeader/components/EntryTableTitle";
-import EntryTable from "../partContents/components/EntryTable";
+import Entries from "../partContents/components/Entries";
 import EntryTableAddingButton from "../partFooter/components/EntryTableAddingButton";
 import EntryTableRemovingButton from "../partFooter/components/EntryTableRemovingButton";
 import { useEntries } from "../EntryProvider";
@@ -43,7 +43,7 @@ export default function Part(props: Props) {
   const wrapperComponent = (
     <Wrapper>
       <EntryTableTitle partId={partId} endingTime={partEndingTime} />
-      <EntryTable partId={partId} entrySchedules={entrySchedules} />
+      <Entries partId={partId} entrySchedules={entrySchedules} />
       <EntryTableAddingButton partId={partId} />
       {
         // エントリー数が0件の部は削除ボタンを表示する

@@ -3,18 +3,15 @@ import { DragDropContext } from "react-beautiful-dnd";
 import Part from "./components/Part";
 import CsvDownloadButton from "./csvDownload/CsvDownloadButton";
 import { ReorderEntryInPartMap } from "./utils/ReorderEntryInPartMap";
-import { useEntries } from "./EntryProvider";
 import { useParts } from "./PartProvider";
 import { DropResult } from "./type/DropResult";
-import { EntryMap } from "./type/Entry";
 import { PartMap } from "./type/Part";
 
 export default function App() {
   const { partMap, setPartMap } = useParts();
-  const { entryMap } = useEntries();
 
   const onDragEnd = (result: DropResult) => {
-    setPartMapOnDragEnd(result, partMap, entryMap, setPartMap);
+    setPartMapOnDragEnd(result, partMap, setPartMap);
   };
 
   const sortedParts = Object.values(partMap).sort(
@@ -36,7 +33,6 @@ export default function App() {
 function setPartMapOnDragEnd(
   dropResult: DropResult,
   initialPartMap: PartMap,
-  entryMap: EntryMap,
   setPartMap: React.Dispatch<React.SetStateAction<PartMap>>
 ): void {
   // 表の外にドロップされた場合
@@ -51,7 +47,6 @@ function setPartMapOnDragEnd(
 
   const reorderedPartMap = ReorderEntryInPartMap({
     partMap: initialPartMap,
-    entryMap: entryMap,
     draggableId: dropResult.draggableId,
     droppableId: dropResult.source.droppableId,
     destination: dropResult.destination,
