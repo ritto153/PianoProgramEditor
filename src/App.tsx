@@ -1,4 +1,3 @@
-import "./App.css";
 import { DragDropContext } from "react-beautiful-dnd";
 import Part from "./components/Part";
 import CsvDownloadButton from "./csvDownload/CsvDownloadButton";
@@ -6,6 +5,11 @@ import { ReorderEntryInPartMap } from "./utils/ReorderEntryInPartMap";
 import { useParts } from "./PartProvider";
 import { DropResult } from "./type/DropResult";
 import { PartMap } from "./type/Part";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  margin: 1em;
+`
 
 export default function App() {
   const { partMap, setPartMap } = useParts();
@@ -19,14 +23,14 @@ export default function App() {
   );
 
   return (
-    <div className="App">
+    <Wrapper>
       <CsvDownloadButton/>
       <DragDropContext onDragEnd={onDragEnd}>
         {sortedParts.map((part) => (
           <Part key={part.id} partId={part.id} />
         ))}
       </DragDropContext>
-    </div>
+    </Wrapper>
   );
 }
 
