@@ -16,6 +16,12 @@ const Wrapper = styled.div`
   margin-bottom: 1.5em;
 `;
 
+const Footer = styled.div`
+  margin-top: 10px;
+  display: flex;
+  gap: 0.5em;
+`;
+
 export default function Part(props: Props) {
   const { partId } = props;
 
@@ -44,14 +50,16 @@ export default function Part(props: Props) {
     <Wrapper>
       <EntryTableTitle partId={partId} endingTime={partEndingTime} />
       <Entries partId={partId} entrySchedules={entrySchedules} />
-      <EntryTableAddingButton partId={partId} />
-      {
-        // エントリー数が0件の部は削除ボタンを表示する
-        // 配置前のエントリーを格納するテーブルには削除ボタンは表示しない
-        part.entryIds.length === 0 && part.partNum !== 0 ? (
-          <EntryTableRemovingButton partId={partId} />
-        ) : null
-      }
+      <Footer>
+        <EntryTableAddingButton partId={partId} />
+        {
+          // エントリー数が0件の部は削除ボタンを表示する
+          // 配置前のエントリーを格納するテーブルには削除ボタンは表示しない
+          part.entryIds.length === 0 && part.partNum !== 0 ? (
+            <EntryTableRemovingButton partId={partId} />
+          ) : null
+        }
+      </Footer>
     </Wrapper>
   );
   const memoWrapperComponent = useMemo(() => {
