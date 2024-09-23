@@ -20,6 +20,12 @@ const StyledTable = styled.table`
   }
 `;
 
+const StyledEntries = styled.div`
+  table:hover {
+    background-color: #cccccc;
+  }
+`
+
 type Props = {
   partId: string;
   entrySchedules: EntrySchedules;
@@ -49,7 +55,7 @@ export default function Entries(props: Props) {
       {
         <Droppable droppableId={partId}>
           {(droppableProvided) => (
-            <div
+            <StyledEntries
               ref={droppableProvided.innerRef}
               {...droppableProvided.droppableProps}
             >
@@ -71,7 +77,7 @@ export default function Entries(props: Props) {
                 );
               })}
               {droppableProvided.placeholder}
-            </div>
+            </StyledEntries>
           )}
         </Droppable>
       }

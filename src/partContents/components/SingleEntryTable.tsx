@@ -1,7 +1,6 @@
 import { useEntries } from "../../EntryProvider";
 import { useMemo } from "react";
 import styled from "styled-components";
-import { EntrySchedules } from "../../type/EntrySchedules";
 import { DivideEntryForRow } from "../utils/BuildEntriesForTableRow";
 
 const StyledTable = styled.table`
@@ -16,9 +15,6 @@ const StyledTable = styled.table`
     padding-bottom: 3px;
     letter-spacing: 1px;
     font-weight: bold;
-  }
-  tbody tr:hover {
-    background-color: #bbbbbb;
   }
 `;
 
