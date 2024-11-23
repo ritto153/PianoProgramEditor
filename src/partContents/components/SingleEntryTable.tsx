@@ -25,6 +25,25 @@ const TdWithWidth = styled.td<{ $width: number }>`
   width: ${(props) => props.$width}px;
 `;
 
+// 1エントリーで1回だけ表示させる列の属性
+const attributesPerEntry: (keyof EntryForDisplay)[] = [
+  "playMinutes",
+  "startingTime",
+  "partNum",
+  "index",
+];
+
+// 1エントリー内で演奏者ごとに表示させる列の属性
+const attributesPerPerson: (keyof EntryForDisplay)[] = [
+  "lastName",
+  "firstName",
+  "faculty",
+  "grade",
+  "composer",
+  "work",
+  "memo",
+];
+
 type Props = {
   draggableProvided: any;
   entryId: string;
@@ -63,46 +82,34 @@ export default function SingleEntryTable(props: Props): JSX.Element {
         {entriesForTableRow.map((entry, i) => {
           if (i === 0) {
             return (
-              <tr>
-                <TdWithAttribute
-                  entry={entry}
-                  attribute="playMinutes"
-                  rowSpan={rowCount}
-                />
-                <TdWithAttribute
-                  entry={entry}
-                  attribute="startingTime"
-                  rowSpan={rowCount}
-                />
-                <TdWithAttribute
-                  entry={entry}
-                  attribute="partNum"
-                  rowSpan={rowCount}
-                />
-                <TdWithAttribute
-                  entry={entry}
-                  attribute="index"
-                  rowSpan={rowCount}
-                />
-                <TdWithAttribute entry={entry} attribute="lastName" />
-                <TdWithAttribute entry={entry} attribute="firstName" />
-                <TdWithAttribute entry={entry} attribute="faculty" />
-                <TdWithAttribute entry={entry} attribute="grade" />
-                <TdWithAttribute entry={entry} attribute="composer" />
-                <TdWithAttribute entry={entry} attribute="work" />
-                <TdWithAttribute entry={entry} attribute="memo" />
+              <tr key={i}>
+                {attributesPerEntry.map((attribute) => (
+                  <TdWithAttribute
+                    entry={entry}
+                    attribute={attribute}
+                    rowSpan={rowCount}
+                    key={attribute}
+                  />
+                ))}
+                {attributesPerPerson.map((attribute) => (
+                  <TdWithAttribute
+                    entry={entry}
+                    attribute={attribute}
+                    key={attribute}
+                  />
+                ))}
               </tr>
             );
           } else {
             return (
-              <tr>
-                <TdWithAttribute entry={entry} attribute="lastName" />
-                <TdWithAttribute entry={entry} attribute="firstName" />
-                <TdWithAttribute entry={entry} attribute="faculty" />
-                <TdWithAttribute entry={entry} attribute="grade" />
-                <TdWithAttribute entry={entry} attribute="composer" />
-                <TdWithAttribute entry={entry} attribute="work" />
-                <TdWithAttribute entry={entry} attribute="memo" />
+              <tr key={i}>
+                {attributesPerPerson.map((attribute) => (
+                  <TdWithAttribute
+                    entry={entry}
+                    attribute={attribute}
+                    key={attribute}
+                  />
+                ))}
               </tr>
             );
           }
