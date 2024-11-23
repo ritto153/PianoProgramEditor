@@ -1,6 +1,6 @@
 # 概要
 ピアノの発表会のプログラムを作るサイトです。
-React * Typescript で構成された、フロントエンドのみのページです。
+React * Typescript で構成された、フロントエンドのみのページです。  
 https://ritto153.github.io/PianoProgramEditor/
 
 # 環境構築
