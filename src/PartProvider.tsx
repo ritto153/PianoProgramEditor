@@ -3,7 +3,20 @@ import response from "./data/response.json";
 import { PartMapBuilder } from "./utils/PartMapBuilder";
 import { PartMap } from "./type/Part";
 
-const initialPartMap = PartMapBuilder(response);
+/**
+ * partMap の初期値
+ * localStorage の partMap にデータが保存されていればそれを採用する
+ */
+let initialPartMap: PartMap;
+const partMapInLocalStorage = localStorage.getItem("partMap");
+if (partMapInLocalStorage === null) {
+  initialPartMap = PartMapBuilder(response);
+} else {
+  initialPartMap = JSON.parse(partMapInLocalStorage);
+  for (let part of Object.values(initialPartMap)) {
+    part.startingTime = part.startingTime ? new Date(part.startingTime) : null
+  }
+}
 
 interface PartContextValue {
   partMap: PartMap;
