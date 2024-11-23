@@ -7,6 +7,7 @@ import styled from "styled-components";
 
 const AlignRightDiv = styled.div`
   text-align: right;
+  margin: 1em 0
 `;
 
 export default function CsvDownloadButton() {
