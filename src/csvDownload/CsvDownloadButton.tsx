@@ -27,7 +27,7 @@ export default function CsvDownloadButton() {
   return (
     <AlignRightDiv>
       <CSVLink data={csvData} filename="program.csv">
-        <Button variant="success">CSV形式でダウンロード</Button>
+        <Button variant="secondary">CSV形式でダウンロード</Button>
       </CSVLink>
     </AlignRightDiv>
   );

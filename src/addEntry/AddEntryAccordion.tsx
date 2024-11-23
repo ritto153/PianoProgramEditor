@@ -10,7 +10,7 @@ const Wrapper = styled.div`
 const StyledAccordionHeader = styled.div`
   font-weight: bold;
   font-size: 1.2em;
-  padding: 0.5em 3em;
+  padding: 0.7em 2.5em;
   color: #ffffff;
   background-color: #006666;
   border-radius: 10px;

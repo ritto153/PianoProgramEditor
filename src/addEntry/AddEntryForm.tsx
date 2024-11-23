@@ -1,35 +1,23 @@
-import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
 import styled from "styled-components";
+import Button from 'react-bootstrap/Button';
+import AddWorkTable from "./AddWorkTable";
+import AddParticipantTable from "./AddParticipantTable";
 
-const StyledFormGroup = styled(Form.Group)`
-  margin: 10px 0;
+const RightAlignedDiv = styled.div`
+  text-align: right;
 `
 
 export default function AddEntryForm() {
   return (
     <Form>
-      <StyledFormGroup>
-        <Row>
-          <Col sm={1}>
-            <Form.Label column>作曲家</Form.Label>
-          </Col>
-          <Col sm={2}>
-            <Form.Control type="text"></Form.Control>
-          </Col>
-        </Row>
-      </StyledFormGroup>
-      <StyledFormGroup>
-        <Row>
-          <Col sm={1}>
-            <Form.Label column>曲目</Form.Label>
-          </Col>
-          <Col sm={8}>
-            <Form.Control type="text"></Form.Control>
-          </Col>
-        </Row>
-      </StyledFormGroup>
+      <b>演奏者</b>
+      <AddParticipantTable/>
+      <b>曲目</b>
+      <AddWorkTable/>
+      <RightAlignedDiv>
+      <Button variant="success">この内容でエントリーを追加</Button>
+      </RightAlignedDiv>
     </Form>
   );
 }
