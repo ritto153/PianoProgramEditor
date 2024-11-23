@@ -3,6 +3,8 @@
 React * Typescript で構成された、フロントエンドのみのページです。  
 https://ritto153.github.io/PianoProgramEditor/
 
+![image](https://github.com/user-attachments/assets/1ba3beb7-b14f-4dc0-bf37-0d5b59ae2245)
+
 # 環境構築
 1. パッケージをインストール  
 `npm install`  
