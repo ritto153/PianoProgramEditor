@@ -1,7 +1,7 @@
 import Accordion from "react-bootstrap/Accordion";
 import styled from "styled-components";
 import { FaRegPlusSquare } from "react-icons/fa";
-import AddEntryForm from "./AddEntryForm";
+import EntryAdditionForm from "./EntryAdditionForm";
 
 const Wrapper = styled.div`
   margin: 1em 0;
@@ -16,7 +16,7 @@ const StyledAccordionHeader = styled.div`
   border-radius: 10px;
 `
 
-export default function AddEntryAccordion() {
+export default function EntryAdditionAccordion() {
   return (
     <Wrapper>
       <Accordion defaultActiveKey="0">
@@ -28,7 +28,7 @@ export default function AddEntryAccordion() {
             </StyledAccordionHeader>
           </Accordion.Header>
           <Accordion.Body>
-            <AddEntryForm/>
+            <EntryAdditionForm/>
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>

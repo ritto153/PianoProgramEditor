@@ -1,7 +1,7 @@
 import Table from "react-bootstrap/Table";
 import { FaRegPlusSquare, FaRegTrashAlt, FaRegCopy } from "react-icons/fa";
 
-export default function AddWorkTable() {
+export default function WorkAdditionTable() {
   return (
     <Table>
       <thead>
