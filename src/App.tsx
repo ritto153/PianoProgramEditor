@@ -1,7 +1,7 @@
 import { DragDropContext } from "react-beautiful-dnd";
 import Part from "./components/Part";
 import CsvDownloadButton from "./csvDownload/CsvDownloadButton";
-import AddEntryAccordion from "./addEntry/AddEntryAccordion";
+import AddEntryAccordion from "./entryAddition/AddEntryAccordion";
 import { ReorderEntryInPartMap } from "./utils/ReorderEntryInPartMap";
 import { useParts } from "./PartProvider";
 import { DropResult } from "./type/DropResult";

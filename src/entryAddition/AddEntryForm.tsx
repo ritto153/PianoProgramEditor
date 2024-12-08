@@ -2,7 +2,7 @@ import Form from "react-bootstrap/Form";
 import styled from "styled-components";
 import Button from 'react-bootstrap/Button';
 import AddWorkTable from "./AddWorkTable";
-import AddParticipantTable from "./AddParticipantTable";
+import ParticipantAdditionTable from "./ParticipantAdditionTable";
 
 const RightAlignedDiv = styled.div`
   text-align: right;
@@ -12,7 +12,7 @@ export default function AddEntryForm() {
   return (
     <Form>
       <b>演奏者</b>
-      <AddParticipantTable/>
+      <ParticipantAdditionTable/>
       <b>曲目</b>
       <AddWorkTable/>
       <RightAlignedDiv>
