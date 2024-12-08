@@ -17,6 +17,21 @@ export type Entry = {
   memo: string;
 };
 
+export type InputtingEntryToAdd = {
+  participants: {
+    lastName: string | null;
+    firstName: string | null;
+    faculty: string | null;
+    grade: number | null;
+  }[];
+  works: {
+    composer: string | null;
+    name: string | null;
+  }[];
+  time: number | null;
+  memo: string | null;
+}
+
 export type EntryMap = {
   [id: string]: Entry;
 };
