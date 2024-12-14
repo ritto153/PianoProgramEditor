@@ -1,6 +1,9 @@
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
+import { Button, Modal } from "react-bootstrap";
+import { useState } from "react";
 import styled from "styled-components";
 import WorkAdditionTable from "./WorkAdditionTable";
+import ResetConfirmationModal from "./ResetConfirmationModal";
 import ParticipantAdditionTable from "./ParticipantAdditionTable";
 import { blankEntry } from "../constants/blankEntry";
 import { InputtingEntryToAdd } from "../../type/Entry";
@@ -28,8 +31,29 @@ const StyledTextarea = styled.textarea`
   padding: 0.375em 0.75em;
 `;
 
+const RightAlinedDiv = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+`;
+
+const StyledResetButtonDiv = styled.div`
+  button {
+    background-color: white;
+    color: red;
+    border-radius: 5px;
+    border-color: red;
+    padding: 1em;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  button:hover {
+    background-color: red;
+    color: white;
+  }
+`;
+
 const StyledSubmitButtonDiv = styled.div`
-  text-align: right;
   button {
     background-color: white;
     color: darkgreen;
@@ -51,6 +75,8 @@ export default function EntryAdditionForm() {
   });
   const { register, handleSubmit } = methodsOfUseForm;
 
+  const [shownResetModal, setShownResetModal] = useState(false);
+
   const onSubmit: SubmitHandler<InputtingEntryToAdd> = (data) =>
     console.log(data);
 
@@ -71,10 +97,21 @@ export default function EntryAdditionForm() {
         <FormTitle>メモ</FormTitle>
         <StyledTextarea {...register("memo")} />
 
-        <StyledSubmitButtonDiv>
-          <button type="submit">この内容でエントリーを追加</button>
-        </StyledSubmitButtonDiv>
+        <RightAlinedDiv>
+          <StyledResetButtonDiv>
+            <button onClick={() => setShownResetModal(true)}>リセット</button>
+          </StyledResetButtonDiv>
+
+          <StyledSubmitButtonDiv>
+            <button type="submit">この内容でエントリーを追加</button>
+          </StyledSubmitButtonDiv>
+        </RightAlinedDiv>
       </form>
+
+      <ResetConfirmationModal
+        shownResetModal={shownResetModal}
+        setShownResetModal={setShownResetModal}
+      />
     </FormProvider>
   );
 }
