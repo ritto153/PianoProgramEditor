@@ -27,7 +27,7 @@ export default function ApplyAddingEntryToEntry(
     partId: "0",
     participants,
     works,
-    time: addingEntry.time?? 0,
+    time: Number(addingEntry.time),
     memo: addingEntry.memo,
   };
 }

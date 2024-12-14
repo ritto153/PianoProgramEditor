@@ -75,7 +75,7 @@ export default function EntryAdditionForm() {
   const methodsOfUseForm = useForm<InputtingEntryToAdd>({
     defaultValues: blankEntry,
   });
-  const { register, handleSubmit } = methodsOfUseForm;
+  const { register, handleSubmit, reset } = methodsOfUseForm;
 
   const { setEntryMap } = useEntries();
   const { setPartMap } = useParts();
@@ -90,6 +90,7 @@ export default function EntryAdditionForm() {
         entryIds: [...prevPartMap[entry.partId].entryIds, entry.id],
       },
     }));
+    reset();
   };
 
   const [shownResetModal, setShownResetModal] = useState(false);

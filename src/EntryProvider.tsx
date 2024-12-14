@@ -3,7 +3,18 @@ import response from "./data/response.json";
 import { EntryMapBuilder } from "./utils/EntryMapBuilder";
 import { EntryMap } from "./type/Entry";
 
-const initialNewEntryMap = EntryMapBuilder(response.entries);
+
+/**
+ * entryMap の初期値
+ * localStorage の entryMap にデータが保存されていればそれを採用する
+ */
+let initialNewEntryMap: EntryMap;
+const entryMapInLocalStorage = localStorage.getItem("entryMap");
+if (entryMapInLocalStorage === null) {
+  initialNewEntryMap = EntryMapBuilder(response.entries);
+} else {
+  initialNewEntryMap = JSON.parse(entryMapInLocalStorage);
+}
 
 interface EntryContextValue {
   entryMap: EntryMap;

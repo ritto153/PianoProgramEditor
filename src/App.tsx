@@ -3,6 +3,7 @@ import Part from "./components/Part";
 import CsvDownloadButton from "./csvDownload/CsvDownloadButton";
 import EntryAdditionAccordion from "./entryAddition/components/EntryAdditionAccordion";
 import { ReorderEntryInPartMap } from "./utils/ReorderEntryInPartMap";
+import { useEntries } from "./EntryProvider";
 import { useParts } from "./PartProvider";
 import { DropResult } from "./type/DropResult";
 import { PartMap } from "./type/Part";
@@ -14,6 +15,7 @@ const Wrapper = styled.div`
 `
 
 export default function App() {
+  const { entryMap } = useEntries();
   const { partMap, setPartMap } = useParts();
 
   const onDragEnd = (result: DropResult) => {
@@ -26,6 +28,7 @@ export default function App() {
 
   useEffect(()=>{
     localStorage.setItem('partMap', JSON.stringify(partMap));
+    localStorage.setItem('entryMap', JSON.stringify(entryMap));
   }, [partMap]);
 
   return (
