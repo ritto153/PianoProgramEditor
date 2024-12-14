@@ -1,20 +1,55 @@
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 import styled from "styled-components";
-import Button from "react-bootstrap/Button";
 import WorkAdditionTable from "./WorkAdditionTable";
 import ParticipantAdditionTable from "./ParticipantAdditionTable";
 import { blankEntry } from "../constants/blankEntry";
 import { InputtingEntryToAdd } from "../../type/Entry";
 
-const RightAlignedDiv = styled.div`
+const FormTitle = styled.h3`
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid;
+  border-color: lightgray;
+`
+
+const PlayTimeDiv = styled.div`
+  display: inline-block;
+  margin-bottom: 20px;
+  input {
+    width: 80px;
+    border-radius: 5px;
+    padding: 0.375em 0.75em;
+  }
+`
+
+const StyledTextarea = styled.textarea`
+  width: 50%;
+  height: 100px;
+  border-radius: 5px;
+  padding: 0.375em 0.75em;
+`
+
+const StyledSubmitButtonDiv = styled.div`
   text-align: right;
+  button {
+    background-color: white;
+    color: darkgreen;
+    border-radius: 5px;
+    border-color: darkgreen;
+    padding: 1em;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  button:hover {
+    background-color: darkgreen;
+    color: white;
+  }
 `;
 
 export default function EntryAdditionForm() {
   const methodsOfUseForm = useForm<InputtingEntryToAdd>({
     defaultValues: blankEntry,
   });
-  const { handleSubmit } = methodsOfUseForm;
+  const { register, handleSubmit } = methodsOfUseForm;
 
   const onSubmit: SubmitHandler<InputtingEntryToAdd> = (data) =>
     console.log(data);
@@ -22,15 +57,25 @@ export default function EntryAdditionForm() {
   return (
     <FormProvider {...methodsOfUseForm}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <b>演奏者</b>
+        <FormTitle>演奏者</FormTitle>
         <ParticipantAdditionTable />
-        <b>曲目</b>
-        <WorkAdditionTable/>
-        <RightAlignedDiv>
-          <Button variant="success" type="submit">
+
+        <FormTitle>曲目</FormTitle>
+        <WorkAdditionTable />
+
+        <FormTitle>演奏時間</FormTitle>
+        <PlayTimeDiv>
+          <input type="number" {...register('time')}/> 分
+        </PlayTimeDiv>
+
+        <FormTitle>メモ</FormTitle>
+        <StyledTextarea {...register('memo')}/>
+
+        <StyledSubmitButtonDiv>
+          <button type="submit">
             この内容でエントリーを追加
-          </Button>
-        </RightAlignedDiv>
+          </button>
+        </StyledSubmitButtonDiv>
       </form>
     </FormProvider>
   );

@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { FaRegPlusSquare, FaRegTrashAlt, FaRegCopy } from "react-icons/fa";
 import { StyledInput, StyledTd, StyledButton } from "../styled/StyledTd";
 

@@ -5,7 +5,7 @@ export const StyledTable = styled.table`
   text-align: center;
   table-layout: fixed;
   border-collapse: collapse;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   td {
     height: 3em;
     border: 1px solid #dee2e6;
