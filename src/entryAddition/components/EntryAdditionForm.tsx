@@ -1,10 +1,12 @@
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
-import { Button, Modal } from "react-bootstrap";
 import { useState } from "react";
 import styled from "styled-components";
 import WorkAdditionTable from "./WorkAdditionTable";
 import ResetConfirmationModal from "./ResetConfirmationModal";
 import ParticipantAdditionTable from "./ParticipantAdditionTable";
+import ApplyAddingEntryToEntry from "../utils/ApplyAddingEntryToEntry";
+import { useParts } from "../../PartProvider";
+import { useEntries } from "../../EntryProvider";
 import { blankEntry } from "../constants/blankEntry";
 import { InputtingEntryToAdd } from "../../type/Entry";
 
@@ -75,10 +77,22 @@ export default function EntryAdditionForm() {
   });
   const { register, handleSubmit } = methodsOfUseForm;
 
-  const [shownResetModal, setShownResetModal] = useState(false);
+  const { setEntryMap } = useEntries();
+  const { setPartMap } = useParts();
 
-  const onSubmit: SubmitHandler<InputtingEntryToAdd> = (data) =>
-    console.log(data);
+  const onSubmit: SubmitHandler<InputtingEntryToAdd> = (data) => {
+    const entry = ApplyAddingEntryToEntry(data);
+    setEntryMap((prevEntryMap) => ({ ...prevEntryMap, [entry.id]: entry }));
+    setPartMap((prevPartMap) => ({
+      ...prevPartMap,
+      [entry.partId]: {
+        ...prevPartMap[entry.partId],
+        entryIds: [...prevPartMap[entry.partId].entryIds, entry.id],
+      },
+    }));
+  };
+
+  const [shownResetModal, setShownResetModal] = useState(false);
 
   return (
     <FormProvider {...methodsOfUseForm}>
