@@ -1,10 +1,12 @@
+import styled from "styled-components";
 import { FaRegPlusSquare, FaRegTrashAlt, FaRegCopy } from "react-icons/fa";
+import { StyledInput, StyledTd, StyledButton } from "../styled/StyledTd";
+
 import {
   useFormContext,
   UseFieldArrayRemove,
   UseFieldArrayInsert,
 } from "react-hook-form";
-import { StyledInput, StyledTd, StyledButton } from "../styled/StyledTd";
 import { InputtingEntryToAdd } from "../../type/Entry";
 
 interface Props {
@@ -14,32 +16,55 @@ interface Props {
   insert: UseFieldArrayInsert<InputtingEntryToAdd>;
 }
 
-export default function WorkAdditionTableRow(props: Props) {
+export default function ParticipantAdditionTableRow(props: Props) {
   const { index, count, remove, insert } = props;
   const { register, getValues } = useFormContext<InputtingEntryToAdd>();
 
-  const insertCopiedRow = () => {
-    const work = getValues().works[index];
+  const insertBlankParticipant = () => {
+    insert(index + 1, {
+      lastName: "",
+      firstName: "",
+      faculty: "",
+      grade: null,
+    });
+  };
 
-    insert(index + 1, work);
+  const insertCopiedRow = () => {
+    const participant = getValues().participants[index];
+
+    insert(index + 1, participant);
   };
 
   return (
     <tr>
       <td>
-        {/** 作曲家 */}
-        <StyledInput {...register(`works.${index}.composer`, { required: true })} />
+        {/** 姓 */}
+        <StyledInput
+          {...register(`participants.${index}.lastName`, { required: true })}
+        />
       </td>
       <td>
-        {/** 曲名 */}
-        <StyledInput {...register(`works.${index}.name`, { required: true })} />
+        {/** 名 */}
+        <StyledInput
+          {...register(`participants.${index}.firstName`, { required: true })}
+        />
+      </td>
+      <td>
+        {/** 所属 */}
+        <StyledInput
+          {...register(`participants.${index}.faculty`, { required: true })}
+        />
+      </td>
+      <td>
+        {/** 学年 */}
+        <StyledInput
+          type="number"
+          {...register(`participants.${index}.grade`, { required: true })}
+        />
       </td>
       <StyledTd>
         {/** 空の行を下に追加するボタン */}
-        <StyledButton
-          type="button"
-          onClick={() => insert(index + 1, { composer: "", name: "" })}
-        >
+        <StyledButton type="button" onClick={() => insertBlankParticipant()}>
           <FaRegPlusSquare />
         </StyledButton>
       </StyledTd>

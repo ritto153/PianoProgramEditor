@@ -1,26 +1,7 @@
 import { useFormContext, useFieldArray } from "react-hook-form";
-import styled from "styled-components";
+import { StyledTable, ThWithWidth } from '../styled/StyledTable';
 import WorkAdditionTableRow from "./WorkAdditionTableRow";
 import { InputtingEntryToAdd } from "../../type/Entry";
-
-const StyledTable = styled.table`
-  width: 100%;
-  text-align: center;
-  table-layout: fixed;
-  border-collapse: collapse;
-  margin-bottom: 10px;
-  td {
-    height: 3em;
-    border: 1px solid #dee2e6;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    letter-spacing: 1px;
-  }
-`;
-
-const ThWithWidth = styled.th<{ $width: number }>`
-  width: ${(props) => props.$width}%;
-`;
 
 export default function WorkAdditionTable() {
   const { control } = useFormContext<InputtingEntryToAdd>();
