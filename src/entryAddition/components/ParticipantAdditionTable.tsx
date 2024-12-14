@@ -14,8 +14,8 @@ export default function ParticipantAdditionTable() {
     <StyledTable>
       <thead>
         <tr>
-          <ThWithWidth $width={15}>姓</ThWithWidth>
-          <ThWithWidth $width={15}>名</ThWithWidth>
+          <ThWithWidth $width={25}>姓</ThWithWidth>
+          <ThWithWidth $width={25}>名</ThWithWidth>
           <ThWithWidth $width={10}>所属</ThWithWidth>
           <ThWithWidth $width={10}>学年</ThWithWidth>
           <ThWithWidth $width={10}>追加</ThWithWidth>
