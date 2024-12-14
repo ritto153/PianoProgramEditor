@@ -28,7 +28,9 @@ export default function WorkAdditionTableRow(props: Props) {
     <tr>
       <td>
         {/** 作曲家 */}
-        <StyledInput {...register(`works.${index}.composer`, { required: true })} />
+        <StyledInput
+          {...register(`works.${index}.composer`, { required: true })}
+        />
       </td>
       <td>
         {/** 曲名 */}

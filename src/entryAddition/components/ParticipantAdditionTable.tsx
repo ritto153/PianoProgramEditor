@@ -1,6 +1,6 @@
-import { useFormContext, useFieldArray } from 'react-hook-form';
-import ParticipantAdditionTableRow from './ParticipantAdditionTableRow';
-import { StyledTable, ThWithWidth } from '../styled/StyledTable';
+import { useFormContext, useFieldArray } from "react-hook-form";
+import ParticipantAdditionTableRow from "./ParticipantAdditionTableRow";
+import { StyledTable, ThWithWidth } from "../styled/StyledTable";
 import { InputtingEntryToAdd } from "../../type/Entry";
 
 export default function ParticipantAdditionTable() {

@@ -21,15 +21,13 @@ const StyledDetails = styled.details`
   form {
     margin: 10px;
   }
-`
+`;
 
 export default function EntryAdditionAccordion() {
   return (
     <StyledDetails>
-      <summary>
-        エントリーの追加
-      </summary>
+      <summary>エントリーの追加</summary>
       <EntryAdditionForm />
     </StyledDetails>
-  )
+  );
 }

@@ -1,5 +1,5 @@
 import { useFormContext, useFieldArray } from "react-hook-form";
-import { StyledTable, ThWithWidth } from '../styled/StyledTable';
+import { StyledTable, ThWithWidth } from "../styled/StyledTable";
 import WorkAdditionTableRow from "./WorkAdditionTableRow";
 import { InputtingEntryToAdd } from "../../type/Entry";
 

@@ -9,7 +9,7 @@ const FormTitle = styled.h3`
   padding-bottom: 0.5em;
   border-bottom: 1px solid;
   border-color: lightgray;
-`
+`;
 
 const PlayTimeDiv = styled.div`
   display: inline-block;
@@ -19,14 +19,14 @@ const PlayTimeDiv = styled.div`
     border-radius: 5px;
     padding: 0.375em 0.75em;
   }
-`
+`;
 
 const StyledTextarea = styled.textarea`
   width: 50%;
   height: 100px;
   border-radius: 5px;
   padding: 0.375em 0.75em;
-`
+`;
 
 const StyledSubmitButtonDiv = styled.div`
   text-align: right;
@@ -65,16 +65,14 @@ export default function EntryAdditionForm() {
 
         <FormTitle>演奏時間</FormTitle>
         <PlayTimeDiv>
-          <input type="number" {...register('time')}/> 分
+          <input type="number" {...register("time")} /> 分
         </PlayTimeDiv>
 
         <FormTitle>メモ</FormTitle>
-        <StyledTextarea {...register('memo')}/>
+        <StyledTextarea {...register("memo")} />
 
         <StyledSubmitButtonDiv>
-          <button type="submit">
-            この内容でエントリーを追加
-          </button>
+          <button type="submit">この内容でエントリーを追加</button>
         </StyledSubmitButtonDiv>
       </form>
     </FormProvider>
