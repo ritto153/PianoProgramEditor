@@ -1,10 +1,8 @@
 import Table from "react-bootstrap/Table";
-import { useEntryToAddContext } from "./EntryToAddProvider";
 import { FaRegPlusSquare, FaRegTrashAlt, FaRegCopy } from "react-icons/fa";
 
 export default function WorkAdditionTable() {
-  const { entry } = useEntryToAddContext();
-  const { works } = entry;
+  const works = [null];
 
   return (
     <Table>
@@ -15,14 +13,14 @@ export default function WorkAdditionTable() {
         </tr>
       </thead>
       <tbody>
-        {works.map((work, i) => {
+        {works.map((_, i) => {
           return (
             <tr key={i}>
               <th>
-                <input type="text" value={String(work.composer)} />
+                <input type="text"/>
               </th>
               <th>
-                <input type="text" value={String(work.name)} />
+                <input type="text"/>
               </th>
               <th>
                 <FaRegPlusSquare />

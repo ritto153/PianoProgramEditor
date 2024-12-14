@@ -19,17 +19,17 @@ export type Entry = {
 
 export type InputtingEntryToAdd = {
   participants: {
-    lastName: string | null;
-    firstName: string | null;
-    faculty: string | null;
+    lastName: string;
+    firstName: string;
+    faculty: string;
     grade: number | null;
   }[];
   works: {
-    composer: string | null;
-    name: string | null;
+    composer: string;
+    name: string;
   }[];
   time: number | null;
-  memo: string | null;
+  memo: string;
 }
 
 export type EntryMap = {

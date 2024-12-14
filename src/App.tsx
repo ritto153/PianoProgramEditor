@@ -2,7 +2,6 @@ import { DragDropContext } from "react-beautiful-dnd";
 import Part from "./components/Part";
 import CsvDownloadButton from "./csvDownload/CsvDownloadButton";
 import EntryAdditionAccordion from "./entryAddition/EntryAdditionAccordion";
-import EntryToAddProvider from "./entryAddition/EntryToAddProvider";
 import { ReorderEntryInPartMap } from "./utils/ReorderEntryInPartMap";
 import { useParts } from "./PartProvider";
 import { DropResult } from "./type/DropResult";
@@ -32,9 +31,7 @@ export default function App() {
   return (
     <Wrapper>
       <CsvDownloadButton/>
-      <EntryToAddProvider>
-        <EntryAdditionAccordion/>
-      </EntryToAddProvider>
+      <EntryAdditionAccordion/>
       <DragDropContext onDragEnd={onDragEnd}>
         {sortedParts.map((part) => (
           <Part key={part.id} partId={part.id} />
