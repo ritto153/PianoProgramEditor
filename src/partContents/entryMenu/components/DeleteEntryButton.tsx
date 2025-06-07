@@ -2,6 +2,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useState } from "react";
+import { useRemoveEntry } from "../../../hooks/useRemoveEntry";
 
 export type Props = {
   entryId: string;
@@ -11,9 +12,10 @@ export default function DeleteEntryButton(props: Props): JSX.Element {
   const { entryId } = props;
   const [showModal, setShowModal] = useState(false);
 
-  const deleteEntry = (entryId: string) => {
-    // Logic to delete the entry goes here
-    console.log(`Deleting entry with ID: ${entryId}`);
+  const { removeEntry } = useRemoveEntry();
+
+  const handleDeleteConfirm = () => {
+    removeEntry(entryId);
     setShowModal(false);
   };
 
@@ -33,10 +35,7 @@ export default function DeleteEntryButton(props: Props): JSX.Element {
           <Button variant="secondary" onClick={() => setShowModal(false)}>
             キャンセル
           </Button>
-          <Button
-            variant="danger"
-            onClick={() => deleteEntry(entryId)}
-          >
+          <Button variant="danger" onClick={() => handleDeleteConfirm()}>
             削除
           </Button>
         </Modal.Footer>
