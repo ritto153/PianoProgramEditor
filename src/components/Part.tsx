@@ -12,6 +12,7 @@ type Props = {
 };
 
 const Wrapper = styled.div`
+  margin-top: 2em;
   margin-bottom: 1.5em;
 `;
 
