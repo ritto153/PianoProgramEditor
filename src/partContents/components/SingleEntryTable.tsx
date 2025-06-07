@@ -1,8 +1,7 @@
-import Dropdown from "react-bootstrap/Dropdown";
-import { FaRegTrashAlt } from "react-icons/fa";
 import { useEntries } from "../../EntryProvider";
 import { useMemo } from "react";
 import styled from "styled-components";
+import EntryMenu from "./EntryMenu";
 import { DivideEntryForRow } from "../utils/BuildEntriesForTableRow";
 import { entryAttributesInfo } from "../../constants/EntryAttributesInfo";
 import { EntryForDisplay } from "../../type/Entry";
@@ -86,18 +85,7 @@ export default function SingleEntryTable(props: Props): JSX.Element {
             return (
               <tr key={i}>
                 <TdWithWidth $width={50} rowSpan={rowCount}>
-                  <Dropdown>
-                    <Dropdown.Toggle
-                      variant="secondary"
-                      size="sm"
-                    ></Dropdown.Toggle>
-                    <Dropdown.Menu>
-                      <Dropdown.Item>
-                        <FaRegTrashAlt />
-                        <span> 削除</span>
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
+                  <EntryMenu></EntryMenu>
                 </TdWithWidth>
                 {attributesPerEntry.map((attribute) => (
                   <TdWithAttribute
