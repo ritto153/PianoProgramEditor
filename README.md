@@ -13,6 +13,11 @@ https://ritto153.github.io/PianoProgramEditor/
 その後以下をブラウザで開くと画面が表示されます。
 [http://localhost:3000](http://localhost:3000)
 
+# デプロイ
+Github Pages で一般公開しています。  
+それに対するデプロイは以下コマンドで実行できます  
+`npm run deploy`
+
 # 現在のステータス
 開発途中です。以下は開発予定の機能です。  
 - エントリーのCSVインポート機能の新設
