@@ -26,7 +26,7 @@ export default function DeleteEntryButton(props: Props): JSX.Element {
         <span> 削除</span>
       </div>
 
-      <Modal show={showModal} onHide={() => {}}>
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>削除の確認</Modal.Title>
         </Modal.Header>
