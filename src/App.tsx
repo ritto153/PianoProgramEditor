@@ -11,7 +11,7 @@ import styled from "styled-components";
 import { useEffect } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import PageHeader from "./pageHeader/components/pageHeader";
+import PageHeader from "./components/pageHeader";
 
 const Wrapper = styled.div`
   margin: 1em;
