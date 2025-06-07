@@ -26,6 +26,13 @@ if (savedDataMapInLocalStorage == null) {
   }
 } else {
   initialSavedDataMap = JSON.parse(savedDataMapInLocalStorage);
+  // localStorage から取得した日付文字列を Date オブジェクトに変換
+  for (let savedDatum of Object.values(initialSavedDataMap)) {
+    savedDatum.lastUpdated = new Date(savedDatum.lastUpdated);
+    for (let part of Object.values(savedDatum.partMap)) {
+      part.startingTime = part.startingTime ? new Date(part.startingTime) : null;
+    }
+  }
 }
 
 interface SavedDataContextValue {
