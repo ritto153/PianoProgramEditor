@@ -9,10 +9,13 @@ import { DropResult } from "./type/DropResult";
 import { PartMap } from "./type/Part";
 import styled from "styled-components";
 import { useEffect } from "react";
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
+import PageHeader from "./pageHeader/components/pageHeader";
 
 const Wrapper = styled.div`
   margin: 1em;
-`
+`;
 
 export default function App() {
   const { entryMap } = useEntries();
@@ -26,15 +29,24 @@ export default function App() {
     (a, b) => a.partNum - b.partNum
   );
 
-  useEffect(()=>{
-    localStorage.setItem('partMap', JSON.stringify(partMap));
-    localStorage.setItem('entryMap', JSON.stringify(entryMap));
+  useEffect(() => {
+    localStorage.setItem("partMap", JSON.stringify(partMap));
+    localStorage.setItem("entryMap", JSON.stringify(entryMap));
   }, [partMap]);
 
   return (
     <Wrapper>
-      <CsvDownloadButton/>
-      <EntryAdditionAccordion/>
+      <PageHeader />
+      <Tabs
+        defaultActiveKey="entryAddition"
+        id="uncontrolled-tab-example"
+        className="mb-3"
+      >
+        <Tab eventKey="entryAddition" title="エントリー追加">
+          <EntryAdditionAccordion />
+        </Tab>
+      </Tabs>
+      <CsvDownloadButton />
       <DragDropContext onDragEnd={onDragEnd}>
         {sortedParts.map((part) => (
           <Part key={part.id} partId={part.id} />
