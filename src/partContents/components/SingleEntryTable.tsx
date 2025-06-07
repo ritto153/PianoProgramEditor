@@ -1,4 +1,3 @@
-import { useEntries } from "../../EntryProvider";
 import { useMemo } from "react";
 import styled from "styled-components";
 import EntryMenu from "../entryMenu/components/EntryMenu";
@@ -6,6 +5,7 @@ import { DivideEntryForRow } from "../utils/BuildEntriesForTableRow";
 import { entryAttributesInfo } from "../../constants/EntryAttributesInfo";
 import { EntryForDisplay } from "../../type/Entry";
 import { DividedEntryForRow } from "../../type/DividedEntryForRow";
+import { useGetSavedData } from "../../hooks/useGetSavedData";
 
 const StyledTable = styled.table`
   width: 100%;
@@ -56,8 +56,10 @@ type Props = {
 export default function SingleEntryTable(props: Props): JSX.Element {
   const { draggableProvided, entryId, index, partNum, stringStartingTime } =
     props;
+  const { getSavedDataInUse } = useGetSavedData();
+  const savedDataInUse = getSavedDataInUse();
+  const entryMap = savedDataInUse.entryMap;
 
-  const { entryMap } = useEntries();
   const entry = entryMap[entryId];
 
   const entriesForTableRow = useMemo(

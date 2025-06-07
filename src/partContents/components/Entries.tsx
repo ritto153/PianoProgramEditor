@@ -1,12 +1,12 @@
 import { useMemo } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useParts } from "../../PartProvider";
 import { entryAttributesInfo } from "../../constants/EntryAttributesInfo";
 import { EntrySchedules } from "../../type/EntrySchedules";
 import SingleEntryTable from "./SingleEntryTable";
 import styled from "styled-components";
 import { StringifyDate } from "../../utils/StringifyDate";
+import { useGetSavedData } from "../../hooks/useGetSavedData";
 
 const StyledTable = styled.table`
   width: 100%;
@@ -36,8 +36,9 @@ type Props = {
 
 export default function Entries(props: Props) {
   const { partId, entrySchedules } = props;
-
-  const { partMap } = useParts();
+  const { getSavedDataInUse } = useGetSavedData();
+  const savedDataInUse = getSavedDataInUse();
+  const partMap = savedDataInUse.partMap;
 
   const part = partMap[partId];
   const selectedEntryIds = part.entryIds;

@@ -1,6 +1,7 @@
 import Button from "react-bootstrap/Button";
-import { useParts } from "../../PartProvider";
 import { AddPart } from "../utils/AddPart";
+import { useGetSavedData } from "../../hooks/useGetSavedData";
+import { useSetSavedData } from "../../hooks/useSetSavedData";
 
 type Props = {
   partId: string;
@@ -8,11 +9,14 @@ type Props = {
 
 export default function EntryTableAddingButton(props: Props) {
   const { partId } = props;
-  const { partMap, setPartMap } = useParts();
+  const { getSavedDataInUse } = useGetSavedData();
+  const savedDataInUse = getSavedDataInUse();
+  const { partMap } = savedDataInUse;
+  const { setPartMapOfSavedDataInUse } = useSetSavedData();
 
   const addPart = () => {
     const newPartMap = AddPart(partId, partMap);
-    setPartMap(newPartMap);
+    setPartMapOfSavedDataInUse(newPartMap);
   };
 
   return (

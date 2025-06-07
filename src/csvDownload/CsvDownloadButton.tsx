@@ -1,7 +1,5 @@
 import { CSVLink } from "react-csv";
 import { Entry } from "../type/Entry";
-import { useEntries } from "../EntryProvider";
-import { useParts } from "../PartProvider";
 import Button from "react-bootstrap/Button";
 import styled from "styled-components";
 import { useGetSavedData } from "../hooks/useGetSavedData";

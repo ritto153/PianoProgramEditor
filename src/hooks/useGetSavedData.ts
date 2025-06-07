@@ -5,6 +5,10 @@ export const useGetSavedData = () => {
   const { savedDataMap } = useSavedData();
   const { dataIdInUse } = useDataIdInUse();
 
+  const getSavedDataMap = () => {
+    return savedDataMap;
+  };
+
   const getSavedDataInUse = () => {
     return savedDataMap[dataIdInUse] || null;
   };
@@ -19,5 +23,10 @@ export const useGetSavedData = () => {
     return savedData ? savedData.entryMap : {};
   };
 
-  return { getSavedDataInUse, getPartMapOfSavedDataInUse, getEntryMapOfSavedDataInUse};
+  return {
+    getSavedDataMap,
+    getSavedDataInUse,
+    getPartMapOfSavedDataInUse,
+    getEntryMapOfSavedDataInUse,
+  };
 };

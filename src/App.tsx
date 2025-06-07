@@ -3,8 +3,6 @@ import Part from "./components/Part";
 import CsvDownloadButton from "./csvDownload/CsvDownloadButton";
 import EntryAdditionAccordion from "./entryAddition/components/EntryAdditionAccordion";
 import { ReorderEntryInPartMap } from "./utils/ReorderEntryInPartMap";
-import { useEntries } from "./EntryProvider";
-import { useParts } from "./PartProvider";
 import { DropResult } from "./type/DropResult";
 import { PartMap } from "./type/Part";
 import styled from "styled-components";
@@ -12,17 +10,22 @@ import { useEffect } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import PageHeader from "./components/pageHeader";
+import { useGetSavedData } from "./hooks/useGetSavedData";
+import { useSetSavedData } from "./hooks/useSetSavedData";
 
 const Wrapper = styled.div`
   margin: 1em;
 `;
 
 export default function App() {
-  const { entryMap } = useEntries();
-  const { partMap, setPartMap } = useParts();
+  const { getSavedDataMap, getSavedDataInUse } = useGetSavedData();
+  const savedDataInUse = getSavedDataInUse();
+  const savedDataMap = getSavedDataMap();
+  const { partMap } = savedDataInUse;
+  const { setPartMapOfSavedDataInUse } = useSetSavedData();
 
   const onDragEnd = (result: DropResult) => {
-    setPartMapOnDragEnd(result, partMap, setPartMap);
+    setPartMapOnDragEnd(result, partMap, setPartMapOfSavedDataInUse);
   };
 
   const sortedParts = Object.values(partMap).sort(
@@ -30,8 +33,7 @@ export default function App() {
   );
 
   useEffect(() => {
-    localStorage.setItem("partMap", JSON.stringify(partMap));
-    localStorage.setItem("entryMap", JSON.stringify(entryMap));
+    localStorage.setItem("savedDataMap", JSON.stringify(savedDataMap));
   }, [partMap]);
 
   return (
@@ -59,7 +61,7 @@ export default function App() {
 function setPartMapOnDragEnd(
   dropResult: DropResult,
   initialPartMap: PartMap,
-  setPartMap: React.Dispatch<React.SetStateAction<PartMap>>
+  setPartMap: (partMap: PartMap) => void
 ): void {
   // 表の外にドロップされた場合
   if (!dropResult.destination) return;

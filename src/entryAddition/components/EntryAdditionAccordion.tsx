@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import EntryAdditionForm from "./EntryAdditionForm";
 import Accordion from 'react-bootstrap/Accordion';
 

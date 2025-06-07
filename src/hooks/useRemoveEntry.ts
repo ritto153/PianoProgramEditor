@@ -1,5 +1,7 @@
 import { useParts } from "../PartProvider";
 import { useEntries } from "../EntryProvider";
+import { useGetSavedData } from "./useGetSavedData";
+import { useSetSavedData } from "./useSetSavedData";
 
 /**
  * エントリを削除するためのカスタムフック。
@@ -7,8 +9,13 @@ import { useEntries } from "../EntryProvider";
  * @returns {function(string): void} エントリIDを引数にとる削除関数
  */
 export const useRemoveEntry = () => {
-  const { partMap, setPartMap } = useParts();
-  const { entryMap, setEntryMap } = useEntries();
+  const { getSavedDataInUse } = useGetSavedData();
+  const savedDataInUse = getSavedDataInUse();
+  const { partMap, entryMap } = savedDataInUse;
+  const { setPartMapOfSavedDataInUse, setEntryMapOfSavedDataInUse } =
+    useSetSavedData();
+  // const { partMap, setPartMap } = useParts();
+  // const { entryMap, setEntryMap } = useEntries();
 
   const removeEntry = (entryId: string): void => {
     // Find the part that contains the entry
@@ -38,8 +45,8 @@ export const useRemoveEntry = () => {
     delete updatedEntryMap[entryId];
 
     // Update the state with the new partMap and entryMap
-    setPartMap(updatedPartMap);
-    setEntryMap(updatedEntryMap);
+    setPartMapOfSavedDataInUse(updatedPartMap);
+    setEntryMapOfSavedDataInUse(updatedEntryMap);
     console.log(`Entry with ID ${entryId} has been removed.`);
   };
 

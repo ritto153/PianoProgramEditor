@@ -1,8 +1,9 @@
 import { useMemo, useState } from "react";
 import Form from "react-bootstrap/Form";
 import { PartMap } from "../../type/Part";
-import { useParts } from "../../PartProvider";
 import { randomStandardDate } from "../../constants/RandomStardardDate";
+import { useGetSavedData } from "../../hooks/useGetSavedData";
+import { useSetSavedData } from "../../hooks/useSetSavedData";
 
 type Props = {
   partId: string;
@@ -10,7 +11,10 @@ type Props = {
 
 export default function StartingTimeInputForm(props: Props) {
   const { partId } = props;
-  const { partMap, setPartMap } = useParts();
+  const { getSavedDataInUse } = useGetSavedData();
+  const savedDataInUse = getSavedDataInUse();
+  const { partMap } = savedDataInUse;
+  const { setPartMapOfSavedDataInUse } = useSetSavedData();
   const part = partMap[partId];
 
   const initialStartingTime = part.startingTime
@@ -25,7 +29,7 @@ export default function StartingTimeInputForm(props: Props) {
   ) => {
     const newTime = e.target.value;
     setLocalStartingTime(newTime);
-    setPartMap(
+    setPartMapOfSavedDataInUse(
       BuildStartingTimeUpdatedPart(partMap, partId, newTime, randomStandardDate)
     );
   };

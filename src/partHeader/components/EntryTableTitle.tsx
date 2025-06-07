@@ -4,11 +4,10 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import styled from "styled-components";
 
-import { useEntries } from "../../EntryProvider";
-import { useParts } from "../../PartProvider";
 import StartingTimeInputForm from "./StartingTimeInputForm";
 import { Part } from "../../type/Part";
 import { EntryMap } from "../../type/Entry";
+import { useGetSavedData } from "../../hooks/useGetSavedData";
 
 type Props = {
   partId: string;
@@ -31,8 +30,9 @@ const BoldP = styled.p`
 export default function EntryTableTitle(props: Props) {
   const { partId, endingTime } = props;
 
-  const { partMap } = useParts();
-  const { entryMap } = useEntries();
+  const { getSavedDataInUse } = useGetSavedData();
+  const savedDataInUse = getSavedDataInUse();
+  const { partMap, entryMap } = savedDataInUse;
 
   const part = partMap[partId];
   const totalPlayTime = MinutesBetweenTwoDates(

@@ -5,8 +5,8 @@ import WorkAdditionTable from "./WorkAdditionTable";
 import ResetConfirmationModal from "./ResetConfirmationModal";
 import ParticipantAdditionTable from "./ParticipantAdditionTable";
 import ApplyAddingEntryToEntry from "../utils/ApplyAddingEntryToEntry";
-import { useParts } from "../../PartProvider";
-import { useEntries } from "../../EntryProvider";
+import { useGetSavedData } from "../../hooks/useGetSavedData";
+import { useSetSavedData } from "../../hooks/useSetSavedData";
 import { blankEntry } from "../constants/blankEntry";
 import { InputtingEntryToAdd } from "../../type/Entry";
 
@@ -77,19 +77,33 @@ export default function EntryAdditionForm() {
   });
   const { register, handleSubmit, reset } = methodsOfUseForm;
 
-  const { setEntryMap } = useEntries();
-  const { setPartMap } = useParts();
+  const { getSavedDataInUse } = useGetSavedData();
+  const savedDataInUse = getSavedDataInUse();
+  const { partMap, entryMap } = savedDataInUse;
+  const { setEntryMapOfSavedDataInUse, setPartMapOfSavedDataInUse } = useSetSavedData();
 
   const onSubmit: SubmitHandler<InputtingEntryToAdd> = (data) => {
     const entry = ApplyAddingEntryToEntry(data);
-    setEntryMap((prevEntryMap) => ({ ...prevEntryMap, [entry.id]: entry }));
-    setPartMap((prevPartMap) => ({
-      ...prevPartMap,
+    setEntryMapOfSavedDataInUse({
+      ...entryMap,
+      [entry.id]: entry,
+    });
+    setPartMapOfSavedDataInUse({
+      ...partMap,
       [entry.partId]: {
-        ...prevPartMap[entry.partId],
-        entryIds: [...prevPartMap[entry.partId].entryIds, entry.id],
+        ...partMap[entry.partId],
+        entryIds: [...partMap[entry.partId].entryIds, entry.id],
       },
-    }));
+    });
+    
+    // setEntryMap((prevEntryMap) => ({ ...prevEntryMap, [entry.id]: entry }));
+    // setPartMap((prevPartMap) => ({
+    //   ...prevPartMap,
+    //   [entry.partId]: {
+    //     ...prevPartMap[entry.partId],
+    //     entryIds: [...prevPartMap[entry.partId].entryIds, entry.id],
+    //   },
+    // }));
     reset();
   };
 
