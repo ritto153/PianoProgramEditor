@@ -62,6 +62,10 @@ export default function SingleEntryTable(props: Props): JSX.Element {
 
   const entry = entryMap[entryId];
 
+  if (!entry) {
+    debugger;
+  }
+
   const entriesForTableRow = useMemo(
     () =>
       DivideEntryForRow({

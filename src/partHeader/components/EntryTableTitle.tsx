@@ -118,7 +118,7 @@ const MinutesBetweenTwoDates = (
     return (endingTime.getTime() - startingTime.getTime()) / 60000;
   } else if (!startingTime && !endingTime) {
     return part.entryIds
-      .map((entryId) => entryMap[entryId].time)
+      .map((entryId) => entryMap[entryId]?.time)
       .reduce((a, b) => a + b, 0);
   } else {
     throw new Error("開始時間と終了時間の片方がnullになっています");

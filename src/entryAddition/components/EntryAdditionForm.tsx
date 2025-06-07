@@ -80,30 +80,22 @@ export default function EntryAdditionForm() {
   const { getSavedDataInUse } = useGetSavedData();
   const savedDataInUse = getSavedDataInUse();
   const { partMap, entryMap } = savedDataInUse;
-  const { setEntryMapOfSavedDataInUse, setPartMapOfSavedDataInUse } = useSetSavedData();
+  const { setEntryMapAndPartMapOfSavedDataInUse } = useSetSavedData();
 
   const onSubmit: SubmitHandler<InputtingEntryToAdd> = (data) => {
     const entry = ApplyAddingEntryToEntry(data);
-    setEntryMapOfSavedDataInUse({
-      ...entryMap,
-      [entry.id]: entry,
-    });
-    setPartMapOfSavedDataInUse({
+    const newEntryMap = { ...entryMap, [entry.id]: entry };
+    const newPartMap = {
       ...partMap,
       [entry.partId]: {
         ...partMap[entry.partId],
         entryIds: [...partMap[entry.partId].entryIds, entry.id],
       },
-    });
-    
-    // setEntryMap((prevEntryMap) => ({ ...prevEntryMap, [entry.id]: entry }));
-    // setPartMap((prevPartMap) => ({
-    //   ...prevPartMap,
-    //   [entry.partId]: {
-    //     ...prevPartMap[entry.partId],
-    //     entryIds: [...prevPartMap[entry.partId].entryIds, entry.id],
-    //   },
-    // }));
+    };
+
+    setEntryMapAndPartMapOfSavedDataInUse(newEntryMap, newPartMap);
+
+    console.log("savedDataInUse", getSavedDataInUse());
     reset();
   };
 

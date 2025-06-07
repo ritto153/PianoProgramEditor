@@ -48,7 +48,28 @@ export const useSetSavedData = () => {
     }));
   };
 
-  return { setPartMapOfSavedDataInUse, setEntryMapOfSavedDataInUse };
+  const setEntryMapAndPartMapOfSavedDataInUse = (
+    entryMap: EntryMap,
+    partMap: PartMap
+  ) => {
+    const savedData = getSavedDataInUse();
+    if (!savedData) {
+      console.error("No saved data found for the current dataIdInUse.");
+      return;
+    }
+    const updatedSavedData: SavedDatum = {
+      ...savedData,
+      entryMap: entryMap,
+      partMap: partMap,
+      lastUpdated: new Date(),
+    };
+    setSavedDataMap((prevSavedDataMap) => ({
+      ...prevSavedDataMap,
+      [dataIdInUse]: updatedSavedData,
+    }));
+  };
+
+  return { setPartMapOfSavedDataInUse, setEntryMapOfSavedDataInUse, setEntryMapAndPartMapOfSavedDataInUse };
 }
 
 
