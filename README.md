@@ -15,6 +15,5 @@ https://ritto153.github.io/PianoProgramEditor/
 
 # 現在のステータス
 開発途中です。以下は開発予定の機能です。  
-- エントリーの追加モーダルの新設
 - エントリーのCSVインポート機能の新設
 - Excelエクスポート機能の新設
