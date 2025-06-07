@@ -1,4 +1,5 @@
-import { FaEllipsisH } from "react-icons/fa";
+import Dropdown from "react-bootstrap/Dropdown";
+import { FaRegTrashAlt } from "react-icons/fa";
 import { useEntries } from "../../EntryProvider";
 import { useMemo } from "react";
 import styled from "styled-components";
@@ -84,11 +85,19 @@ export default function SingleEntryTable(props: Props): JSX.Element {
           if (i === 0) {
             return (
               <tr key={i}>
-                <TdWithWidth
-                  $width={50}
-                  rowSpan={rowCount}
-                >
-                  <FaEllipsisH />
+                <TdWithWidth $width={50} rowSpan={rowCount}>
+                  <Dropdown>
+                    <Dropdown.Toggle
+                      variant="secondary"
+                      size="sm"
+                    ></Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Item>
+                        <FaRegTrashAlt />
+                        <span> 削除</span>
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
                 </TdWithWidth>
                 {attributesPerEntry.map((attribute) => (
                   <TdWithAttribute

@@ -26,7 +26,7 @@ const ThWithWidth = styled.td<{ $width: number }>`
   width: ${(props) => props.$width}px;
   padding: 5px;
   background-color: #bbbbbb;
-  font-weight: bold
+  font-weight: bold;
 `;
 
 type Props = {
