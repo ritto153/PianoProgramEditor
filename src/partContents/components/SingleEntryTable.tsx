@@ -1,7 +1,7 @@
 import { useEntries } from "../../EntryProvider";
 import { useMemo } from "react";
 import styled from "styled-components";
-import EntryMenu from "./EntryMenu";
+import EntryMenu from "../entryMenu/components/EntryMenu";
 import { DivideEntryForRow } from "../utils/BuildEntriesForTableRow";
 import { entryAttributesInfo } from "../../constants/EntryAttributesInfo";
 import { EntryForDisplay } from "../../type/Entry";
@@ -85,7 +85,7 @@ export default function SingleEntryTable(props: Props): JSX.Element {
             return (
               <tr key={i}>
                 <TdWithWidth $width={50} rowSpan={rowCount}>
-                  <EntryMenu></EntryMenu>
+                  <EntryMenu entryId={entry.entryId}></EntryMenu>
                 </TdWithWidth>
                 {attributesPerEntry.map((attribute) => (
                   <TdWithAttribute
