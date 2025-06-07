@@ -1,3 +1,4 @@
+import { FaEllipsisH } from "react-icons/fa";
 import { useEntries } from "../../EntryProvider";
 import { useMemo } from "react";
 import styled from "styled-components";
@@ -83,6 +84,12 @@ export default function SingleEntryTable(props: Props): JSX.Element {
           if (i === 0) {
             return (
               <tr key={i}>
+                <TdWithWidth
+                  $width={50}
+                  rowSpan={rowCount}
+                >
+                  <FaEllipsisH />
+                </TdWithWidth>
                 {attributesPerEntry.map((attribute) => (
                   <TdWithAttribute
                     entry={entry}

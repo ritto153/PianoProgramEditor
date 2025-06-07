@@ -47,6 +47,7 @@ export default function Entries(props: Props) {
       <StyledTable>
         <thead>
           <tr>
+            <ThWithWidth $width={50}>#</ThWithWidth>
             {Object.entries(entryAttributesInfo)
               .sort((a, b) => a[1]["columnIndex"] - b[1]["columnIndex"])
               .map(([_, { displayName, columnWidthPx }]) => (
