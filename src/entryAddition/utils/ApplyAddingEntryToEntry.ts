@@ -2,7 +2,8 @@ import { InputtingEntryToAdd, Entry } from "../../type/Entry";
 import { v4 as uuidv4 } from "uuid";
 
 export default function ApplyAddingEntryToEntry(
-  addingEntry: InputtingEntryToAdd
+  addingEntry: InputtingEntryToAdd,
+  partId: string,
 ): Entry {
   const participants = addingEntry.participants.map((participant) => {
     return {
@@ -24,7 +25,7 @@ export default function ApplyAddingEntryToEntry(
 
   return {
     id: uuidv4(),
-    partId: "0",
+    partId: partId,
     participants,
     works,
     time: Number(addingEntry.time),

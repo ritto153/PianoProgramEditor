@@ -83,7 +83,9 @@ export default function EntryAdditionForm() {
   const { setEntryMapAndPartMapOfSavedDataInUse } = useSetSavedData();
 
   const onSubmit: SubmitHandler<InputtingEntryToAdd> = (data) => {
-    const entry = ApplyAddingEntryToEntry(data);
+    const firstPart = Object.values(partMap).sort((a, b) => a.partNum - b.partNum)[0];
+
+    const entry = ApplyAddingEntryToEntry(data, firstPart.id);
     const newEntryMap = { ...entryMap, [entry.id]: entry };
     const newPartMap = {
       ...partMap,
