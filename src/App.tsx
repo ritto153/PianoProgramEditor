@@ -9,9 +9,10 @@ import styled from "styled-components";
 import { useEffect } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import PageHeader from "./components/pageHeader";
+import PageHeader from "./components/PageHeader";
 import { useGetSavedData } from "./hooks/useGetSavedData";
 import { useSetSavedData } from "./hooks/useSetSavedData";
+import SaveData from "./components/SaveData";
 
 const Wrapper = styled.div`
   margin: 1em;
@@ -46,6 +47,9 @@ export default function App() {
       >
         <Tab eventKey="entryAddition" title="エントリー追加">
           <EntryAdditionAccordion />
+        </Tab>
+        <Tab eventKey="entryList" title="セーブデータ一覧">
+          <SaveData />
         </Tab>
       </Tabs>
       <CsvDownloadButton />
