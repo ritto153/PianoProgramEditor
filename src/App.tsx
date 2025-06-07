@@ -52,12 +52,12 @@ export default function App() {
           <SaveData />
         </Tab>
       </Tabs>
-      <CsvDownloadButton />
       <DragDropContext onDragEnd={onDragEnd}>
         {sortedParts.map((part) => (
           <Part key={part.id} partId={part.id} />
         ))}
       </DragDropContext>
+      <CsvDownloadButton />
     </Wrapper>
   );
 }

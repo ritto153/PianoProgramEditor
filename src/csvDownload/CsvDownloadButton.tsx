@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { useGetSavedData } from "../hooks/useGetSavedData";
 
 const AlignRightDiv = styled.div`
-  text-align: right;
+  text-align: center;
   margin: 1em 0
 `;
 
