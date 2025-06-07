@@ -1,4 +1,3 @@
-import { useEntries } from "../EntryProvider";
 import { useGetSavedData } from "./useGetSavedData";
 import { useSetSavedData } from "./useSetSavedData";
 
