@@ -3,10 +3,9 @@ import EntryTableTitle from "../partHeader/components/EntryTableTitle";
 import Entries from "../partContents/components/Entries";
 import EntryTableAddingButton from "../partFooter/components/EntryTableAddingButton";
 import EntryTableRemovingButton from "../partFooter/components/EntryTableRemovingButton";
-import { useEntries } from "../EntryProvider";
-import { useParts } from "../PartProvider";
 import { BuildEntrySchedules } from "../partHeader/utils/BuildEntrySchedules";
 import styled from "styled-components";
+import { useGetSavedData } from "../hooks/useGetSavedData";
 
 type Props = {
   partId: string;
@@ -25,8 +24,11 @@ const Footer = styled.div`
 export default function Part(props: Props) {
   const { partId } = props;
 
-  const { partMap } = useParts();
-  const { entryMap } = useEntries();
+  const { getSavedDataInUse } = useGetSavedData();
+  const savedDataInUse = getSavedDataInUse();
+
+  const partMap = savedDataInUse.partMap;
+  const entryMap = savedDataInUse.entryMap;
 
   const part = partMap[partId];
 

@@ -1,15 +1,21 @@
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import EntryProvider from './EntryProvider';
-import PartProvider from './PartProvider';
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import EntryProvider from "./EntryProvider";
+import PartProvider from "./PartProvider";
+import SavedDataProvider from "./SavedDataProvider";
+import DataIdInUseProvider from "./DataIdInUseProvider";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 root.render(
-  <PartProvider>
-    <EntryProvider>
-      <App />
-    </EntryProvider>
-  </PartProvider>
+  <SavedDataProvider>
+    <DataIdInUseProvider>
+      <PartProvider>
+        <EntryProvider>
+          <App />
+        </EntryProvider>
+      </PartProvider>
+    </DataIdInUseProvider>
+  </SavedDataProvider>
 );

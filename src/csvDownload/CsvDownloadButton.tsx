@@ -4,6 +4,7 @@ import { useEntries } from "../EntryProvider";
 import { useParts } from "../PartProvider";
 import Button from "react-bootstrap/Button";
 import styled from "styled-components";
+import { useGetSavedData } from "../hooks/useGetSavedData";
 
 const AlignRightDiv = styled.div`
   text-align: right;
@@ -11,8 +12,11 @@ const AlignRightDiv = styled.div`
 `;
 
 export default function CsvDownloadButton() {
-  const { partMap } = useParts();
-  const { entryMap } = useEntries();
+  const { getSavedDataInUse } = useGetSavedData();
+
+  const savedDataInUse = getSavedDataInUse();
+  const partMap = savedDataInUse.partMap;
+  const entryMap = savedDataInUse.entryMap;
 
   const sortedParts = Object.values(partMap).sort(
     (a, b) => a.partNum - b.partNum
