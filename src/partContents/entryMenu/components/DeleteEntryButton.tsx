@@ -4,7 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import { useState } from "react";
 import { useRemoveEntry } from "../../../hooks/useRemoveEntry";
 
-export type Props = {
+type Props = {
   entryId: string;
 };
 
