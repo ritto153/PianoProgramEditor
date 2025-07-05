@@ -15,6 +15,8 @@ export default function EntryMenu(props: Props): JSX.Element {
       <Dropdown.Menu>
         <Dropdown.Item>
           <EditEntryButton entryId={entryId} />
+        </Dropdown.Item>
+        <Dropdown.Item>
           <DeleteEntryButton entryId={entryId} />
         </Dropdown.Item>
       </Dropdown.Menu>
