@@ -26,16 +26,8 @@ export default function EditEntryButton(props: Props): JSX.Element {
           <Modal.Title>エントリーの編集</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <EntryEditForm entryId={entryId}/>
+          <EntryEditForm entryId={entryId} onCloseModal={ () => setShowModal(false) }/>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>
-            キャンセル
-          </Button>
-          <Button variant="danger" onClick={() => {}}>
-            保存
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   )
