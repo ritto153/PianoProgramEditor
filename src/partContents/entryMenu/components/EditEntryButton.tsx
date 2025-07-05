@@ -21,7 +21,7 @@ export default function EditEntryButton(props: Props): JSX.Element {
         <span> 編集</span>
       </div>
 
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
+      <Modal size="xl" show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>エントリーの編集</Modal.Title>
         </Modal.Header>
