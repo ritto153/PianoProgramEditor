@@ -2,6 +2,8 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { FaPencilAlt } from "react-icons/fa";
 import { useState } from "react";
+import EntryEditForm from "./EntryEditForm";
+import  { InputtingEntryToAdd } from "../../../type/Entry";
 
 type Props = {
   entryId: string;
@@ -10,6 +12,7 @@ type Props = {
 
 export default function EditEntryButton(props: Props): JSX.Element {
   const { entryId } = props;
+
   const [showModal, setShowModal] = useState(false);
   
   return (
@@ -23,7 +26,9 @@ export default function EditEntryButton(props: Props): JSX.Element {
         <Modal.Header closeButton>
           <Modal.Title>エントリーの編集</Modal.Title>
         </Modal.Header>
-        <Modal.Body>フォーム未実装</Modal.Body>
+        <Modal.Body>
+          <EntryEditForm entryId={entryId}/>
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowModal(false)}>
             キャンセル
