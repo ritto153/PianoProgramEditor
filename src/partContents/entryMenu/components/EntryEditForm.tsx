@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, appendErrors } from "react-hook-form";
 import { useGetSavedData } from "../../../hooks/useGetSavedData";
 import { useEditEntry } from "../../../hooks/useEditEntry";
 import { Entry } from "../../../type/Entry";
@@ -26,7 +26,6 @@ export default function EntryEditForm(props: Props): JSX.Element {
   });
 
   const onSubmit: SubmitHandler<Entry> = (data) => {
-    console.log("Edited Entry Data:", data);
     editEntry(data);
     onCloseModal();
   };
@@ -43,7 +42,7 @@ export default function EntryEditForm(props: Props): JSX.Element {
                 <Form.Label>姓</Form.Label>
                 <Form.Control
                   type="text"
-                  {...register(`participants.${index}.lastName`)}
+                  {...register(`participants.${index}.lastName`, { required: true })}
                   placeholder="姓を入力"
                   defaultValue={participant.lastName}
                 />
@@ -52,7 +51,7 @@ export default function EntryEditForm(props: Props): JSX.Element {
                 <Form.Label>名</Form.Label>
                 <Form.Control
                   type="text"
-                  {...register(`participants.${index}.firstName`)}
+                  {...register(`participants.${index}.firstName`, { required: true })}
                   placeholder="名を入力"
                   defaultValue={participant.firstName}
                 />
@@ -61,7 +60,7 @@ export default function EntryEditForm(props: Props): JSX.Element {
                 <Form.Label>所属</Form.Label>
                 <Form.Control
                   type="text"
-                  {...register(`participants.${index}.faculty`)}
+                  {...register(`participants.${index}.faculty`, { required: true })}
                   placeholder="所属を入力"
                   defaultValue={participant.faculty}
                 />
@@ -89,7 +88,7 @@ export default function EntryEditForm(props: Props): JSX.Element {
                 <Form.Label>作曲者</Form.Label>
                 <Form.Control
                   type="text"
-                  {...register(`works.${index}.composer`)}
+                  {...register(`works.${index}.composer`, { required: true })}
                   placeholder="作曲者を入力"
                   defaultValue={work.composer}
                 />
@@ -98,7 +97,7 @@ export default function EntryEditForm(props: Props): JSX.Element {
                 <Form.Label>曲名</Form.Label>
                 <Form.Control
                   type="text"
-                  {...register(`works.${index}.name`)}
+                  {...register(`works.${index}.name`, { required: true })}
                   placeholder="曲名を入力"
                   defaultValue={work.name}
                 />
@@ -111,7 +110,7 @@ export default function EntryEditForm(props: Props): JSX.Element {
       <Form.Group as={Row} className="mb-3">
         <Form.Label>演奏時間</Form.Label>
         <Col sm={5}>
-          <Form.Control type="number" {...register("time")} placeholder="時" />
+          <Form.Control type="number" {...register("time", { required: true })} placeholder="分" />
         </Col>
       </Form.Group>
 
@@ -127,7 +126,11 @@ export default function EntryEditForm(props: Props): JSX.Element {
         </Col>
       </Form.Group>
 
-      <Button type="submit" style={{ margin: "0 5px" }}>
+      <Button
+        type="button"
+        style={{ margin: "0 5px" }}
+        onClick={handleSubmit(onSubmit)} // type="submit" を設定しても動かないので、onClick を使う
+      >
         保存
       </Button>
     </Form>

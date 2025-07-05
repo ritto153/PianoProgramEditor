@@ -28,7 +28,6 @@ export const useCreateEmptySavedData = () => {
       [newDataId]: emptySavedDatum,
     }));
 
-    console.log(`Created new empty saved data with id: ${newDataId}`);
     return newDataId;
   };
 

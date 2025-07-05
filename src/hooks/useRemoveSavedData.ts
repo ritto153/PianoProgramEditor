@@ -23,7 +23,6 @@ export const useRemoveSavedData = () => {
 
     // Update the saved data map in the context
     setSavedDataMap(updatedSavedDataMap);
-    console.log(`Saved data with dataId: ${dataId} has been removed.`);
   };
 
   return { removeSavedData };

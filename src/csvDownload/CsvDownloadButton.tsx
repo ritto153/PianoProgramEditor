@@ -24,8 +24,6 @@ export default function CsvDownloadButton() {
   const csvHeader = BuildCsvHeader();
   const csvData = BuildCsvData(partMap, entryMap);
 
-  console.log("CSV Data:", csvData);
-
   return (
     <AlignRightDiv>
       <CSVLink headers={csvHeader} data={csvData} filename="program.csv">

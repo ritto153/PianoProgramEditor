@@ -97,7 +97,6 @@ export default function EntryAdditionForm() {
 
     setEntryMapAndPartMapOfSavedDataInUse(newEntryMap, newPartMap);
 
-    console.log("savedDataInUse", getSavedDataInUse());
     reset();
   };
 

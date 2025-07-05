@@ -26,8 +26,6 @@ export const useDuplicateSavedData = () => {
       ...prevSavedDataMap,
       [newDataId]: duplicatedSavedData,
     }));
-
-    console.log(`Saved data with dataId: ${dataId} has been duplicated to ${newDataId}.`);
   };
   return { duplicateSavedData };
 };
