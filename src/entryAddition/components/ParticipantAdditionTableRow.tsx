@@ -6,18 +6,18 @@ import {
   UseFieldArrayRemove,
   UseFieldArrayInsert,
 } from "react-hook-form";
-import { InputtingEntryToAdd } from "../../type/Entry";
+import { InputtingEntry } from "../../type/Entry";
 
 interface Props {
   index: number;
   count: number;
   remove: UseFieldArrayRemove;
-  insert: UseFieldArrayInsert<InputtingEntryToAdd>;
+  insert: UseFieldArrayInsert<InputtingEntry>;
 }
 
 export default function ParticipantAdditionTableRow(props: Props) {
   const { index, count, remove, insert } = props;
-  const { register, getValues } = useFormContext<InputtingEntryToAdd>();
+  const { register, getValues } = useFormContext<InputtingEntry>();
 
   const insertBlankParticipant = () => {
     insert(index + 1, {

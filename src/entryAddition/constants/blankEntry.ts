@@ -1,7 +1,7 @@
 
-import { InputtingEntryToAdd } from "../../type/Entry";
+import { InputtingEntry } from "../../type/Entry";
 
-export const blankEntry: InputtingEntryToAdd = {
+export const blankEntry: InputtingEntry = {
   participants: [
     {
       lastName: "",

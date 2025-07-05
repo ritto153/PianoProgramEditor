@@ -1,5 +1,6 @@
 import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
 import { useGetSavedData } from "../../../hooks/useGetSavedData";
+import  { InputtingEntry } from "../../../type/Entry";
 
 type Props = {
   entryId: string;

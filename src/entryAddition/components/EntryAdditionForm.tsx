@@ -8,7 +8,7 @@ import ApplyAddingEntryToEntry from "../utils/ApplyAddingEntryToEntry";
 import { useGetSavedData } from "../../hooks/useGetSavedData";
 import { useSetSavedData } from "../../hooks/useSetSavedData";
 import { blankEntry } from "../constants/blankEntry";
-import { InputtingEntryToAdd } from "../../type/Entry";
+import { InputtingEntry } from "../../type/Entry";
 
 const FormTitle = styled.h3`
   padding-bottom: 0.5em;
@@ -72,7 +72,7 @@ const StyledSubmitButtonDiv = styled.div`
 `;
 
 export default function EntryAdditionForm() {
-  const methodsOfUseForm = useForm<InputtingEntryToAdd>({
+  const methodsOfUseForm = useForm<InputtingEntry>({
     defaultValues: blankEntry,
   });
   const { register, handleSubmit, reset } = methodsOfUseForm;
@@ -82,7 +82,7 @@ export default function EntryAdditionForm() {
   const { partMap, entryMap } = savedDataInUse;
   const { setEntryMapAndPartMapOfSavedDataInUse } = useSetSavedData();
 
-  const onSubmit: SubmitHandler<InputtingEntryToAdd> = (data) => {
+  const onSubmit: SubmitHandler<InputtingEntry> = (data) => {
     const firstPart = Object.values(partMap).sort((a, b) => a.partNum - b.partNum)[0];
 
     const entry = ApplyAddingEntryToEntry(data, firstPart.id);

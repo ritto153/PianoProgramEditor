@@ -1,8 +1,8 @@
-import { InputtingEntryToAdd, Entry } from "../../type/Entry";
+import { InputtingEntry, Entry } from "../../type/Entry";
 import { v4 as uuidv4 } from "uuid";
 
 export default function ApplyAddingEntryToEntry(
-  addingEntry: InputtingEntryToAdd,
+  addingEntry: InputtingEntry,
   partId: string,
 ): Entry {
   const participants = addingEntry.participants.map((participant) => {

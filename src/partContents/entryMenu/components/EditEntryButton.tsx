@@ -3,7 +3,6 @@ import Modal from "react-bootstrap/Modal";
 import { FaPencilAlt } from "react-icons/fa";
 import { useState } from "react";
 import EntryEditForm from "./EntryEditForm";
-import  { InputtingEntryToAdd } from "../../../type/Entry";
 
 type Props = {
   entryId: string;

@@ -1,11 +1,11 @@
 import { useFormContext, useFieldArray } from "react-hook-form";
 import ParticipantAdditionTableRow from "./ParticipantAdditionTableRow";
 import { StyledTable, ThWithWidth } from "../styled/StyledTable";
-import { InputtingEntryToAdd } from "../../type/Entry";
+import { InputtingEntry } from "../../type/Entry";
 
 export default function ParticipantAdditionTable() {
-  const { control } = useFormContext<InputtingEntryToAdd>();
-  const { fields, remove, insert } = useFieldArray<InputtingEntryToAdd>({
+  const { control } = useFormContext<InputtingEntry>();
+  const { fields, remove, insert } = useFieldArray<InputtingEntry>({
     control,
     name: "participants",
   });

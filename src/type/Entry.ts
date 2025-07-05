@@ -17,7 +17,7 @@ export type Entry = {
   memo: string;
 };
 
-export type InputtingEntryToAdd = {
+export type InputtingEntry = {
   participants: {
     lastName: string;
     firstName: string;

@@ -5,18 +5,18 @@ import {
   UseFieldArrayInsert,
 } from "react-hook-form";
 import { StyledInput, StyledTd, StyledButton } from "../styled/StyledTd";
-import { InputtingEntryToAdd } from "../../type/Entry";
+import { InputtingEntry } from "../../type/Entry";
 
 interface Props {
   index: number;
   count: number;
   remove: UseFieldArrayRemove;
-  insert: UseFieldArrayInsert<InputtingEntryToAdd>;
+  insert: UseFieldArrayInsert<InputtingEntry>;
 }
 
 export default function WorkAdditionTableRow(props: Props) {
   const { index, count, remove, insert } = props;
-  const { register, getValues } = useFormContext<InputtingEntryToAdd>();
+  const { register, getValues } = useFormContext<InputtingEntry>();
 
   const insertCopiedRow = () => {
     const work = getValues().works[index];

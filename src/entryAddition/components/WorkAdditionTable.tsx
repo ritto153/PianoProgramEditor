@@ -1,11 +1,11 @@
 import { useFormContext, useFieldArray } from "react-hook-form";
 import { StyledTable, ThWithWidth } from "../styled/StyledTable";
 import WorkAdditionTableRow from "./WorkAdditionTableRow";
-import { InputtingEntryToAdd } from "../../type/Entry";
+import { InputtingEntry } from "../../type/Entry";
 
 export default function WorkAdditionTable() {
-  const { control } = useFormContext<InputtingEntryToAdd>();
-  const { fields, remove, insert } = useFieldArray<InputtingEntryToAdd>({
+  const { control } = useFormContext<InputtingEntry>();
+  const { fields, remove, insert } = useFieldArray<InputtingEntry>({
     control,
     name: "works",
   });
